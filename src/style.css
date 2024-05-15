@@ -39,17 +39,27 @@ header {
   align-items: center;
 }
 
-main {
+/* main {
   display: grid;
   grid-template-columns: 1fr 6fr;
-}
+} */
 
 #sidebar {
   padding-top: 6rem;
   height: 100%;
   background-color: aqua;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 98;
+  width: 14.2%;
+  /* width: 100%; */
 }
 
 #content {
+  background-color: blue;
+  width: 100vw;
   padding-top: 6rem;
+  height: 100vh;
+  padding-left: 15%;
 }
