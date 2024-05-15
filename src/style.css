@@ -1,3 +1,5 @@
+@import "material-icons/iconfont/material-icons.css";
+
 * {
   padding: 0;
   margin: 0;
@@ -12,52 +14,67 @@ body {
   height: 100vh;
   overflow-y: scroll;
   position: relative;
+  background-color: #f2f5f7;
+  overflow-x: hidden;
 }
 
 header {
-  background-color: rgb(124, 124, 124);
   display: grid;
   grid-template-columns: 1fr 6fr;
   position: fixed;
   top: 0;
   z-index: 99;
   width: 100%;
+  border-bottom: solid #b5b6b8 1px;
+  background-color: #f2f5f7;
 }
 
 #logo {
-  background-color: aquamarine;
   display: flex;
   align-items: center;
   justify-content: center;
+  background-color: #ebf2f7;
+  font-size: 2rem;
+  color: #807e7e;
+  font-weight: bold;
 }
 
 .header-bar {
   width: 100%;
   padding: 2rem;
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  color: #44474b;
 }
 
-/* main {
-  display: grid;
-  grid-template-columns: 1fr 6fr;
-} */
+#profile {
+  display: flex;
+  font-size: 1.5rem;
+  align-items: center;
+  justify-content: center;
+  width: 20%;
+  gap: 0.5rem;
+}
+
+#edit-button {
+  border: none;
+  background-color: none;
+  cursor: pointer;
+}
 
 #sidebar {
   padding-top: 6rem;
   height: 100%;
-  background-color: aqua;
   position: fixed;
   top: 0;
   left: 0;
   z-index: 98;
   width: 14.2%;
+  background-color: #ebf2f7;
   /* width: 100%; */
 }
 
 #content {
-  background-color: blue;
   width: 100vw;
   padding-top: 6rem;
   height: 100vh;
