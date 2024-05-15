@@ -11,12 +11,17 @@ body {
   width: 100vw;
   height: 100vh;
   overflow-y: scroll;
+  position: relative;
 }
 
 header {
   background-color: rgb(124, 124, 124);
   display: grid;
   grid-template-columns: 1fr 6fr;
+  position: fixed;
+  top: 0;
+  z-index: 99;
+  width: 100%;
 }
 
 #logo {
@@ -40,6 +45,11 @@ main {
 }
 
 #sidebar {
-  height: 90vh;
+  padding-top: 6rem;
+  height: 100%;
   background-color: aqua;
+}
+
+#content {
+  padding-top: 6rem;
 }
