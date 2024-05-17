@@ -1,8 +1,6 @@
-import { storage } from "./storage";
-
 class User {
   name = "User";
-  #projects = [];
+  projects = [];
 
   set name(newName) {
     this.name = newName;
@@ -13,4 +11,4 @@ class User {
   }
 }
 
-export default User;
+export const user = new User();

@@ -6,6 +6,7 @@ module.exports = {
     index: "./src/index.js",
     user: "./src/user.js",
     storage: "./src/storage.js",
+    modal: "./src/component/modal.js",
   },
   plugins: [
     new HtmlWebpackPlugin({

@@ -1,30 +1,40 @@
 import "./style.css";
-import User from "./user";
+import { user } from "./user";
 import { storage } from "./storage";
+import Modal from "./component/modal";
 
 if (process.env.NODE_ENV !== "production") {
   console.log("Looks like we are in development mode!");
 }
 
 class IndexDOM {
-  #user;
+  #main;
+  #editNameBtn;
+
   constructor() {
-    if (Object.keys(storage.usersData).length < 1) {
-      this.#user = new User();
-      storage.usersData = this.#user;
-    } else {
-      this.#user = storage.usersData;
-    }
+    storage.usersData = user;
+    this.#main = document.querySelector("main");
+    this.#editNameBtn = document.getElementById("btn-edit-name");
   }
 
   render() {
     this.#fetchUserName();
+    this.showNameInput();
   }
 
   #fetchUserName() {
-    const userName = this.#user.name;
+    const userName = storage.usersData.name;
     const userNameDOM = document.querySelector(".user-name");
     userNameDOM.innerHTML = userName;
+  }
+
+  showNameInput() {
+    let input = `
+      <label for="user-name">Name : </label>
+      <input type="text" id="user-name" name="user-name" required minlength="4" maxlength="8" />
+    `;
+    let nameModal = new Modal(input);
+    this.#main.appendChild(nameModal.overlay);
   }
 }
 
