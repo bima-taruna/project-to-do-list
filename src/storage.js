@@ -1,11 +1,12 @@
 class Storage {
-  set nameData(name) {
-    localStorage.setItem("userName", name);
+  set usersData(userData) {
+    localStorage.setItem("userData", JSON.stringify(userData));
   }
 
-  get nameData() {
-    return localStorage.getItem("userName");
+  get usersData() {
+    var value = localStorage.getItem("userData");
+    return value && JSON.parse(value);
   }
 }
 
-export default Storage;
+export const storage = new Storage();

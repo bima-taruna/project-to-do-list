@@ -4,7 +4,8 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 module.exports = {
   entry: {
     index: "./src/index.js",
-    user: ".src/user.js",
+    user: "./src/user.js",
+    storage: "./src/storage.js",
   },
   plugins: [
     new HtmlWebpackPlugin({

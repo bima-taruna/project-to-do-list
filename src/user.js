@@ -1,10 +1,11 @@
-import Storage from "./storage";
+import { storage } from "./storage";
 
 class User {
   #name = "User";
 
   set name(newName) {
-    this.#name = newName;
+    storage.nameData = newName;
+    this.#name = storage.nameData;
   }
 
   get name() {
