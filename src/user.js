@@ -1,15 +1,15 @@
 import { storage } from "./storage";
 
 class User {
-  #name = "User";
+  name = "User";
+  #projects = [];
 
   set name(newName) {
-    storage.nameData = newName;
-    this.#name = storage.nameData;
+    this.name = newName;
   }
 
   get name() {
-    return this.#name;
+    return this.name;
   }
 }
 
