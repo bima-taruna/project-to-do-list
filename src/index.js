@@ -10,25 +10,37 @@ if (process.env.NODE_ENV !== "production") {
 class IndexDOM {
   #main;
   #editNameBtn;
-  #closeModalButton;
   #nameModal;
+  #userNameInput;
 
   constructor() {
-    storage.usersData = user;
+    if (!storage.usersData) {
+      storage.usersData = user;
+    } else {
+      user.name = storage.usersData.name;
+    }
     this.#main = document.querySelector("main");
     this.#editNameBtn = document.getElementById("btn-edit-name");
   }
 
   render() {
+    console.log(user);
+    console.log(storage.usersData);
     this.#fetchUserName();
-    this.showNameInput();
-    this.#closeModalButton = document.querySelector(".btn-close");
+    this.#appendUserNameInput();
+    let closeModalButton = document.querySelector(".btn-close");
+    let changeUserNameButton = document.querySelector(".btn-name-change");
+    this.#userNameInput = document.getElementById("user-name");
     this.#editNameBtn.addEventListener("click", () =>
       this.#nameModal.openModal()
     );
-    this.#closeModalButton.addEventListener("click", () =>
+    closeModalButton.addEventListener("click", () =>
       this.#nameModal.closeModal()
     );
+
+    changeUserNameButton.addEventListener("click", () => {
+      this.changeUserName();
+    });
   }
 
   #fetchUserName() {
@@ -37,7 +49,7 @@ class IndexDOM {
     userNameDOM.innerHTML = userName;
   }
 
-  showNameInput() {
+  #appendUserNameInput() {
     let input = `
     <div class="name-input">
       <label for="user-name">Name : </label>
@@ -47,6 +59,13 @@ class IndexDOM {
     `;
     this.#nameModal = new Modal(input, "name-modal");
     this.#main.appendChild(this.#nameModal.overlay);
+  }
+
+  changeUserName() {
+    user.name = this.#userNameInput.value;
+    storage.usersData = user;
+    this.#fetchUserName();
+    this.#nameModal.closeModal();
   }
 }
 

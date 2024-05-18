@@ -1,6 +1,10 @@
 class User {
-  name = "User";
+  name;
   projects = [];
+
+  constructor(name) {
+    this.name = name;
+  }
 
   set name(newName) {
     this.name = newName;
@@ -11,4 +15,4 @@ class User {
   }
 }
 
-export const user = new User();
+export const user = new User("User");
