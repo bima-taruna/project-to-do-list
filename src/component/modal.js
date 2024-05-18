@@ -32,11 +32,11 @@ class Modal {
   modalBody;
   #overlay;
 
-  constructor(content) {
+  constructor(content, className) {
     this.#overlay = document.createElement("div");
     this.#overlay.classList.add("overlay");
     this.modalBody = ` 
-        <div class="modal">
+        <div class="${className}">
             <button class="btn-close">close</button>
                 ${content}
         </div>

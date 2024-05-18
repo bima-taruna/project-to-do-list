@@ -23,7 +23,7 @@ header {
   grid-template-columns: 1fr 6fr;
   position: fixed;
   top: 0;
-  z-index: 99;
+  z-index: 98;
   width: 100%;
   border-bottom: solid #b5b6b8 1px;
   background-color: #f2f5f7;
@@ -70,7 +70,7 @@ header {
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 98;
+  z-index: 97;
   width: 14.2%;
   background-color: #ebf2f7;
   display: flex;
@@ -147,4 +147,25 @@ header {
   padding-top: 6rem;
   height: 100vh;
   padding-left: 15%;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(128, 128, 128, 0.5);
+  z-index: 99;
+  display: none;
+}
+
+.name-modal {
+  background-color: white;
+  width: 40%;
+  padding: 2rem;
+  margin: auto;
+  position: relative;
+  top: 10vh;
+  display: inherit;
 }

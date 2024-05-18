@@ -10,6 +10,7 @@ if (process.env.NODE_ENV !== "production") {
 class IndexDOM {
   #main;
   #editNameBtn;
+  #closeModalButton;
 
   constructor() {
     storage.usersData = user;
@@ -20,6 +21,7 @@ class IndexDOM {
   render() {
     this.#fetchUserName();
     this.showNameInput();
+    this.#closeModalButton = document.querySelector(".btn-close");
   }
 
   #fetchUserName() {
@@ -30,10 +32,13 @@ class IndexDOM {
 
   showNameInput() {
     let input = `
+    <div class="name-input">
       <label for="user-name">Name : </label>
       <input type="text" id="user-name" name="user-name" required minlength="4" maxlength="8" />
+      <button class="btn-name-change">Change</button>
+    </div>
     `;
-    let nameModal = new Modal(input);
+    let nameModal = new Modal(input, "name-modal");
     this.#main.appendChild(nameModal.overlay);
   }
 }
