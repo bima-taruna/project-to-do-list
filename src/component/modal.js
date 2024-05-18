@@ -1,33 +1,3 @@
-// function modal(content) {
-//   let modalBody = `
-//   <div class="overlay">
-//     <div class="modal">
-//         <button class="btn-close">close</button>
-//         ${content}
-//     </div>
-//     </div>
-//     `;
-//   let modalTrigger = false;
-
-//   let overlay = document.querySelector(".overlay");
-//   let closeButton = document.querySelector(".btn-close");
-
-//   closeButton.addEventListener("click", () => {
-//     modalTrigger = false;
-//     toogleModal();
-//   });
-
-//   function toogleModal() {
-//     if (modalTrigger) {
-//       overlay.style.display = "block";
-//     } else {
-//       overlay.style.display = "none";
-//     }
-//   }
-// }
-
-// export default modal;
-
 class Modal {
   modalBody;
   #overlay;

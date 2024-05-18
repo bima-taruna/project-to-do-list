@@ -11,6 +11,7 @@ class IndexDOM {
   #main;
   #editNameBtn;
   #closeModalButton;
+  #nameModal;
 
   constructor() {
     storage.usersData = user;
@@ -22,6 +23,12 @@ class IndexDOM {
     this.#fetchUserName();
     this.showNameInput();
     this.#closeModalButton = document.querySelector(".btn-close");
+    this.#editNameBtn.addEventListener("click", () =>
+      this.#nameModal.openModal()
+    );
+    this.#closeModalButton.addEventListener("click", () =>
+      this.#nameModal.closeModal()
+    );
   }
 
   #fetchUserName() {
@@ -38,8 +45,8 @@ class IndexDOM {
       <button class="btn-name-change">Change</button>
     </div>
     `;
-    let nameModal = new Modal(input, "name-modal");
-    this.#main.appendChild(nameModal.overlay);
+    this.#nameModal = new Modal(input, "name-modal");
+    this.#main.appendChild(this.#nameModal.overlay);
   }
 }
 
