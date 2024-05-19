@@ -7,7 +7,7 @@ class Modal {
     this.#overlay.classList.add("overlay");
     this.modalBody = ` 
         <div class="${className}">
-            <button class="btn-close">close</button>
+            <button class="btn-close material-icons">close</button>
                 ${content}
         </div>
             `;

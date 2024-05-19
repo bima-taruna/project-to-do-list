@@ -53,7 +53,7 @@ class IndexDOM {
     let input = `
     <div class="name-input">
       <label for="user-name">Name : </label>
-      <input type="text" id="user-name" name="user-name" required minlength="4" maxlength="8" />
+      <input type="text" id="user-name" name="user-name" required minlength="4" maxlength="10" />
       <button class="btn-name-change">Change</button>
     </div>
     `;
