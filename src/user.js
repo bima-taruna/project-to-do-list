@@ -1,3 +1,5 @@
+import Project from "./project";
+
 class User {
   name;
   projects = [];
@@ -12,6 +14,14 @@ class User {
 
   get name() {
     return this.name;
+  }
+
+  get projects() {
+    return this.projects;
+  }
+
+  addProject(name, description) {
+    let newProject;
   }
 }
 
