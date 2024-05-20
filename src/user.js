@@ -21,7 +21,8 @@ class User {
   }
 
   addProject(name, description) {
-    let newProject;
+    let newProject = new Project(name, description);
+    this.projects.push(newProject);
   }
 }
 

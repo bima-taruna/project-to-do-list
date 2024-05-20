@@ -199,6 +199,8 @@ header {
   padding: 0.4rem;
   font-size: 1.2rem;
   width: 100%;
+  border-radius: 0.5rem;
+  border: 0.5px solid #807e7e;
 }
 
 .btn-name-change {
