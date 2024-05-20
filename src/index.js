@@ -13,6 +13,7 @@ class IndexDOM {
   #nameModal;
   #userNameInput;
   #projectModal;
+  #addProjectButton;
 
   constructor() {
     if (!storage.usersData) {
@@ -22,6 +23,7 @@ class IndexDOM {
     }
     this.#main = document.querySelector("main");
     this.#editNameBtn = document.getElementById("btn-edit-name");
+    this.#addProjectButton = document.getElementById("add-project");
   }
 
   render() {
@@ -30,16 +32,22 @@ class IndexDOM {
     this.#fetchUserName();
     this.#appendUserNameInput();
     this.#appendProjectDataInput();
-    let closeModalButton = document.querySelector(".btn-close");
+    let closeNameModalButton = document.querySelector(".btn-name-close");
+    let closeProjectModalButton = document.querySelector(".btn-project-close");
     let changeUserNameButton = document.querySelector(".btn-name-change");
     this.#userNameInput = document.getElementById("user-name");
     this.#editNameBtn.addEventListener("click", () =>
       this.#nameModal.openModal()
     );
-    closeModalButton.addEventListener("click", () =>
-      this.#nameModal.closeModal()
+    this.#addProjectButton.addEventListener("click", () =>
+      this.#projectModal.openModal()
     );
-
+    closeNameModalButton.addEventListener("click", () => {
+      this.#nameModal.closeModal();
+    });
+    closeProjectModalButton.addEventListener("click", () =>
+      this.#projectModal.closeModal()
+    );
     changeUserNameButton.addEventListener("click", () => {
       this.changeUserName();
     });
@@ -59,7 +67,7 @@ class IndexDOM {
       <button class="btn-name-change">Change</button>
     </div>
     `;
-    this.#nameModal = new Modal(input, "name-modal");
+    this.#nameModal = new Modal(input, "name-modal", "btn-name-close");
     this.#main.appendChild(this.#nameModal.overlay);
   }
 
@@ -74,7 +82,7 @@ class IndexDOM {
         <button class="project-add">Add</button>
       </form>
     `;
-    this.#projectModal = new Modal(form, "project-modal");
+    this.#projectModal = new Modal(form, "project-modal", "btn-project-close");
     this.#main.appendChild(this.#projectModal.overlay);
   }
 

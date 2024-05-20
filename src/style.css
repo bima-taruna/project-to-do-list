@@ -172,7 +172,8 @@ header {
   position: relative;
 }
 
-.btn-close {
+.btn-name-close,
+.btn-project-close {
   position: absolute;
   top: 0;
   right: 0;
