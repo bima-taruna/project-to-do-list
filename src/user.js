@@ -20,6 +20,10 @@ class User {
     return this.projects;
   }
 
+  set projects(newProjects) {
+    this.projects = newProjects;
+  }
+
   addProject(name, description) {
     let newProject = new Project(name, description);
     this.projects.push(newProject);

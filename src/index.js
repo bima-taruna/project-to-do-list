@@ -14,12 +14,15 @@ class IndexDOM {
   #userNameInput;
   #projectModal;
   #addProjectButton;
+  #projectNameInput;
+  #projectDescInput;
 
   constructor() {
     if (!storage.usersData) {
       storage.usersData = user;
     } else {
       user.name = storage.usersData.name;
+      user.projects = storage.usersData.projects;
     }
     this.#main = document.querySelector("main");
     this.#editNameBtn = document.getElementById("btn-edit-name");
@@ -35,7 +38,11 @@ class IndexDOM {
     let closeNameModalButton = document.querySelector(".btn-name-close");
     let closeProjectModalButton = document.querySelector(".btn-project-close");
     let changeUserNameButton = document.querySelector(".btn-name-change");
+    let projectForm = document.querySelector(".project-data");
     this.#userNameInput = document.getElementById("user-name");
+    this.#projectNameInput = document.getElementById("project-name");
+    this.#projectDescInput = document.getElementById("project-desc");
+
     this.#editNameBtn.addEventListener("click", () =>
       this.#nameModal.openModal()
     );
@@ -50,6 +57,13 @@ class IndexDOM {
     );
     changeUserNameButton.addEventListener("click", () => {
       this.changeUserName();
+    });
+    projectForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      this.addProject(
+        this.#projectNameInput.value,
+        this.#projectDescInput.value
+      );
     });
   }
 
@@ -73,11 +87,11 @@ class IndexDOM {
 
   #appendProjectDataInput() {
     let form = `
-      <form class="project-input">
+      <form class="project-data">
         <label for="project-name">Name : </label>
         <input type="text" id="project-name" name="project-name" required minlength="4" maxlength="50" required/>
         <label for="project-desc">Description : </label>
-        <textarea id="story" name="story" rows="5" cols="33">
+        <textarea id="project-desc" name="project-desc" rows="5" cols="33">
         </textarea>
         <button class="project-add">Add</button>
       </form>
@@ -91,6 +105,12 @@ class IndexDOM {
     storage.usersData = user;
     this.#fetchUserName();
     this.#nameModal.closeModal();
+  }
+
+  addProject(name, description) {
+    user.addProject(name, description);
+    storage.usersData = user;
+    this.#projectModal.closeModal();
   }
 }
 
