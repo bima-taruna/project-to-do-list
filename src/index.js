@@ -69,7 +69,8 @@ class IndexDOM {
         <label for="project-name">Name : </label>
         <input type="text" id="project-name" name="project-name" required minlength="4" maxlength="50" required/>
         <label for="project-desc">Description : </label>
-        <textarea id="story" name="story" rows="5" cols="33" />
+        <textarea id="story" name="story" rows="5" cols="33">
+        </textarea>
         <button class="project-add">Add</button>
       </form>
     `;
