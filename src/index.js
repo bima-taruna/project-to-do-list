@@ -16,6 +16,7 @@ class IndexDOM {
   #addProjectButton;
   #projectNameInput;
   #projectDescInput;
+  #projectList;
 
   constructor() {
     if (!storage.usersData) {
@@ -27,6 +28,7 @@ class IndexDOM {
     this.#main = document.querySelector("main");
     this.#editNameBtn = document.getElementById("btn-edit-name");
     this.#addProjectButton = document.getElementById("add-project");
+    this.#projectList = document.querySelector(".project-list");
   }
 
   render() {
@@ -35,6 +37,7 @@ class IndexDOM {
     this.#fetchUserName();
     this.#appendUserNameInput();
     this.#appendProjectDataInput();
+    this.#fetchProjectName();
     let closeNameModalButton = document.querySelector(".btn-name-close");
     let closeProjectModalButton = document.querySelector(".btn-project-close");
     let changeUserNameButton = document.querySelector(".btn-name-change");
@@ -70,7 +73,21 @@ class IndexDOM {
   #fetchUserName() {
     const userName = storage.usersData.name;
     const userNameDOM = document.querySelector(".user-name");
-    userNameDOM.innerHTML = userName;
+    userNameDOM.textContent = userName;
+  }
+
+  #fetchProjectName() {
+    if (storage.usersData.projects.length > 0) {
+      const projectName = storage.usersData.projects.map(
+        (project) => project.name
+      );
+      projectName.forEach((item) => {
+        let newLi = document.createElement("li");
+        newLi.classList.add("project");
+        newLi.textContent = item;
+        this.#projectList.appendChild(newLi);
+      });
+    }
   }
 
   #appendUserNameInput() {
