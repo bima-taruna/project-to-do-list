@@ -87,6 +87,11 @@ class IndexDOM {
         newLi.textContent = item;
         this.#projectList.appendChild(newLi);
       });
+    } else {
+      let emptyText = document.createElement("div");
+      emptyText.classList.add("empty");
+      emptyText.style.fontStyle = "italic";
+      emptyText.textContent = "empty";
     }
   }
 
