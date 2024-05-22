@@ -112,12 +112,12 @@ class IndexDOM {
           this.#projectList.removeChild(item);
         });
       }
-      projectName.forEach((item) => {
+      for (let i = 0; i < 3; i++) {
         let newLi = document.createElement("li");
         newLi.classList.add("project");
-        newLi.textContent = item;
+        newLi.textContent = projectName[i];
         this.#projectList.appendChild(newLi);
-      });
+      }
     } else {
       let emptyText = document.createElement("div");
       emptyText.classList.add("empty");
