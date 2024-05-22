@@ -19,29 +19,20 @@ body {
 }
 
 header {
-  display: grid;
-  grid-template-columns: 1fr 6fr;
+  /* display: grid;
+  grid-template-columns: 1fr 6fr; */
   position: fixed;
   top: 0;
-  z-index: 98;
+  z-index: 97;
   width: 100%;
   border-bottom: solid #b5b6b8 1px;
   background-color: #f2f5f7;
 }
 
-#logo {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: #ebf2f7;
-  font-size: 2rem;
-  color: #807e7e;
-  font-weight: bold;
-}
-
 .header-bar {
   width: 100%;
   padding: 2rem;
+  padding-left: 20vw;
   display: flex;
   align-items: center;
   color: #44474b;
@@ -64,13 +55,13 @@ header {
 }
 
 #sidebar {
-  padding: 0 2rem;
-  padding-top: 6rem;
+  /* padding: 0 2rem; */
+  /* padding-top: 2rem; */
   height: 100%;
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 97;
+  z-index: 98;
   width: 20%;
   background-color: #ebf2f7;
   display: flex;
@@ -78,6 +69,18 @@ header {
   justify-content: flex-start;
   gap: 1rem;
   overflow-x: scroll;
+}
+
+#logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #ebf2f7;
+  font-size: 2rem;
+  color: #807e7e;
+  font-weight: bold;
+  padding: 1.7rem 0;
+  border-bottom: solid #b5b6b8 1px;
 }
 
 #filters > div,
@@ -101,6 +104,11 @@ header {
 #filters > div:hover,
 #projects > ul > li:hover {
   background-color: #c4c8ca;
+}
+
+#projects,
+#filters {
+  padding: 0 2rem;
 }
 
 #filters {
