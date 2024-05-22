@@ -112,7 +112,7 @@ header {
 }
 
 #projects {
-  height: 40%;
+  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
