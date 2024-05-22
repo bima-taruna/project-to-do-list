@@ -17,6 +17,7 @@ class IndexDOM {
   #projectNameInput;
   #projectDescInput;
   #projectList;
+  #allProjectButton;
 
   constructor() {
     if (!storage.usersData) {
@@ -38,6 +39,7 @@ class IndexDOM {
     this.#appendUserNameInput();
     this.#appendProjectDataInput();
     this.#fetchProjectName();
+    this.#hasManyProjects();
     let closeNameModalButton = document.querySelector(".btn-name-close");
     let closeProjectModalButton = document.querySelector(".btn-project-close");
     let changeUserNameButton = document.querySelector(".btn-name-change");
@@ -45,7 +47,7 @@ class IndexDOM {
     this.#userNameInput = document.getElementById("user-name");
     this.#projectNameInput = document.getElementById("project-name");
     this.#projectDescInput = document.getElementById("project-desc");
-
+    console.log(this.#projectList.children);
     this.#editNameBtn.addEventListener("click", () =>
       this.#nameModal.openModal()
     );
@@ -126,6 +128,15 @@ class IndexDOM {
     }
   }
 
+  #hasManyProjects() {
+    if (storage.usersData.projects.length > 3) {
+      this.#allProjectButton = document.createElement("div");
+      this.#allProjectButton.classList.add("btn-all-project");
+      this.#allProjectButton.textContent = "See all projects";
+      this.#projectList.appendChild(this.#allProjectButton);
+    }
+  }
+
   changeUserName() {
     user.name = this.#userNameInput.value;
     storage.usersData = user;
@@ -137,6 +148,7 @@ class IndexDOM {
     user.addProject(name, description);
     storage.usersData = user;
     this.#fetchProjectName();
+    this.#hasManyProjects();
     this.#projectModal.closeModal();
   }
 }
