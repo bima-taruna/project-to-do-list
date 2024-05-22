@@ -95,6 +95,7 @@ header {
   margin-left: 1rem;
   list-style: none;
   font-weight: normal;
+  font-size: 1rem;
 }
 
 #filters > div:hover,
@@ -170,6 +171,61 @@ header {
   display: inherit;
   border-radius: 1rem;
   position: relative;
+}
+
+.project-modal {
+  background-color: white;
+  width: 30%;
+  padding: 2rem;
+  margin: auto;
+  top: 10vh;
+  position: relative;
+  border-radius: 1rem;
+}
+
+.project-data {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.project-data > label {
+  font-weight: bold;
+}
+
+#project-name,
+#project-desc {
+  border-radius: 0.5rem;
+}
+
+#project-name {
+  width: 100%;
+  padding: 0.5rem;
+  font-size: 1.2rem;
+}
+
+.project-data > button {
+  padding: 0.5rem;
+  background-color: #5c9cf5;
+  color: white;
+  font-weight: bold;
+  font-size: 1.2rem;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+}
+
+.project-data > button:hover {
+  background-color: #7baff7;
+}
+
+#project-desc {
+  width: 100%;
+  padding: 0.5rem;
+  resize: none;
+  letter-spacing: 1px;
+  line-height: 1.5;
 }
 
 .btn-name-close,

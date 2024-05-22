@@ -76,6 +76,32 @@ class IndexDOM {
     userNameDOM.textContent = userName;
   }
 
+  #appendUserNameInput() {
+    let input = `
+    <div class="name-input">
+      <label for="user-name">Name : </label>
+      <input type="text" id="user-name" name="user-name" required minlength="4" maxlength="10" required/>
+      <button class="btn-name-change">Change</button>
+    </div>
+    `;
+    this.#nameModal = new Modal(input, "name-modal", "btn-name-close");
+    this.#main.appendChild(this.#nameModal.overlay);
+  }
+
+  #appendProjectDataInput() {
+    let form = `
+      <form class="project-data">
+        <label for="project-name">Name : </label>
+        <input type="text" id="project-name" name="project-name" required minlength="4" maxlength="20" required/>
+        <label for="project-desc">Description : </label>
+        <textarea id="project-desc" name="project-desc" rows="5" placeholder="Enter your project desc here...."></textarea>
+        <button class="project-add">Add</button>
+      </form>
+    `;
+    this.#projectModal = new Modal(form, "project-modal", "btn-project-close");
+    this.#main.appendChild(this.#projectModal.overlay);
+  }
+
   #fetchProjectName() {
     if (storage.usersData.projects.length > 0) {
       const projectName = storage.usersData.projects.map(
@@ -95,33 +121,6 @@ class IndexDOM {
     }
   }
 
-  #appendUserNameInput() {
-    let input = `
-    <div class="name-input">
-      <label for="user-name">Name : </label>
-      <input type="text" id="user-name" name="user-name" required minlength="4" maxlength="10" required/>
-      <button class="btn-name-change">Change</button>
-    </div>
-    `;
-    this.#nameModal = new Modal(input, "name-modal", "btn-name-close");
-    this.#main.appendChild(this.#nameModal.overlay);
-  }
-
-  #appendProjectDataInput() {
-    let form = `
-      <form class="project-data">
-        <label for="project-name">Name : </label>
-        <input type="text" id="project-name" name="project-name" required minlength="4" maxlength="50" required/>
-        <label for="project-desc">Description : </label>
-        <textarea id="project-desc" name="project-desc" rows="5" cols="33">
-        </textarea>
-        <button class="project-add">Add</button>
-      </form>
-    `;
-    this.#projectModal = new Modal(form, "project-modal", "btn-project-close");
-    this.#main.appendChild(this.#projectModal.overlay);
-  }
-
   changeUserName() {
     user.name = this.#userNameInput.value;
     storage.usersData = user;
@@ -132,6 +131,7 @@ class IndexDOM {
   addProject(name, description) {
     user.addProject(name, description);
     storage.usersData = user;
+    this.#fetchProjectName();
     this.#projectModal.closeModal();
   }
 }
