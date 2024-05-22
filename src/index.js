@@ -107,6 +107,11 @@ class IndexDOM {
       const projectName = storage.usersData.projects.map(
         (project) => project.name
       );
+      while (this.#projectList.children.length > 0) {
+        this.#projectList.childNodes.forEach((item) => {
+          this.#projectList.removeChild(item);
+        });
+      }
       projectName.forEach((item) => {
         let newLi = document.createElement("li");
         newLi.classList.add("project");
