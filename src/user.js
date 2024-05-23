@@ -20,6 +20,14 @@ class User {
     return this.projects;
   }
 
+  getProjectById(index) {
+    return this.projects[index];
+  }
+
+  deleteProject(index) {
+    this.projects.splice(index, 1);
+  }
+
   set projects(newProjects) {
     this.projects = newProjects;
   }
