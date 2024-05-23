@@ -18,6 +18,7 @@ class IndexDOM {
   #projectDescInput;
   #projectList;
   #allProjectButton;
+  #content;
 
   constructor() {
     if (!storage.usersData) {
@@ -30,6 +31,7 @@ class IndexDOM {
     this.#editNameBtn = document.getElementById("btn-edit-name");
     this.#addProjectButton = document.getElementById("add-project");
     this.#projectList = document.querySelector(".project-list");
+    this.#content = document.getElementById("content");
   }
 
   render() {
@@ -151,8 +153,17 @@ class IndexDOM {
     this.#hasManyProjects();
     this.#projectModal.closeModal();
   }
+
+  changeContent(contentNode) {
+    while (this.#content.children.length > 0) {
+      this.#content.removeChild(this.#content.firstChild);
+    }
+    this.#content.appendChild(contentNode);
+  }
 }
 
 let indexDOM = new IndexDOM();
 
 indexDOM.render();
+
+export default indexDOM;
