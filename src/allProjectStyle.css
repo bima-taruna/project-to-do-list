@@ -19,6 +19,40 @@
   cursor: pointer;
   font-size: 1rem;
   font-weight: normal;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.button-div {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.project-card-delete,
+.project-card-edit {
+  color: white;
+  border: none;
+  border-radius: 0.2rem;
+  cursor: pointer;
+  padding: 0.2rem;
+}
+
+.project-card-delete {
+  background-color: red;
+}
+
+.project-card-edit {
+  background-color: blue;
+}
+
+.project-card-delete:hover {
+  background-color: rgb(248, 73, 73);
+}
+
+.project-card-edit:hover {
+  background-color: rgb(77, 77, 252);
 }
 
 .project-card:hover {
