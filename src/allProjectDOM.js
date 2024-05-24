@@ -9,6 +9,7 @@ class AllProjectDOM {
 
   render() {
     this.#fetchProjects();
+    return this.allProject;
   }
 
   #fetchProjects() {
@@ -30,3 +31,5 @@ class AllProjectDOM {
     }
   }
 }
+
+export const allProjectDOM = new AllProjectDOM();

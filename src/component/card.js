@@ -8,11 +8,9 @@ class Card {
 
   createCardBody(className) {
     const sanitizedName = DOMPurify.sanitize(this.name);
-    this.#cardBody = `
-        <div class=${className}>
-            ${sanitizedName}
-        </div>
-    `;
+    this.#cardBody = document.createElement("div");
+    this.#cardBody.classList.add(className);
+    this.#cardBody.textContent = sanitizedName;
     return this.#cardBody;
   }
 }

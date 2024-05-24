@@ -1,6 +1,7 @@
 import "./style.css";
 import { user } from "./user";
 import { storage } from "./storage";
+import { allProjectDOM } from "./allProjectDOM";
 import Modal from "./component/modal";
 
 if (process.env.NODE_ENV !== "production") {
@@ -32,6 +33,7 @@ class IndexDOM {
     this.#addProjectButton = document.getElementById("add-project");
     this.#projectList = document.querySelector(".project-list");
     this.#content = document.getElementById("content");
+    this.changeContent(allProjectDOM.render());
   }
 
   render() {
