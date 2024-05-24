@@ -40,8 +40,8 @@ class IndexDOM {
     this.#fetchUserName();
     this.#appendUserNameInput();
     this.#appendProjectDataInput();
-    this.#fetchProjectName();
-    this.#hasManyProjects();
+    this.fetchProjectName();
+    this.hasManyProjects();
     let closeNameModalButton = document.querySelector(".btn-name-close");
     let closeProjectModalButton = document.querySelector(".btn-project-close");
     let changeUserNameButton = document.querySelector(".btn-name-change");
@@ -106,7 +106,7 @@ class IndexDOM {
     this.#main.appendChild(this.#projectModal.overlay);
   }
 
-  #fetchProjectName() {
+  fetchProjectName() {
     if (storage.usersData.projects.length > 0) {
       const projectName = storage.usersData.projects.map(
         (project) => project.name
@@ -130,7 +130,7 @@ class IndexDOM {
     }
   }
 
-  #hasManyProjects() {
+  hasManyProjects() {
     if (storage.usersData.projects.length > 3) {
       this.#allProjectButton = document.createElement("div");
       this.#allProjectButton.classList.add("btn-all-project");
@@ -149,8 +149,8 @@ class IndexDOM {
   addProject(name, description) {
     user.addProject(name, description);
     storage.usersData = user;
-    this.#fetchProjectName();
-    this.#hasManyProjects();
+    this.fetchProjectName();
+    this.hasManyProjects();
     this.#projectModal.closeModal();
   }
 

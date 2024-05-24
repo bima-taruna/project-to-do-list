@@ -8,6 +8,8 @@ module.exports = {
     storage: "./src/storage.js",
     modal: "./src/component/modal.js",
     project: "./src/project.js",
+    allProjectDOM: "./src/allProjectDOM.js",
+    card: "./src/component/card.js",
   },
   plugins: [
     new HtmlWebpackPlugin({
