@@ -5,14 +5,15 @@ class AllProjectDOM {
   constructor() {
     this.allProject = document.createElement("div");
     this.allProject.classList.add("all-project");
+    this.allProject.textContent = "Projects";
+    this.fetchProjects();
   }
 
-  render() {
-    this.#fetchProjects();
+  get allProjects() {
     return this.allProject;
   }
 
-  #fetchProjects() {
+  fetchProjects() {
     if (storage.usersData.projects.length > 0) {
       while (this.allProject.children.length > 0) {
         this.allProject.childNodes.forEach((item) => {

@@ -1,4 +1,5 @@
 import "./style.css";
+import "./allProjectStyle.css";
 import { user } from "./user";
 import { storage } from "./storage";
 import { allProjectDOM } from "./allProjectDOM";
@@ -33,7 +34,7 @@ class IndexDOM {
     this.#addProjectButton = document.getElementById("add-project");
     this.#projectList = document.querySelector(".project-list");
     this.#content = document.getElementById("content");
-    this.changeContent(allProjectDOM.render());
+    this.changeContent(allProjectDOM.allProjects);
   }
 
   render() {
@@ -110,14 +111,14 @@ class IndexDOM {
 
   fetchProjectName() {
     if (storage.usersData.projects.length > 0) {
-      const projectName = storage.usersData.projects.map(
-        (project) => project.name
-      );
       while (this.#projectList.children.length > 0) {
         this.#projectList.childNodes.forEach((item) => {
           this.#projectList.removeChild(item);
         });
       }
+      const projectName = storage.usersData.projects.map(
+        (project) => project.name
+      );
       for (let i = 0; i < 3; i++) {
         let newLi = document.createElement("li");
         newLi.classList.add("project");
@@ -153,6 +154,7 @@ class IndexDOM {
     storage.usersData = user;
     this.fetchProjectName();
     this.hasManyProjects();
+    allProjectDOM.fetchProjects();
     this.#projectModal.closeModal();
   }
 
