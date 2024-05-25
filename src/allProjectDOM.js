@@ -1,5 +1,6 @@
 import { storage } from "./storage";
 import { searchDOM } from "./helper/searchDOM";
+import { user } from "./user";
 import Card from "./component/card";
 
 class AllProjectDOM {
@@ -16,6 +17,7 @@ class AllProjectDOM {
 
   render() {
     this.#fetchProjects();
+    this.allProject.addEventListener("click", (e) => this.#seeProjectDetail(e));
   }
 
   #fetchProjects() {
@@ -36,6 +38,17 @@ class AllProjectDOM {
       this.allProject.textContent = "empty";
     }
   }
+
+  #seeProjectDetail(event) {
+    const { target } = event;
+    const targetElement = target.closest(".project-card");
+    if (targetElement) {
+      let i = searchDOM(targetElement);
+      console.log(user.getProjectById(i));
+    }
+  }
 }
 
-export const allProjectDOM = new AllProjectDOM();
+let allProjectDOM = new AllProjectDOM();
+allProjectDOM.render();
+export default allProjectDOM;

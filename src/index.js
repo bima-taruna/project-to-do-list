@@ -2,7 +2,7 @@ import "./style.css";
 import "./allProjectStyle.css";
 import { user } from "./user";
 import { storage } from "./storage";
-import { allProjectDOM } from "./allProjectDOM";
+import allProjectDOM from "./allProjectDOM";
 import Modal from "./component/modal";
 
 if (process.env.NODE_ENV !== "production") {
