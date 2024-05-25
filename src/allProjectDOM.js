@@ -1,4 +1,5 @@
 import { storage } from "./storage";
+import { searchDOM } from "./helper/searchDOM";
 import Card from "./component/card";
 
 class AllProjectDOM {
@@ -6,14 +7,18 @@ class AllProjectDOM {
     this.allProject = document.createElement("div");
     this.allProject.classList.add("all-project");
     this.allProject.textContent = "Projects";
-    this.fetchProjects();
+    this.#fetchProjects();
   }
 
   get allProjects() {
     return this.allProject;
   }
 
-  fetchProjects() {
+  render() {
+    this.#fetchProjects();
+  }
+
+  #fetchProjects() {
     if (storage.usersData.projects.length > 0) {
       while (this.allProject.children.length > 0) {
         this.allProject.childNodes.forEach((item) => {

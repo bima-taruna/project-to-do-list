@@ -154,7 +154,7 @@ class IndexDOM {
     storage.usersData = user;
     this.fetchProjectName();
     this.hasManyProjects();
-    allProjectDOM.fetchProjects();
+    allProjectDOM.render();
     this.#projectModal.closeModal();
   }
 

@@ -10,6 +10,7 @@ module.exports = {
     project: "./src/project.js",
     allProjectDOM: "./src/allProjectDOM.js",
     card: "./src/component/card.js",
+    searchDOM: "./src/helper/searchDOM.js",
   },
   plugins: [
     new HtmlWebpackPlugin({
