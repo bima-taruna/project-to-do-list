@@ -1,15 +1,15 @@
 import Modal from "./modal";
 
 class ProjectModal extends Modal {
-  constructor(className, closeButtonClassName, projectName) {
+  constructor(className, closeButtonClassName, projectName, label = "") {
     super(className, closeButtonClassName);
     this.content = `
         <form class="${projectName}">
-            <label for="project-name">Name : </label>
-            <input type="text" id="project-name" name="project-name" required minlength="4" maxlength="20" required/>
-            <label for="project-desc">Description : </label>
-            <textarea id="project-desc" name="project-desc" rows="5" placeholder="Enter your project desc here...."></textarea>
-            <button class="project-add">Add</button>
+            <label for="${label}project-name">Name : </label>
+            <input type="text" id="${label}project-name" name="${label}project-name" required minlength="4" maxlength="20" required/>
+            <label for="${label}project-desc">Description : </label>
+            <textarea id="${label}project-desc" name="${label}project-desc" rows="5" placeholder="Enter your project desc here...."></textarea>
+            <button class="${label}project-add">Add</button>
         </form>
         `;
 

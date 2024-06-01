@@ -98,15 +98,6 @@ class IndexDOM {
   }
 
   #appendProjectDataInput() {
-    // let form = `
-    //   <form class="project-data">
-    //     <label for="project-name">Name : </label>
-    //     <input type="text" id="project-name" name="project-name" required minlength="4" maxlength="20" required/>
-    //     <label for="project-desc">Description : </label>
-    //     <textarea id="project-desc" name="project-desc" rows="5" placeholder="Enter your project desc here...."></textarea>
-    //     <button class="project-add">Add</button>
-    //   </form>
-    // `;
     this.#projectModal = new ProjectModal(
       "project-modal",
       "btn-project-close",

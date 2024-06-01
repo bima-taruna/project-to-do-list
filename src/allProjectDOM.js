@@ -3,9 +3,11 @@ import { searchDOM } from "./helper/searchDOM";
 import { user } from "./user";
 import Card from "./component/card";
 import indexDOM from ".";
+import ProjectModal from "./component/projectModal";
 
 class AllProjectDOM {
   #projectEditButton;
+  #projectEditModal;
   constructor() {
     this.allProject = document.createElement("div");
     this.allProject.classList.add("all-project");
@@ -18,6 +20,7 @@ class AllProjectDOM {
 
   render() {
     this.#fetchProjects();
+    this.#appendEditProjectInput();
     this.allProject.addEventListener("click", (e) => this.#seeProjectDetail(e));
     // this.allProject.addEventListener("click", () => )
   }
@@ -49,6 +52,16 @@ class AllProjectDOM {
       let i = searchDOM(targetElement);
       console.log(user.getProjectById(i));
     }
+  }
+
+  #appendEditProjectInput() {
+    this.#projectEditModal = new ProjectModal(
+      "project-modal",
+      "btn-project-close",
+      "edit-project-form",
+      "edit-"
+    );
+    this.allProject.appendChild(this.#projectEditModal.overlay);
   }
 }
 
