@@ -37,7 +37,16 @@ class AllProjectDOM {
         this.#projectEditModal.closeModal();
       });
 
-      this.#editProjectForm.addEventListener("submit", () => {});
+      this.#editProjectForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+        user.updateProject(
+          this.#projectIndex,
+          this.#editProjectName.value,
+          this.#editProjectDesc.value
+        );
+        storage.usersData = user;
+        this.render();
+      });
     });
 
     // this.allProject.addEventListener("click", (e) => this.#seeProjectDetail(e));
