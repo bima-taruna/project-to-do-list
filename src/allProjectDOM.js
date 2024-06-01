@@ -2,8 +2,10 @@ import { storage } from "./storage";
 import { searchDOM } from "./helper/searchDOM";
 import { user } from "./user";
 import Card from "./component/card";
+import indexDOM from ".";
 
 class AllProjectDOM {
+  #projectEditButton;
   constructor() {
     this.allProject = document.createElement("div");
     this.allProject.classList.add("all-project");
@@ -17,6 +19,7 @@ class AllProjectDOM {
   render() {
     this.#fetchProjects();
     this.allProject.addEventListener("click", (e) => this.#seeProjectDetail(e));
+    // this.allProject.addEventListener("click", () => )
   }
 
   #fetchProjects() {

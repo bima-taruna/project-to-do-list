@@ -11,6 +11,7 @@ module.exports = {
     allProjectDOM: "./src/allProjectDOM.js",
     card: "./src/component/card.js",
     searchDOM: "./src/helper/searchDOM.js",
+    projectModal: "./src/component/projectModal.js",
   },
   plugins: [
     new HtmlWebpackPlugin({

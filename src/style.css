@@ -19,8 +19,6 @@ body {
 }
 
 header {
-  /* display: grid;
-  grid-template-columns: 1fr 6fr; */
   position: fixed;
   top: 0;
   z-index: 97;
@@ -55,8 +53,6 @@ header {
 }
 
 #sidebar {
-  /* padding: 0 2rem; */
-  /* padding-top: 2rem; */
   height: 100%;
   position: fixed;
   top: 0;
@@ -82,7 +78,6 @@ header {
   font-weight: bold;
   padding: 1.7rem 0;
   border-bottom: solid #b5b6b8 1px;
-  /* border-right: solid #b5b6b8 1px; */
 }
 
 #filters > div,
@@ -203,14 +198,14 @@ header {
   border-radius: 1rem;
 }
 
-.project-data {
+.add-project-form {
   display: flex;
   flex-direction: column;
   justify-content: center;
   gap: 1rem;
 }
 
-.project-data > label {
+.add-project-form > label {
   font-weight: bold;
 }
 
@@ -225,7 +220,7 @@ header {
   font-size: 1.2rem;
 }
 
-.project-data > button {
+.add-project-form > button {
   padding: 0.5rem;
   background-color: #5c9cf5;
   color: white;
@@ -236,7 +231,7 @@ header {
   cursor: pointer;
 }
 
-.project-data > button:hover {
+.add-project-form > button:hover {
   background-color: #7baff7;
 }
 
@@ -264,7 +259,6 @@ header {
   display: grid;
   grid-template-rows: repeat(3, 1fr);
   gap: 0.2rem;
-  /* align-items: center; */
 }
 
 .name-input > label {

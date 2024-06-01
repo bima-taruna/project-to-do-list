@@ -4,6 +4,7 @@ import { user } from "./user";
 import { storage } from "./storage";
 import allProjectDOM from "./allProjectDOM";
 import Modal from "./component/modal";
+import ProjectModal from "./component/projectModal";
 
 if (process.env.NODE_ENV !== "production") {
   console.log("Looks like we are in development mode!");
@@ -48,7 +49,8 @@ class IndexDOM {
     let closeNameModalButton = document.querySelector(".btn-name-close");
     let closeProjectModalButton = document.querySelector(".btn-project-close");
     let changeUserNameButton = document.querySelector(".btn-name-change");
-    let projectForm = document.querySelector(".project-data");
+    let projectForm = document.querySelector(".add-project-form");
+    console.log(projectForm);
     this.#userNameInput = document.getElementById("user-name");
     this.#projectNameInput = document.getElementById("project-name");
     this.#projectDescInput = document.getElementById("project-desc");
@@ -96,16 +98,20 @@ class IndexDOM {
   }
 
   #appendProjectDataInput() {
-    let form = `
-      <form class="project-data">
-        <label for="project-name">Name : </label>
-        <input type="text" id="project-name" name="project-name" required minlength="4" maxlength="20" required/>
-        <label for="project-desc">Description : </label>
-        <textarea id="project-desc" name="project-desc" rows="5" placeholder="Enter your project desc here...."></textarea>
-        <button class="project-add">Add</button>
-      </form>
-    `;
-    this.#projectModal = new Modal(form, "project-modal", "btn-project-close");
+    // let form = `
+    //   <form class="project-data">
+    //     <label for="project-name">Name : </label>
+    //     <input type="text" id="project-name" name="project-name" required minlength="4" maxlength="20" required/>
+    //     <label for="project-desc">Description : </label>
+    //     <textarea id="project-desc" name="project-desc" rows="5" placeholder="Enter your project desc here...."></textarea>
+    //     <button class="project-add">Add</button>
+    //   </form>
+    // `;
+    this.#projectModal = new ProjectModal(
+      "project-modal",
+      "btn-project-close",
+      "add-project-form"
+    );
     this.#main.appendChild(this.#projectModal.overlay);
   }
 
