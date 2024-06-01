@@ -7,7 +7,6 @@ class AllProjectDOM {
   constructor() {
     this.allProject = document.createElement("div");
     this.allProject.classList.add("all-project");
-    this.allProject.textContent = "Projects";
     this.#fetchProjects();
   }
 
@@ -21,7 +20,8 @@ class AllProjectDOM {
   }
 
   #fetchProjects() {
-    if (storage.usersData.projects.length > 0) {
+    this.allProject.textContent = "Projects";
+    if (storage.usersData && storage.usersData.projects.length > 0) {
       while (this.allProject.children.length > 0) {
         this.allProject.childNodes.forEach((item) => {
           this.allProject.removeChild(item);
@@ -35,7 +35,7 @@ class AllProjectDOM {
         this.allProject.appendChild(newCard.createCardBody("project-card"));
       });
     } else {
-      this.allProject.textContent = "empty";
+      this.allProject.textContent = "empty...";
     }
   }
 

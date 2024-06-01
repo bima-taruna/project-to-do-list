@@ -69,6 +69,7 @@ header {
   justify-content: flex-start;
   gap: 1rem;
   overflow-x: scroll;
+  border-right: solid #b5b6b8 1px;
 }
 
 #logo {
@@ -81,6 +82,7 @@ header {
   font-weight: bold;
   padding: 1.7rem 0;
   border-bottom: solid #b5b6b8 1px;
+  /* border-right: solid #b5b6b8 1px; */
 }
 
 #filters > div,
