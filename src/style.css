@@ -198,14 +198,16 @@ header {
   border-radius: 1rem;
 }
 
-.add-project-form {
+.add-project-form,
+.edit-project-form {
   display: flex;
   flex-direction: column;
   justify-content: center;
   gap: 1rem;
 }
 
-.add-project-form > label {
+.add-project-form > label,
+.edit-project-form > label {
   font-weight: bold;
 }
 
@@ -214,13 +216,15 @@ header {
   border-radius: 0.5rem;
 }
 
-#project-name {
+#project-name,
+#edit-project-name {
   width: 100%;
   padding: 0.5rem;
   font-size: 1.2rem;
 }
 
-.add-project-form > button {
+.add-project-form > button,
+.edit-project-form > button {
   padding: 0.5rem;
   background-color: #5c9cf5;
   color: white;
@@ -235,7 +239,8 @@ header {
   background-color: #7baff7;
 }
 
-#project-desc {
+#project-desc,
+#edit-project-desc {
   width: 100%;
   padding: 0.5rem;
   resize: none;
@@ -244,7 +249,8 @@ header {
 }
 
 .btn-name-close,
-.btn-project-close {
+.btn-project-close,
+.btn-edit-project-close {
   position: absolute;
   top: 0;
   right: 0;

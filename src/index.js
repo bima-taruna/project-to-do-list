@@ -50,11 +50,9 @@ class IndexDOM {
     let closeProjectModalButton = document.querySelector(".btn-project-close");
     let changeUserNameButton = document.querySelector(".btn-name-change");
     let projectForm = document.querySelector(".add-project-form");
-    console.log(projectForm);
     this.#userNameInput = document.getElementById("user-name");
     this.#projectNameInput = document.getElementById("project-name");
     this.#projectDescInput = document.getElementById("project-desc");
-    console.log(this.#projectList.children);
     this.#editNameBtn.addEventListener("click", () =>
       this.#nameModal.openModal()
     );

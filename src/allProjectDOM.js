@@ -8,6 +8,11 @@ import ProjectModal from "./component/projectModal";
 class AllProjectDOM {
   #projectEditButton;
   #projectEditModal;
+  #editProjectName;
+  #editProjectDesc;
+  #editProjectForm;
+  #projectEditCloseButton;
+  #projectIndex;
   constructor() {
     this.allProject = document.createElement("div");
     this.allProject.classList.add("all-project");
@@ -20,9 +25,26 @@ class AllProjectDOM {
 
   render() {
     this.#fetchProjects();
-    this.#appendEditProjectInput();
-    this.allProject.addEventListener("click", (e) => this.#seeProjectDetail(e));
-    // this.allProject.addEventListener("click", () => )
+    this.#appendEditProjectInput().then(() => {
+      this.#editProjectForm = document.querySelector(".edit-project-form");
+      this.#editProjectName = document.getElementById("edit-project-name");
+      this.#editProjectDesc = document.getElementById("edit-project-desc");
+      this.#projectEditCloseButton = document.querySelector(
+        ".btn-edit-project-close"
+      );
+
+      this.#projectEditCloseButton.addEventListener("click", () => {
+        this.#projectEditModal.closeModal();
+      });
+
+      this.#editProjectForm.addEventListener("submit", () => {});
+    });
+
+    // this.allProject.addEventListener("click", (e) => this.#seeProjectDetail(e));
+
+    this.allProject.addEventListener("click", (e) =>
+      this.#openEditProjectModal(e)
+    );
   }
 
   #fetchProjects() {
@@ -54,10 +76,28 @@ class AllProjectDOM {
     }
   }
 
-  #appendEditProjectInput() {
+  #openEditProjectModal(event) {
+    const { target } = event;
+    const targetElement = target.closest(".project-card-edit");
+    if (targetElement) {
+      let i = searchDOM(targetElement.closest(".project-card"));
+      this.#projectIndex = i;
+      console.log(this.#projectIndex);
+      this.#populateEditModal(i);
+      this.#projectEditModal.openModal();
+    }
+  }
+
+  #populateEditModal(index) {
+    const data = user.getProjectById(index);
+    this.#editProjectName.value = data.name;
+    this.#editProjectDesc.value = data.description;
+  }
+
+  async #appendEditProjectInput() {
     this.#projectEditModal = new ProjectModal(
       "project-modal",
-      "btn-project-close",
+      "btn-edit-project-close",
       "edit-project-form",
       "edit-"
     );
