@@ -114,7 +114,11 @@ class IndexDOM {
       const projectName = storage.usersData.projects.map(
         (project) => project.name
       );
-      for (let i = 0; i < 3; i++) {
+      let index =
+        storage.usersData.projects.length - 1 < 4
+          ? storage.usersData.projects.length - 1
+          : 3;
+      for (let i = 0; i < index; i++) {
         let newLi = document.createElement("li");
         newLi.classList.add("project");
         newLi.textContent = projectName[i];

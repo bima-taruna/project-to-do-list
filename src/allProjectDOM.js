@@ -24,7 +24,7 @@ class AllProjectDOM {
 
   render() {
     this.#fetchProjects();
-    this.#appendEditProjectInput().then(() => {
+    this.#appendEditProjectInput(this.allProject).then(() => {
       this.#editProjectForm = document.querySelector(".edit-project-form");
       this.#editProjectName = document.getElementById("edit-project-name");
       this.#editProjectDesc = document.getElementById("edit-project-desc");
@@ -102,14 +102,14 @@ class AllProjectDOM {
     this.#editProjectDesc.value = data.description;
   }
 
-  async #appendEditProjectInput() {
+  async #appendEditProjectInput(parent) {
     this.#projectEditModal = new ProjectModal(
       "project-modal",
       "btn-edit-project-close",
       "edit-project-form",
       "edit-"
     );
-    this.allProject.appendChild(this.#projectEditModal.overlay);
+    parent.appendChild(this.#projectEditModal.overlay);
   }
 
   #deleteProject(event) {

@@ -133,7 +133,6 @@ header {
   height: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
   font-size: 1.4rem;
   gap: 0.6rem;
 }
