@@ -6,7 +6,6 @@ import indexDOM from ".";
 import ProjectModal from "./component/projectModal";
 
 class AllProjectDOM {
-  #projectEditButton;
   #projectEditModal;
   #editProjectName;
   #editProjectDesc;
@@ -45,11 +44,12 @@ class AllProjectDOM {
           this.#editProjectDesc.value
         );
         storage.usersData = user;
+        indexDOM.fetchProjectName();
         this.render();
       });
     });
 
-    // this.allProject.addEventListener("click", (e) => this.#seeProjectDetail(e));
+    this.allProject.addEventListener("click", (e) => this.#deleteProject(e));
 
     this.allProject.addEventListener("click", (e) =>
       this.#openEditProjectModal(e)
@@ -91,7 +91,6 @@ class AllProjectDOM {
     if (targetElement) {
       let i = searchDOM(targetElement.closest(".project-card"));
       this.#projectIndex = i;
-      console.log(this.#projectIndex);
       this.#populateEditModal(i);
       this.#projectEditModal.openModal();
     }
@@ -111,6 +110,18 @@ class AllProjectDOM {
       "edit-"
     );
     this.allProject.appendChild(this.#projectEditModal.overlay);
+  }
+
+  #deleteProject(event) {
+    const { target } = event;
+    const targetElement = target.closest(".project-card-delete");
+    if (targetElement) {
+      let i = searchDOM(targetElement.closest(".project-card"));
+      user.deleteProject(i);
+      storage.usersData = user;
+      this.render();
+      indexDOM.fetchProjectName();
+    }
   }
 }
 
