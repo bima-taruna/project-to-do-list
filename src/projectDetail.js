@@ -4,7 +4,7 @@ class ProjectDetail {
     this.desc = desc;
     this.toDo = toDo;
     this.detailContainer = document.createElement("div");
-    detailContainer.classList.add("detail-container");
+    this.detailContainer.classList.add("detail-container");
   }
 
   render() {

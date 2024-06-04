@@ -8,9 +8,11 @@ class Card {
 
   createCardBody(className) {
     const sanitizedName = DOMPurify.sanitize(this.name);
+    const bodyDiv = document.createElement("div");
     const buttonDiv = document.createElement("div");
     const deleteButton = document.createElement("button");
     const editButton = document.createElement("button");
+    bodyDiv.classList.add("body-div");
     buttonDiv.classList.add("button-div");
     editButton.classList.add(className + "-edit");
     editButton.classList.add("material-icons");
@@ -22,7 +24,8 @@ class Card {
     buttonDiv.appendChild(deleteButton);
     this.#cardBody = document.createElement("div");
     this.#cardBody.classList.add(className);
-    this.#cardBody.textContent = sanitizedName;
+    bodyDiv.textContent = sanitizedName;
+    this.#cardBody.appendChild(bodyDiv);
     this.#cardBody.appendChild(buttonDiv);
     return this.#cardBody;
   }

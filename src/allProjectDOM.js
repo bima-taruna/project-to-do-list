@@ -4,6 +4,7 @@ import { user } from "./user";
 import Card from "./component/card";
 import indexDOM from ".";
 import ProjectModal from "./component/projectModal";
+import ProjectDetail from "./projectDetail";
 
 class AllProjectDOM {
   #projectEditModal;
@@ -82,10 +83,17 @@ class AllProjectDOM {
 
   #seeProjectDetail(event) {
     const { target } = event;
-    const targetElement = target.closest(".project-card");
+    const targetElement = target.closest(".body-div");
     if (targetElement) {
-      let i = searchDOM(targetElement);
-      console.log(user.getProjectById(i));
+      const i = searchDOM(targetElement.closest(".project-card"));
+      const data = user.getProjectById(i);
+      console.log(data);
+      const projectDetail = new ProjectDetail(
+        data.name,
+        data.description,
+        data.toDo
+      );
+      indexDOM.changeContent(projectDetail.render());
     }
   }
 

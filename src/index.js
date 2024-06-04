@@ -119,7 +119,7 @@ class IndexDOM {
         storage.usersData.projects.length - 1 < 4
           ? storage.usersData.projects.length - 1
           : 3;
-      for (let i = 0; i < index; i++) {
+      for (let i = 0; i <= index; i++) {
         let newLi = document.createElement("li");
         newLi.classList.add("project");
         newLi.textContent = projectName[i];

@@ -24,6 +24,10 @@
   align-items: center;
 }
 
+.body-div {
+  width: 100%;
+}
+
 .button-div {
   display: flex;
   justify-content: center;
