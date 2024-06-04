@@ -16,7 +16,7 @@ class AllProjectDOM {
   constructor() {
     this.allProject = document.createElement("div");
     this.allProject.classList.add("all-project");
-    this.#fetchProjects();
+    this.fetchProjects();
   }
 
   get allProjects() {
@@ -24,7 +24,7 @@ class AllProjectDOM {
   }
 
   render() {
-    this.#fetchProjects();
+    this.fetchProjects();
     this.#appendEditProjectInput(this.allProject).then(() => {
       this.#editProjectForm = document.querySelector(".edit-project-form");
       this.#editProjectName = document.getElementById("edit-project-name");
@@ -50,7 +50,9 @@ class AllProjectDOM {
       });
     });
 
-    this.allProject.addEventListener("click", (e) => this.#deleteProject(e));
+    this.allProject.addEventListener("click", (e) => {
+      this.#deleteProject(e);
+    });
 
     this.allProject.addEventListener("click", (e) =>
       this.#openEditProjectModal(e)
@@ -61,7 +63,7 @@ class AllProjectDOM {
     });
   }
 
-  #fetchProjects() {
+  fetchProjects() {
     this.allProject.textContent = "Projects";
     if (storage.usersData && storage.usersData.projects.length > 0) {
       while (this.allProject.children.length > 0) {
@@ -129,10 +131,12 @@ class AllProjectDOM {
     const { target } = event;
     const targetElement = target.closest(".project-card-delete");
     if (targetElement) {
-      let i = searchDOM(targetElement.closest(".project-card"));
+      let targetClosest = targetElement.closest(".project-card");
+      let i = searchDOM(targetClosest);
+      console.log(i);
       user.deleteProject(i);
       storage.usersData = user;
-      this.render();
+      this.fetchProjects();
       indexDOM.fetchProjectName();
     }
   }

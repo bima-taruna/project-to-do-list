@@ -116,7 +116,7 @@ class IndexDOM {
         (project) => project.name
       );
       let index =
-        storage.usersData.projects.length - 1 < 4
+        storage.usersData.projects.length < 4
           ? storage.usersData.projects.length - 1
           : 3;
       for (let i = 0; i <= index; i++) {
@@ -126,10 +126,16 @@ class IndexDOM {
         this.#projectList.appendChild(newLi);
       }
     } else {
+      while (this.#projectList.children.length > 0) {
+        this.#projectList.childNodes.forEach((item) => {
+          this.#projectList.removeChild(item);
+        });
+      }
       let emptyText = document.createElement("div");
       emptyText.classList.add("empty");
       emptyText.style.fontStyle = "italic";
       emptyText.textContent = "empty";
+      this.#projectList.appendChild(emptyText);
     }
   }
 
@@ -154,7 +160,7 @@ class IndexDOM {
     storage.usersData = user;
     this.fetchProjectName();
     this.hasManyProjects();
-    allProjectDOM.render();
+    allProjectDOM.fetchProjects();
     this.#projectModal.closeModal();
   }
 
