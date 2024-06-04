@@ -54,6 +54,10 @@ class AllProjectDOM {
     this.allProject.addEventListener("click", (e) =>
       this.#openEditProjectModal(e)
     );
+
+    this.allProject.addEventListener("click", (e) => {
+      this.#seeProjectDetail(e);
+    });
   }
 
   #fetchProjects() {
