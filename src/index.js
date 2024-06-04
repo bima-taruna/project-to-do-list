@@ -96,11 +96,12 @@ class IndexDOM {
   }
 
   #appendProjectDataInput() {
-    this.#projectModal = new ProjectModal(
-      "project-modal",
-      "btn-project-close",
-      "add-project-form"
-    );
+    this.#projectModal = new ProjectModal({
+      className: "project-modal",
+      closeButtonClassName: "btn-project-close",
+      projectName: "add-project-form",
+      buttonText: "Add",
+    });
     this.#main.appendChild(this.#projectModal.overlay);
   }
 

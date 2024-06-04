@@ -103,12 +103,13 @@ class AllProjectDOM {
   }
 
   async #appendEditProjectInput(parent) {
-    this.#projectEditModal = new ProjectModal(
-      "project-modal",
-      "btn-edit-project-close",
-      "edit-project-form",
-      "edit-"
-    );
+    this.#projectEditModal = new ProjectModal({
+      projectName: "edit-project-form",
+      className: "project-modal",
+      closeButtonClassName: "btn-edit-project-close",
+      label: "edit-",
+      buttonText: "Update",
+    });
     parent.appendChild(this.#projectEditModal.overlay);
   }
 

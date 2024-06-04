@@ -1,7 +1,11 @@
 class ProjectDetail {
   constructor() {
-    const detailContainer = document.createElement("div");
+    this.detailContainer = document.createElement("div");
     detailContainer.classList.add("detail-container");
+  }
+
+  render() {
+    // const [name, desc, todo] = data;
   }
 }
 
