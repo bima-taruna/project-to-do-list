@@ -34,6 +34,12 @@ class Project {
   deleteTask(index) {
     this.task.splice(index, 1);
   }
+
+  updateTask(index, title, desc, date) {
+    this.task[index].title = title;
+    this.task[index].desc = desc;
+    this.task[index].date = date;
+  }
 }
 
 export default Project;
