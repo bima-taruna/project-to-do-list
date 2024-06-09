@@ -1,3 +1,5 @@
+import Task from "./task";
+
 class Project {
   name;
   description;
@@ -22,6 +24,11 @@ class Project {
 
   set description(newDesc) {
     this.description = newDesc;
+  }
+
+  addTask(title, desc, date) {
+    const newTask = new Task(title, desc, date);
+    this.task.push(newTask);
   }
 }
 

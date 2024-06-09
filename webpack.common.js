@@ -12,6 +12,8 @@ module.exports = {
     card: "./src/component/card.js",
     searchDOM: "./src/helper/searchDOM.js",
     projectModal: "./src/component/projectModal.js",
+    projectDetail: "./src/projectDetail.js",
+    task: "./src/task.js",
   },
   plugins: [
     new HtmlWebpackPlugin({

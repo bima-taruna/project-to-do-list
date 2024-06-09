@@ -29,3 +29,5 @@ class Task {
     this.date = newDate;
   }
 }
+
+export default Task;
