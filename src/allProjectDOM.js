@@ -1,3 +1,4 @@
+import "./style/allProjectStyle.css";
 import { storage } from "./storage";
 import { searchDOM } from "./helper/searchDOM";
 import { user } from "./user";

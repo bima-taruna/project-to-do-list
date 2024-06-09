@@ -1,10 +1,10 @@
-import "./style.css";
-import "./allProjectStyle.css";
+import "./style/style.css";
 import { user } from "./user";
 import { storage } from "./storage";
 import allProjectDOM from "./allProjectDOM";
 import Modal from "./component/modal";
 import ProjectModal from "./component/projectModal";
+import ProjectDetail from "./projectDetail";
 
 if (process.env.NODE_ENV !== "production") {
   console.log("Looks like we are in development mode!");
@@ -35,7 +35,13 @@ class IndexDOM {
     this.#addProjectButton = document.getElementById("add-project");
     this.#projectList = document.querySelector(".project-list");
     this.#content = document.getElementById("content");
+    // const projectDetail = new ProjectDetail(
+    //   "ngoding",
+    //   "    Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti, voluptas accusamus optio maxime aliquam officiis odio perspiciatis doloribus ullam placeat voluptatem veniam ratione, incidunt cum veritatis neque! Ab, distinctio reiciendis",
+    //   []
+    // );
     this.changeContent(allProjectDOM.allProjects);
+    // this.changeContent(projectDetail.render());
   }
 
   render() {

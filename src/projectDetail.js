@@ -1,3 +1,5 @@
+import "./style/projectDetail.css";
+
 class ProjectDetail {
   constructor(name, desc, toDo) {
     this.name = name;
@@ -11,8 +13,10 @@ class ProjectDetail {
     let body = `
         <section class="detail-header">
             <h1 class="project-detail-title">${this.name}</h1>
-            <button class="detail-edit material-icons">edit</button>
-            <button class="detail-delete material-icons">delete</button>
+            <div class="header-buttons">
+              <button class="detail-edit material-icons">edit</button>
+              <button class="detail-delete material-icons">delete</button>
+            </div>
         </section>
         <section class="detail-desc">
             <p>${this.desc}</p>
