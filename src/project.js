@@ -1,7 +1,7 @@
 class Project {
   name;
   description;
-  toDo = [];
+  task = [];
 
   constructor(name, description) {
     this.name = name;

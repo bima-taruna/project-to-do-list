@@ -35,11 +35,19 @@ class IndexDOM {
     this.#addProjectButton = document.getElementById("add-project");
     this.#projectList = document.querySelector(".project-list");
     this.#content = document.getElementById("content");
-    // const projectDetail = new ProjectDetail(
+    const projectDetail = new ProjectDetail(
+      "ngoding",
+      "    Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti, voluptas accusamus optio maxime aliquam officiis odio perspiciatis doloribus ullam placeat voluptatem veniam ratione, incidunt cum veritatis neque! Ab, distinctio reiciendis",
+      []
+    );
+
+    // const projectDetail2 = new ProjectDetail(
     //   "ngoding",
     //   "    Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti, voluptas accusamus optio maxime aliquam officiis odio perspiciatis doloribus ullam placeat voluptatem veniam ratione, incidunt cum veritatis neque! Ab, distinctio reiciendis",
     //   []
     // );
+
+    // console.log(projectDetail == projectDetail2);
     this.changeContent(allProjectDOM.allProjects);
     // this.changeContent(projectDetail.render());
   }
