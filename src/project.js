@@ -30,6 +30,10 @@ class Project {
     const newTask = new Task(title, desc, date);
     this.task.push(newTask);
   }
+
+  deleteTask(index) {
+    this.task.splice(index, 1);
+  }
 }
 
 export default Project;
