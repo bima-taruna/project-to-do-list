@@ -41,15 +41,15 @@ class IndexDOM {
       []
     );
 
-    // const projectDetail2 = new ProjectDetail(
-    //   "ngoding",
-    //   "    Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti, voluptas accusamus optio maxime aliquam officiis odio perspiciatis doloribus ullam placeat voluptatem veniam ratione, incidunt cum veritatis neque! Ab, distinctio reiciendis",
-    //   []
-    // );
+    const projectDetail2 = new ProjectDetail(
+      "ngoding",
+      "    Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti, voluptas accusamus optio maxime aliquam officiis odio perspiciatis doloribus ullam placeat voluptatem veniam ratione, incidunt cum veritatis neque! Ab, distinctio reiciendis",
+      []
+    );
 
     // console.log(projectDetail == projectDetail2);
     this.changeContent(allProjectDOM.allProjects);
-    // this.changeContent(projectDetail.render());
+    this.changeContent(projectDetail.render());
   }
 
   render() {
@@ -130,9 +130,9 @@ class IndexDOM {
         (project) => project.name
       );
       let index =
-        storage.usersData.projects.length < 4
+        storage.usersData.projects.length < 6
           ? storage.usersData.projects.length - 1
-          : 3;
+          : 5;
       for (let i = 0; i <= index; i++) {
         let newLi = document.createElement("li");
         newLi.classList.add("project");

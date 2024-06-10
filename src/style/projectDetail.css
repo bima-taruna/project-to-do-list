@@ -36,6 +36,10 @@
   align-items: center;
 }
 
+.project-detail-title {
+  font-size: 2.2rem;
+}
+
 .detail-desc {
   width: 100%;
   text-align: justify;

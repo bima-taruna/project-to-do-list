@@ -3,6 +3,7 @@ import Project from "./project";
 class User {
   name;
   projects = [];
+  task = new Set();
 
   constructor(name) {
     this.name = name;

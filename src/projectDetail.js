@@ -21,6 +21,13 @@ class ProjectDetail {
         <section class="detail-desc">
             <p>${this.desc}</p>
         </section>
+        <section class="task">
+            <div class="task-header">
+              <h2>Task</h2>
+              <button class="material-icons">add</button>
+            </div>
+            <div class="task-list"></div>
+        </section>
     `;
     this.detailContainer.innerHTML = body;
     return this.detailContainer;
