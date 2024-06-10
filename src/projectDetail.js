@@ -24,7 +24,7 @@ class ProjectDetail {
         <section class="task">
             <div class="task-header">
               <h2>Task</h2>
-              <button class="material-icons">add</button>
+              <button class="material-icons btn-add-task">add</button>
             </div>
             <div class="task-list"></div>
         </section>
