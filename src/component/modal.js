@@ -32,6 +32,10 @@ class Modal {
   closeModal() {
     this.#overlay.style.display = "none";
   }
+
+  async appendModal(parent) {
+    parent.appendChild(this.overlay);
+  }
 }
 
 export default Modal;

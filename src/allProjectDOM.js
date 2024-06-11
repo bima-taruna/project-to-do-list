@@ -14,6 +14,7 @@ class AllProjectDOM {
   #editProjectForm;
   #projectEditCloseButton;
   #projectIndex;
+  #allProject;
   constructor() {
     this.allProject = document.createElement("div");
     this.allProject.classList.add("all-project");
@@ -26,7 +27,14 @@ class AllProjectDOM {
 
   render() {
     this.fetchProjects();
-    this.#appendEditProjectInput(this.allProject).then(() => {
+    this.#projectEditModal = new ProjectModal({
+      projectName: "edit-project-form",
+      className: "project-modal",
+      closeButtonClassName: "btn-edit-project-close",
+      label: "edit-",
+      buttonText: "Update",
+    });
+    this.#projectEditModal.appendModal(this.allProject).then(() => {
       this.#editProjectForm = document.querySelector(".edit-project-form");
       this.#editProjectName = document.getElementById("edit-project-name");
       this.#editProjectDesc = document.getElementById("edit-project-desc");
@@ -42,8 +50,8 @@ class AllProjectDOM {
         e.preventDefault();
         user.updateProject(
           this.#projectIndex,
-          this.#editProjectName.value,
-          this.#editProjectDesc.value
+          editProjectName.value,
+          editProjectDesc.value
         );
         storage.usersData = user;
         indexDOM.fetchProjectName();
@@ -115,17 +123,6 @@ class AllProjectDOM {
     const data = user.getProjectById(index);
     this.#editProjectName.value = data.name;
     this.#editProjectDesc.value = data.description;
-  }
-
-  async #appendEditProjectInput(parent) {
-    this.#projectEditModal = new ProjectModal({
-      projectName: "edit-project-form",
-      className: "project-modal",
-      closeButtonClassName: "btn-edit-project-close",
-      label: "edit-",
-      buttonText: "Update",
-    });
-    parent.appendChild(this.#projectEditModal.overlay);
   }
 
   #deleteProject(event) {

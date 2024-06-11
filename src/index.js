@@ -49,7 +49,7 @@ class IndexDOM {
 
     // console.log(projectDetail == projectDetail2);
     this.changeContent(allProjectDOM.allProjects);
-    this.changeContent(projectDetail.render());
+    // this.changeContent(projectDetail.render());
   }
 
   render() {
