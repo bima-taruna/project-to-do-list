@@ -75,12 +75,14 @@ class AllProjectDOM {
     if (targetElement) {
       this.projectIndex = searchDOM(targetElement.closest(".project-card"));
       this.addEditTag();
-      this.populateEditModal(this.projectIndex);
+      this.#populateEditModal(this.projectIndex);
+      indexDOM.projectModal.changeButtonText("Update");
+      // console.log(indexDOM.projectModal.changeButtonText("Update"));
       indexDOM.projectModal.openModal();
     }
   }
 
-  populateEditModal(index) {
+  #populateEditModal(index) {
     const data = user.getProjectById(index);
     indexDOM.projectNameInput.value = data.name;
     indexDOM.projectDescInput.value = data.description;

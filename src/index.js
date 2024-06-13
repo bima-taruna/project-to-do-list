@@ -59,8 +59,8 @@ class IndexDOM {
       className: "project-modal",
       closeButtonClassName: "btn-project-close",
       formName: "project-form",
-      buttonText: "Add",
     });
+    console.log(this.projectModal);
     this.#fetchUserName();
     this.#appendUserNameInput();
     this.projectModal.appendModal(this.#main);
@@ -78,6 +78,7 @@ class IndexDOM {
     );
     this.#addProjectButton.addEventListener("click", () => {
       this.removeEditTag();
+      this.projectModal.changeButtonText("Add");
       this.projectModal.openModal();
     });
     closeNameModalButton.addEventListener("click", () => {
@@ -93,7 +94,7 @@ class IndexDOM {
     });
     projectForm.addEventListener("submit", (e) => {
       e.preventDefault();
-      let projectForm = document.querySelector(".add-project-form");
+      let projectForm = document.querySelector(".project-form");
       if (projectForm.classList.contains("edit")) {
         this.updateProject(
           allProjectDOM.projectIndex,
