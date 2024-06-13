@@ -15,10 +15,10 @@ class IndexDOM {
   #editNameBtn;
   #nameModal;
   #userNameInput;
-  #projectModal;
+  projectModal;
   #addProjectButton;
-  #projectNameInput;
-  #projectDescInput;
+  projectNameInput;
+  projectDescInput;
   #projectList;
   #allProjectButton;
   #content;
@@ -55,39 +55,57 @@ class IndexDOM {
   render() {
     console.log(user);
     console.log(storage.usersData);
+    this.projectModal = new ProjectModal({
+      className: "project-modal",
+      closeButtonClassName: "btn-project-close",
+      formName: "project-form",
+      buttonText: "Add",
+    });
     this.#fetchUserName();
     this.#appendUserNameInput();
-    this.#appendProjectDataInput();
+    this.projectModal.appendModal(this.#main);
     this.fetchProjectName();
     this.hasManyProjects();
     let closeNameModalButton = document.querySelector(".btn-name-close");
     let closeProjectModalButton = document.querySelector(".btn-project-close");
     let changeUserNameButton = document.querySelector(".btn-name-change");
-    let projectForm = document.querySelector(".add-project-form");
+    let projectForm = document.querySelector(".project-form");
     this.#userNameInput = document.getElementById("user-name");
-    this.#projectNameInput = document.getElementById("project-name");
-    this.#projectDescInput = document.getElementById("project-desc");
+    this.projectNameInput = document.getElementById("project-name");
+    this.projectDescInput = document.getElementById("project-desc");
     this.#editNameBtn.addEventListener("click", () =>
       this.#nameModal.openModal()
     );
-    this.#addProjectButton.addEventListener("click", () =>
-      this.#projectModal.openModal()
-    );
+    this.#addProjectButton.addEventListener("click", () => {
+      this.removeEditTag();
+      this.projectModal.openModal();
+    });
     closeNameModalButton.addEventListener("click", () => {
       this.#nameModal.closeModal();
     });
-    closeProjectModalButton.addEventListener("click", () =>
-      this.#projectModal.closeModal()
-    );
+    closeProjectModalButton.addEventListener("click", () => {
+      this.projectNameInput.value = "";
+      this.projectDescInput.value = "";
+      this.projectModal.closeModal();
+    });
     changeUserNameButton.addEventListener("click", () => {
       this.changeUserName();
     });
     projectForm.addEventListener("submit", (e) => {
       e.preventDefault();
-      this.addProject(
-        this.#projectNameInput.value,
-        this.#projectDescInput.value
-      );
+      let projectForm = document.querySelector(".add-project-form");
+      if (projectForm.classList.contains("edit")) {
+        this.updateProject(
+          allProjectDOM.projectIndex,
+          this.projectNameInput.value,
+          this.projectDescInput.value
+        );
+      } else {
+        this.addProject(
+          this.projectNameInput.value,
+          this.projectDescInput.value
+        );
+      }
     });
   }
 
@@ -107,16 +125,6 @@ class IndexDOM {
     `;
     this.#nameModal = new Modal(input, "name-modal", "btn-name-close");
     this.#main.appendChild(this.#nameModal.overlay);
-  }
-
-  #appendProjectDataInput() {
-    this.#projectModal = new ProjectModal({
-      className: "project-modal",
-      closeButtonClassName: "btn-project-close",
-      projectName: "add-project-form",
-      buttonText: "Add",
-    });
-    this.#main.appendChild(this.#projectModal.overlay);
   }
 
   fetchProjectName() {
@@ -175,7 +183,15 @@ class IndexDOM {
     this.fetchProjectName();
     this.hasManyProjects();
     allProjectDOM.fetchProjects();
-    this.#projectModal.closeModal();
+    this.projectModal.closeModal();
+  }
+
+  updateProject(index, name, desc) {
+    user.updateProject(index, name, desc);
+    storage.usersData = user;
+    indexDOM.fetchProjectName();
+    this.projectModal.closeModal();
+    allProjectDOM.render();
   }
 
   changeContent(contentNode) {
@@ -184,8 +200,14 @@ class IndexDOM {
     }
     this.#content.appendChild(contentNode);
   }
-}
 
+  removeEditTag() {
+    let projectForm = document.querySelector(".project-form");
+    if (projectForm.classList.contains("edit")) {
+      projectForm.classList.remove("edit");
+    }
+  }
+}
 let indexDOM = new IndexDOM();
 
 indexDOM.render();

@@ -4,13 +4,13 @@ class ProjectModal extends Modal {
   constructor({
     className,
     closeButtonClassName,
-    projectName,
+    formName,
     label = "",
     buttonText,
   }) {
     super(className, closeButtonClassName);
     this.content = `
-        <form class="${projectName}">
+        <form class="${formName}">
             <label for="${label}project-name">Name : </label>
             <input type="text" id="${label}project-name" name="${label}project-name" required minlength="4" maxlength="20" required/>
             <label for="${label}project-desc">Description : </label>

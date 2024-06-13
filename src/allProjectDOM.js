@@ -4,17 +4,10 @@ import { searchDOM } from "./helper/searchDOM";
 import { user } from "./user";
 import Card from "./component/card";
 import indexDOM from ".";
-import ProjectModal from "./component/projectModal";
 import ProjectDetail from "./projectDetail";
 
 class AllProjectDOM {
-  #projectEditModal;
-  #editProjectName;
-  #editProjectDesc;
-  #editProjectForm;
-  #projectEditCloseButton;
-  #projectIndex;
-  #allProject;
+  projectIndex;
   constructor() {
     this.allProject = document.createElement("div");
     this.allProject.classList.add("all-project");
@@ -27,38 +20,6 @@ class AllProjectDOM {
 
   render() {
     this.fetchProjects();
-    this.#projectEditModal = new ProjectModal({
-      projectName: "edit-project-form",
-      className: "project-modal",
-      closeButtonClassName: "btn-edit-project-close",
-      label: "edit-",
-      buttonText: "Update",
-    });
-    this.#projectEditModal.appendModal(this.allProject).then(() => {
-      this.#editProjectForm = document.querySelector(".edit-project-form");
-      this.#editProjectName = document.getElementById("edit-project-name");
-      this.#editProjectDesc = document.getElementById("edit-project-desc");
-      this.#projectEditCloseButton = document.querySelector(
-        ".btn-edit-project-close"
-      );
-
-      this.#projectEditCloseButton.addEventListener("click", () => {
-        this.#projectEditModal.closeModal();
-      });
-
-      this.#editProjectForm.addEventListener("submit", (e) => {
-        e.preventDefault();
-        user.updateProject(
-          this.#projectIndex,
-          editProjectName.value,
-          editProjectDesc.value
-        );
-        storage.usersData = user;
-        indexDOM.fetchProjectName();
-        this.render();
-      });
-    });
-
     this.allProject.addEventListener("click", (e) => {
       this.#deleteProject(e);
     });
@@ -112,17 +73,17 @@ class AllProjectDOM {
     const { target } = event;
     const targetElement = target.closest(".project-card-edit");
     if (targetElement) {
-      let i = searchDOM(targetElement.closest(".project-card"));
-      this.#projectIndex = i;
-      this.#populateEditModal(i);
-      this.#projectEditModal.openModal();
+      this.projectIndex = searchDOM(targetElement.closest(".project-card"));
+      this.addEditTag();
+      this.populateEditModal(this.projectIndex);
+      indexDOM.projectModal.openModal();
     }
   }
 
-  #populateEditModal(index) {
+  populateEditModal(index) {
     const data = user.getProjectById(index);
-    this.#editProjectName.value = data.name;
-    this.#editProjectDesc.value = data.description;
+    indexDOM.projectNameInput.value = data.name;
+    indexDOM.projectDescInput.value = data.description;
   }
 
   #deleteProject(event) {
@@ -137,6 +98,12 @@ class AllProjectDOM {
       this.fetchProjects();
       indexDOM.fetchProjectName();
     }
+  }
+
+  addEditTag() {
+    let projectForm = document.querySelector(".project-form");
+    projectForm.classList.add("edit");
+    console.log(projectForm);
   }
 }
 
