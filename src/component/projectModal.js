@@ -1,7 +1,6 @@
 import Modal from "./modal";
 
 class ProjectModal extends Modal {
-  buttonText = "";
   constructor({ className, closeButtonClassName, formName, label = "" }) {
     super(className, closeButtonClassName);
     this.formName = formName;
@@ -18,7 +17,7 @@ class ProjectModal extends Modal {
         <input type="text" id="${this.label}project-name" name="${this.label}project-name" required minlength="4" maxlength="20" required/>
         <label for="${this.label}project-desc">Description : </label>
         <textarea id="${this.label}project-desc" name="${this.label}project-desc" rows="5" placeholder="Enter your project desc here...."></textarea>
-        <button class="${this.label}project-add">${this.buttonText}</button>
+        <button class="${this.label}project-add"></button>
     </form>
     `;
 
@@ -32,11 +31,11 @@ class ProjectModal extends Modal {
   }
 
   changeButtonText(newText) {
-    this.buttonElement = this.overlay.querySelector(
+    const buttonElement = this.overlay.querySelector(
       `.${this.label}project-add`
     );
-    if (this.buttonElement) {
-      this.buttonElement.textContent = newText;
+    if (buttonElement) {
+      buttonElement.textContent = newText;
     }
   }
 }

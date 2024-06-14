@@ -77,7 +77,6 @@ class AllProjectDOM {
       this.addEditTag();
       this.#populateEditModal(this.projectIndex);
       indexDOM.projectModal.changeButtonText("Update");
-      // console.log(indexDOM.projectModal.changeButtonText("Update"));
       indexDOM.projectModal.openModal();
     }
   }
