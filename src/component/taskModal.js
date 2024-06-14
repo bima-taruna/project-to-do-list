@@ -20,4 +20,11 @@ class TaskModal extends Modal {
         `;
     this.overlay.innerHTML = this.modalBody;
   }
+
+  changeButtonText(newText) {
+    const buttonElement = this.overlay.querySelector(".task-add");
+    if (buttonElement) {
+      buttonElement.textContent = newText;
+    }
+  }
 }
