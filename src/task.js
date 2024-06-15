@@ -1,8 +1,9 @@
 class Task {
-  constructor(title, desc, date) {
+  constructor(title, desc, date, priority) {
     this.title = title;
     this.desc = desc;
     this.date = date;
+    this.priority = priority;
   }
 
   get title() {
@@ -27,6 +28,14 @@ class Task {
 
   set date(newDate) {
     this.date = newDate;
+  }
+
+  get priority() {
+    return this.priority;
+  }
+
+  set priority(newPriority) {
+    this.priority = newPriority;
   }
 }
 
