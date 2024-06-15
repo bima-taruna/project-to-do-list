@@ -3,6 +3,11 @@ import Modal from "./modal";
 class TaskModal extends Modal {
   checked = false;
   constructor() {
+    super();
+    this.render();
+  }
+
+  render() {
     this.content = `
             <form class="task-form">
                 <label for="task-name">Name : </label>
@@ -36,3 +41,5 @@ class TaskModal extends Modal {
     }
   }
 }
+
+export default TaskModal;

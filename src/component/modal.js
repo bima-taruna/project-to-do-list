@@ -33,7 +33,7 @@ class Modal {
     this.#overlay.style.display = "none";
   }
 
-  async appendModal(parent) {
+  appendModal(parent) {
     parent.appendChild(this.overlay);
   }
 }

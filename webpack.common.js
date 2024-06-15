@@ -14,6 +14,7 @@ module.exports = {
     projectModal: "./src/component/projectModal.js",
     projectDetail: "./src/projectDetail.js",
     task: "./src/task.js",
+    taskModal: "./src/component/taskModal.js",
   },
   plugins: [
     new HtmlWebpackPlugin({
