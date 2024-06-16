@@ -27,7 +27,7 @@ class TaskModal extends Modal {
         `;
     this.modalBody = `
             <div class="task-modal">
-                <button class="material-icons btn-taskform-close"></button>
+                <button class="material-icons btn-taskform-close">close</button>
                 ${this.content}
             </div>
         `;

@@ -36,13 +36,12 @@ class IndexDOM {
     this.#projectList = document.querySelector(".project-list");
     this.#content = document.getElementById("content");
     // this.changeContent(allProjectDOM.allProjects);
-    this.changeContent(
-      projectDetail.render(
-        "ngoding",
-        "    Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti, voluptas accusamus optio maxime aliquam officiis odio perspiciatis doloribus ullam placeat voluptatem veniam ratione, incidunt cum veritatis neque! Ab, distinctio reiciendis",
-        []
-      )
+    projectDetail.render(
+      "ngoding",
+      "    Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti, voluptas accusamus optio maxime aliquam officiis odio perspiciatis doloribus ullam placeat voluptatem veniam ratione, incidunt cum veritatis neque! Ab, distinctio reiciendis",
+      []
     );
+    this.changeContent(projectDetail.returnContainer());
   }
 
   render() {
