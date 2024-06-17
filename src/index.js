@@ -4,14 +4,14 @@ import { storage } from "./storage";
 import allProjectDOM from "./allProjectDOM";
 import Modal from "./component/modal";
 import ProjectModal from "./component/projectModal";
-import projectDetail from "./projectDetail";
+import TaskModal from "./component/taskModal";
 
 if (process.env.NODE_ENV !== "production") {
   console.log("Looks like we are in development mode!");
 }
 
 class IndexDOM {
-  #main;
+  main;
   #editNameBtn;
   #nameModal;
   #userNameInput;
@@ -22,6 +22,7 @@ class IndexDOM {
   #projectList;
   #allProjectButton;
   #content;
+  taskModal;
 
   constructor() {
     if (!storage.usersData) {
@@ -30,32 +31,26 @@ class IndexDOM {
       user.name = storage.usersData.name;
       user.projects = storage.usersData.projects;
     }
-    this.#main = document.querySelector("main");
+    this.main = document.querySelector("main");
     this.#editNameBtn = document.getElementById("btn-edit-name");
     this.#addProjectButton = document.getElementById("add-project");
     this.#projectList = document.querySelector(".project-list");
     this.#content = document.getElementById("content");
-    // this.changeContent(allProjectDOM.allProjects);
-    projectDetail.render(
-      "ngoding",
-      "    Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti, voluptas accusamus optio maxime aliquam officiis odio perspiciatis doloribus ullam placeat voluptatem veniam ratione, incidunt cum veritatis neque! Ab, distinctio reiciendis",
-      []
-    );
-    this.changeContent(projectDetail.returnContainer());
+    this.changeContent(allProjectDOM.allProjects);
   }
 
   render() {
     console.log(user);
     console.log(storage.usersData);
+    this.taskModal = new TaskModal();
     this.projectModal = new ProjectModal({
       className: "project-modal",
       closeButtonClassName: "btn-project-close",
       formName: "project-form",
     });
-    console.log(this.projectModal);
     this.#fetchUserName();
     this.#appendUserNameInput();
-    this.projectModal.appendModal(this.#main);
+    this.projectModal.appendModal(this.main);
     this.fetchProjectName();
     this.hasManyProjects();
     let closeNameModalButton = document.querySelector(".btn-name-close");
@@ -117,7 +112,7 @@ class IndexDOM {
     </div>
     `;
     this.#nameModal = new Modal(input, "name-modal", "btn-name-close");
-    this.#main.appendChild(this.#nameModal.overlay);
+    this.main.appendChild(this.#nameModal.overlay);
   }
 
   fetchProjectName() {
@@ -199,6 +194,10 @@ class IndexDOM {
     if (projectForm.classList.contains("edit")) {
       projectForm.classList.remove("edit");
     }
+  }
+
+  get main() {
+    return this.main;
   }
 }
 let indexDOM = new IndexDOM();

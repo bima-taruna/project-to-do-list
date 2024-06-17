@@ -187,7 +187,8 @@ header {
   position: relative;
 }
 
-.project-modal {
+.project-modal,
+.task-modal {
   background-color: white;
   width: 30%;
   padding: 2rem;
@@ -197,29 +198,47 @@ header {
   border-radius: 1rem;
 }
 
-.project-form {
+.project-form,
+.task-form {
   display: flex;
   flex-direction: column;
   justify-content: center;
   gap: 1rem;
 }
 
-.project-form > label {
+.project-form > label,
+.task-form > label {
   font-weight: bold;
 }
 
 #project-name,
-#project-desc {
+#project-desc,
+#task-name,
+#task-desc,
+#task-date,
+#task-priority {
   border-radius: 0.5rem;
 }
 
-#project-name {
+#project-name,
+#task-name,
+#task-date,
+#task-priority {
   width: 100%;
   padding: 0.5rem;
   font-size: 1.2rem;
 }
 
-.project-form > button {
+#task-name,
+#task-desc,
+#task-date,
+#task-priority {
+  font-size: 1rem;
+  padding: 0.3rem;
+}
+
+.project-form > button,
+.task-form > button {
   padding: 0.5rem;
   background-color: #5c9cf5;
   color: white;
@@ -234,7 +253,8 @@ header {
   background-color: #7baff7;
 }
 
-#project-desc {
+#project-desc,
+#task-desc {
   width: 100%;
   padding: 0.5rem;
   resize: none;
@@ -243,7 +263,8 @@ header {
 }
 
 .btn-name-close,
-.btn-project-close {
+.btn-project-close,
+.btn-taskform-close {
   position: absolute;
   top: 0;
   right: 0;

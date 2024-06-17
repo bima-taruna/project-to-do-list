@@ -4,7 +4,7 @@ import { searchDOM } from "./helper/searchDOM";
 import { user } from "./user";
 import Card from "./component/card";
 import indexDOM from ".";
-import projectDetail from "./projectDetail";
+import { projectDetail } from "./projectDetail";
 
 class AllProjectDOM {
   projectIndex;
@@ -60,9 +60,8 @@ class AllProjectDOM {
       const i = searchDOM(targetElement.closest(".project-card"));
       const data = user.getProjectById(i);
       console.log(data);
-      indexDOM.changeContent(
-        projectDetail.render(data.name, data.description, data.toDo)
-      );
+      projectDetail.render(data.name, data.description, data.toDo);
+      indexDOM.changeContent(projectDetail.detailContainer);
     }
   }
 

@@ -1,4 +1,5 @@
 import "./style/projectDetail.css";
+import indexDOM from ".";
 import TaskModal from "./component/taskModal";
 
 class ProjectDetail {
@@ -8,7 +9,6 @@ class ProjectDetail {
   constructor() {
     this.detailContainer = document.createElement("div");
     this.detailContainer.classList.add("detail-container");
-    this.taskModal = new TaskModal();
   }
 
   render(name = "", desc = "", toDo = []) {
@@ -16,13 +16,18 @@ class ProjectDetail {
     this.#desc = desc;
     this.#toDo = toDo;
     this.renderBody();
-    this.taskModal.appendModal(this.detailContainer);
+    indexDOM.taskModal.appendModal(indexDOM.main);
     const openTaskModal = this.detailContainer.querySelector(".btn-add-task");
-    const closeTaskModal = this.taskModal.overlay.querySelector(
+    const closeTaskModal = indexDOM.taskModal.overlay.querySelector(
       ".btn-taskform-close"
     );
-    closeTaskModal.addEventListener("click", () => this.taskModal.closeModal());
-    openTaskModal.addEventListener("click", () => this.taskModal.openModal());
+    closeTaskModal.addEventListener("click", () =>
+      indexDOM.taskModal.closeModal()
+    );
+    openTaskModal.addEventListener("click", () => {
+      indexDOM.taskModal.changeButtonText("Add");
+      indexDOM.taskModal.openModal();
+    });
   }
 
   renderBody() {
@@ -53,8 +58,4 @@ class ProjectDetail {
   }
 }
 
-const projectDetail = new ProjectDetail();
-
-projectDetail.render();
-
-export default projectDetail;
+export const projectDetail = new ProjectDetail();
