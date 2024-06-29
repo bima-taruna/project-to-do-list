@@ -64,6 +64,7 @@ class IndexDOM {
       this.#nameModal.openModal()
     );
     this.#addProjectButton.addEventListener("click", () => {
+      this.removeDetailTag();
       this.removeEditTag();
       this.projectModal.changeButtonText("Add");
       this.projectModal.openModal();
@@ -175,10 +176,14 @@ class IndexDOM {
   }
 
   updateProject(index, name, desc) {
+    let projectForm = document.querySelector(".project-form");
     user.updateProject(index, name, desc);
     storage.usersData = user;
     indexDOM.fetchProjectName();
     this.projectModal.closeModal();
+    if (projectForm.classList.contains("detail")) {
+      allProjectDOM.projectDetail.render();
+    }
     allProjectDOM.render();
   }
 
@@ -193,6 +198,13 @@ class IndexDOM {
     let projectForm = document.querySelector(".project-form");
     if (projectForm.classList.contains("edit")) {
       projectForm.classList.remove("edit");
+    }
+  }
+
+  removeDetailTag() {
+    let projectForm = document.querySelector(".project-form");
+    if (projectForm.classList.contains("detail")) {
+      projectForm.classList.remove("detail");
     }
   }
 

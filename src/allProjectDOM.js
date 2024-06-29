@@ -4,10 +4,10 @@ import { searchDOM } from "./helper/searchDOM";
 import { user } from "./user";
 import Card from "./component/card";
 import indexDOM from ".";
-import { projectDetail } from "./projectDetail";
-
+import ProjectDetail from "./projectDetail";
 class AllProjectDOM {
   projectIndex;
+  projectDetail;
   constructor() {
     this.allProject = document.createElement("div");
     this.allProject.classList.add("all-project");
@@ -59,9 +59,8 @@ class AllProjectDOM {
     if (targetElement) {
       const i = searchDOM(targetElement.closest(".project-card"));
       this.projectIndex = i;
-      const data = user.getProjectById(i);
-      projectDetail.render(data.name, data.description, data.toDo);
-      indexDOM.changeContent(projectDetail.detailContainer);
+      this.projectDetail = new ProjectDetail(this.projectIndex);
+      indexDOM.changeContent(this.projectDetail.detailContainer);
     }
   }
 
@@ -70,6 +69,7 @@ class AllProjectDOM {
     const targetElement = target.closest(".project-card-edit");
     if (targetElement) {
       this.projectIndex = searchDOM(targetElement.closest(".project-card"));
+      this.removeDetailTag();
       this.addEditTag();
       this.populateEditModal(this.projectIndex);
       indexDOM.projectModal.changeButtonText("Update");
@@ -101,6 +101,13 @@ class AllProjectDOM {
     let projectForm = document.querySelector(".project-form");
     projectForm.classList.add("edit");
     console.log(projectForm);
+  }
+
+  removeDetailTag() {
+    let projectForm = document.querySelector(".project-form");
+    if (projectForm.classList.contains("detail")) {
+      projectForm.classList.remove("detail");
+    }
   }
 }
 
