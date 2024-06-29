@@ -58,8 +58,8 @@ class AllProjectDOM {
     const targetElement = target.closest(".body-div");
     if (targetElement) {
       const i = searchDOM(targetElement.closest(".project-card"));
+      this.projectIndex = i;
       const data = user.getProjectById(i);
-      console.log(data);
       projectDetail.render(data.name, data.description, data.toDo);
       indexDOM.changeContent(projectDetail.detailContainer);
     }
@@ -71,13 +71,13 @@ class AllProjectDOM {
     if (targetElement) {
       this.projectIndex = searchDOM(targetElement.closest(".project-card"));
       this.addEditTag();
-      this.#populateEditModal(this.projectIndex);
+      this.populateEditModal(this.projectIndex);
       indexDOM.projectModal.changeButtonText("Update");
       indexDOM.projectModal.openModal();
     }
   }
 
-  #populateEditModal(index) {
+  populateEditModal(index) {
     const data = user.getProjectById(index);
     indexDOM.projectNameInput.value = data.name;
     indexDOM.projectDescInput.value = data.description;

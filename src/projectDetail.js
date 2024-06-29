@@ -1,6 +1,7 @@
 import "./style/projectDetail.css";
 import indexDOM from ".";
 import TaskModal from "./component/taskModal";
+import allProjectDOM from "./allProjectDOM";
 
 class ProjectDetail {
   #name;
@@ -18,6 +19,7 @@ class ProjectDetail {
     this.renderBody();
     indexDOM.taskModal.appendModal(indexDOM.main);
     const openTaskModal = this.detailContainer.querySelector(".btn-add-task");
+    const btnDetailEdit = this.detailContainer.querySelector(".detail-edit");
     const closeTaskModal = indexDOM.taskModal.overlay.querySelector(
       ".btn-taskform-close"
     );
@@ -28,6 +30,7 @@ class ProjectDetail {
       indexDOM.taskModal.changeButtonText("Add");
       indexDOM.taskModal.openModal();
     });
+    btnDetailEdit.addEventListener("click", () => this.openDetailEditModal());
   }
 
   renderBody() {
@@ -55,6 +58,13 @@ class ProjectDetail {
 
   returnContainer() {
     return this.detailContainer;
+  }
+
+  openDetailEditModal() {
+    allProjectDOM.addEditTag();
+    allProjectDOM.populateEditModal(allProjectDOM.projectIndex);
+    indexDOM.projectModal.changeButtonText("Update");
+    indexDOM.projectModal.openModal();
   }
 }
 
