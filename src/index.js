@@ -5,6 +5,7 @@ import allProjectDOM from "./allProjectDOM";
 import Modal from "./component/modal";
 import ProjectModal from "./component/projectModal";
 import TaskModal from "./component/taskModal";
+import ProjectDetail from "./projectDetail";
 
 if (process.env.NODE_ENV !== "production") {
   console.log("Looks like we are in development mode!");
@@ -54,6 +55,15 @@ class IndexDOM {
     this.fetchProjectName();
     this.hasManyProjects();
     let closeNameModalButton = document.querySelector(".btn-name-close");
+    if (storage.usersData.projects.length > 0) {
+      let sidebarProjects = this.#projectList.querySelectorAll(".project");
+      sidebarProjects.forEach((item, index) => {
+        item.addEventListener("click", () => {
+          let projectDetail = new ProjectDetail(index);
+          this.changeContent(projectDetail.detailContainer);
+        });
+      });
+    }
     let closeProjectModalButton = document.querySelector(".btn-project-close");
     let changeUserNameButton = document.querySelector(".btn-name-change");
     let projectForm = document.querySelector(".project-form");
