@@ -6,6 +6,7 @@ import Modal from "./component/modal";
 import ProjectModal from "./component/projectModal";
 import TaskModal from "./component/taskModal";
 import ProjectDetail from "./projectDetail";
+import { taskDOM } from "./taskDOM";
 
 if (process.env.NODE_ENV !== "production") {
   console.log("Looks like we are in development mode!");
@@ -37,7 +38,8 @@ class IndexDOM {
     this.#addProjectButton = document.getElementById("add-project");
     this.#projectList = document.querySelector(".project-list");
     this.#content = document.getElementById("content");
-    this.changeContent(allProjectDOM.allProjects);
+    taskDOM.render(storage.usersData.task);
+    this.changeContent(taskDOM.taskContainer);
   }
 
   render() {
@@ -55,6 +57,14 @@ class IndexDOM {
     this.fetchProjectName();
     this.hasManyProjects();
     let closeNameModalButton = document.querySelector(".btn-name-close");
+    let closeProjectModalButton = document.querySelector(".btn-project-close");
+    let changeUserNameButton = document.querySelector(".btn-name-change");
+    let projectForm = document.querySelector(".project-form");
+    let filters = document.getElementById("filters");
+    let allTask = filters.children[0];
+    this.#userNameInput = document.getElementById("user-name");
+    this.projectNameInput = document.getElementById("project-name");
+    this.projectDescInput = document.getElementById("project-desc");
     if (storage.usersData.projects.length > 0) {
       let sidebarProjects = this.#projectList.querySelectorAll(".project");
       sidebarProjects.forEach((item, index) => {
@@ -64,12 +74,10 @@ class IndexDOM {
         });
       });
     }
-    let closeProjectModalButton = document.querySelector(".btn-project-close");
-    let changeUserNameButton = document.querySelector(".btn-name-change");
-    let projectForm = document.querySelector(".project-form");
-    this.#userNameInput = document.getElementById("user-name");
-    this.projectNameInput = document.getElementById("project-name");
-    this.projectDescInput = document.getElementById("project-desc");
+    allTask.addEventListener("click", () => {
+      taskDOM.render(storage.usersData.task);
+      this.changeContent(taskDOM.taskContainer);
+    });
     this.#editNameBtn.addEventListener("click", () =>
       this.#nameModal.openModal()
     );
