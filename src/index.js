@@ -7,6 +7,7 @@ import ProjectModal from "./component/projectModal";
 import TaskModal from "./component/taskModal";
 import ProjectDetail from "./projectDetail";
 import { taskDOM } from "./taskDOM";
+import { taskFilter } from "./taskFilters";
 
 if (process.env.NODE_ENV !== "production") {
   console.log("Looks like we are in development mode!");
@@ -39,7 +40,8 @@ class IndexDOM {
     this.#projectList = document.querySelector(".project-list");
     this.#content = document.getElementById("content");
     taskDOM.render(storage.usersData.task);
-    this.changeContent(taskDOM.taskContainer);
+    taskFilter.render("All Tasks", taskDOM.taskContainer);
+    this.changeContent(taskFilter.container);
   }
 
   render() {
@@ -69,6 +71,7 @@ class IndexDOM {
       let sidebarProjects = this.#projectList.querySelectorAll(".project");
       sidebarProjects.forEach((item, index) => {
         item.addEventListener("click", () => {
+          allProjectDOM.projectIndex = index;
           let projectDetail = new ProjectDetail(index);
           this.changeContent(projectDetail.detailContainer);
         });
@@ -76,7 +79,8 @@ class IndexDOM {
     }
     allTask.addEventListener("click", () => {
       taskDOM.render(storage.usersData.task);
-      this.changeContent(taskDOM.taskContainer);
+      taskFilter.render("All Tasks", taskDOM.taskContainer);
+      this.changeContent(taskFilter.container);
     });
     this.#editNameBtn.addEventListener("click", () =>
       this.#nameModal.openModal()
