@@ -79,8 +79,8 @@ class AllProjectDOM {
 
   populateEditModal(index) {
     const data = user.getProjectById(index);
-    indexDOM.projectNameInput.value = data.name;
-    indexDOM.projectDescInput.value = data.description;
+    indexDOM.projectModal.projectNameInput.value = data.name;
+    indexDOM.projectModal.projectDescInput.value = data.description;
   }
 
   #deleteProject(event) {

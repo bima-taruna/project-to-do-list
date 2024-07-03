@@ -26,6 +26,7 @@ class IndexDOM {
   #allProjectButton;
   #content;
   taskModal;
+  projectDetail;
 
   constructor() {
     if (!storage.usersData) {
@@ -61,7 +62,6 @@ class IndexDOM {
     this.hasManyProjects();
     let closeNameModalButton = document.querySelector(".btn-name-close");
     let changeUserNameButton = document.querySelector(".btn-name-change");
-    let projectForm = document.querySelector(".project-form");
     let filters = document.getElementById("filters");
     let allTask = filters.children[0];
     this.#userNameInput = document.getElementById("user-name");
@@ -72,8 +72,8 @@ class IndexDOM {
       sidebarProjects.forEach((item, index) => {
         item.addEventListener("click", () => {
           allProjectDOM.projectIndex = index;
-          let projectDetail = new ProjectDetail(index);
-          this.changeContent(projectDetail.detailContainer);
+          this.projectDetail = new ProjectDetail(index);
+          this.changeContent(this.projectDetail.detailContainer);
         });
       });
     }
@@ -96,22 +96,6 @@ class IndexDOM {
     });
     changeUserNameButton.addEventListener("click", () => {
       this.changeUserName();
-    });
-    projectForm.addEventListener("submit", (e) => {
-      e.preventDefault();
-      let projectForm = document.querySelector(".project-form");
-      if (projectForm.classList.contains("edit")) {
-        this.updateProject(
-          allProjectDOM.projectIndex,
-          this.projectNameInput.value,
-          this.projectDescInput.value
-        );
-      } else {
-        this.addProject(
-          this.projectNameInput.value,
-          this.projectDescInput.value
-        );
-      }
     });
   }
 
@@ -181,27 +165,6 @@ class IndexDOM {
     storage.usersData = user;
     this.#fetchUserName();
     this.#nameModal.closeModal();
-  }
-
-  addProject(name, description) {
-    user.addProject(name, description);
-    storage.usersData = user;
-    this.fetchProjectName();
-    this.hasManyProjects();
-    allProjectDOM.fetchProjects();
-    this.projectModal.closeModal();
-  }
-
-  updateProject(index, name, desc) {
-    let projectForm = document.querySelector(".project-form");
-    user.updateProject(index, name, desc);
-    storage.usersData = user;
-    indexDOM.fetchProjectName();
-    this.projectModal.closeModal();
-    if (projectForm.classList.contains("detail")) {
-      allProjectDOM.projectDetail.render();
-    }
-    allProjectDOM.render();
   }
 
   changeContent(contentNode) {

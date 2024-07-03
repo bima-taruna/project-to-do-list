@@ -1,6 +1,11 @@
 import Modal from "./modal";
-
+import indexDOM from "..";
+import { storage } from "../storage";
+import { user } from "../user";
+import allProjectDOM from "../allProjectDOM";
 class ProjectModal extends Modal {
+  projectNameInput;
+  projectDescInput;
   constructor({ className, closeButtonClassName, formName, label = "" }) {
     super(className, closeButtonClassName);
     this.formName = formName;
@@ -28,9 +33,27 @@ class ProjectModal extends Modal {
         </div>
     `;
     this.overlay.innerHTML = this.modalBody;
-    let closeButton = this.overlay.querySelector(".btn-project-close");
-    closeButton.addEventListener("click", () => {
+    this.closeButton = this.overlay.querySelector(".btn-project-close");
+    this.projectForm = this.overlay.querySelector(".project-form");
+    this.projectNameInput = this.projectForm.querySelector("#project-name");
+    this.projectDescInput = this.projectForm.querySelector("#project-desc");
+    this.closeButton.addEventListener("click", () => {
       this.closeModal();
+    });
+    this.projectForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      if (this.projectForm.classList.contains("edit")) {
+        this.updateProject(
+          allProjectDOM.projectIndex,
+          this.projectNameInput.value,
+          this.projectDescInput.value
+        );
+      } else {
+        this.addProject(
+          this.projectNameInput.value,
+          this.projectDescInput.value
+        );
+      }
     });
   }
 
@@ -41,6 +64,28 @@ class ProjectModal extends Modal {
     if (buttonElement) {
       buttonElement.textContent = newText;
     }
+  }
+
+  updateProject(index, name, desc) {
+    user.updateProject(index, name, desc);
+    storage.usersData = user;
+    indexDOM.fetchProjectName();
+    this.closeModal();
+    if (this.projectForm.classList.contains("detail")) {
+      if (allProjectDOM.projectDetail) {
+        allProjectDOM.projectDetail.render();
+      }
+      indexDOM.projectDetail.render();
+    }
+    allProjectDOM.render();
+  }
+
+  addProject(name, description) {
+    user.addProject(name, description);
+    storage.usersData = user;
+    indexDOM.render();
+    allProjectDOM.fetchProjects();
+    this.closeModal();
   }
 }
 
