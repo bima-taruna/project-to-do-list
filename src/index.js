@@ -56,6 +56,7 @@ class IndexDOM {
     this.#fetchUserName();
     this.#appendUserNameInput();
     this.projectModal.appendModal(this.main);
+    this.taskModal.appendModal(this.main);
     this.fetchProjectName();
     this.hasManyProjects();
     let closeNameModalButton = document.querySelector(".btn-name-close");

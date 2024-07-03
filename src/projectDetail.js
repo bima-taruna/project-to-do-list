@@ -15,15 +15,8 @@ class ProjectDetail {
 
   render() {
     this.renderBody();
-    indexDOM.taskModal.appendModal(indexDOM.main);
     const openTaskModal = this.detailContainer.querySelector(".btn-add-task");
     const btnDetailEdit = this.detailContainer.querySelector(".detail-edit");
-    const closeTaskModal = indexDOM.taskModal.overlay.querySelector(
-      ".btn-taskform-close"
-    );
-    closeTaskModal.addEventListener("click", () =>
-      indexDOM.taskModal.closeModal()
-    );
     openTaskModal.addEventListener("click", () => {
       indexDOM.taskModal.changeButtonText("Add");
       indexDOM.taskModal.openModal();

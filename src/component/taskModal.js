@@ -32,6 +32,11 @@ class TaskModal extends Modal {
             </div>
         `;
     this.overlay.innerHTML = this.modalBody;
+
+    let closeButton = this.overlay.querySelector(".btn-taskform-close");
+    closeButton.addEventListener("click", () => {
+      this.closeModal();
+    });
   }
 
   changeButtonText(newText) {
@@ -40,6 +45,8 @@ class TaskModal extends Modal {
       buttonElement.textContent = newText;
     }
   }
+
+  closeTaskForm() {}
 }
 
 export default TaskModal;

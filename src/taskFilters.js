@@ -1,3 +1,6 @@
+import indexDOM from ".";
+import "./style/taskContainer.css";
+
 class TaskFilters {
   constructor() {
     this.container = document.createElement("div");
@@ -10,11 +13,20 @@ class TaskFilters {
         this.container.removeChild(item);
       });
     }
+    this.btnAddTask = document.createElement("button");
+    this.btnAddTask.classList.add("material-icons");
+    this.btnAddTask.classList.add("btn-add-task");
+    this.btnAddTask.textContent = "add";
     this.title = document.createElement("div");
     this.title.classList.add("task-container-title");
     this.title.textContent = title;
     this.container.appendChild(this.title);
+    this.title.appendChild(this.btnAddTask);
     this.container.appendChild(task);
+    this.btnAddTask.addEventListener("click", () => {
+      indexDOM.taskModal.changeButtonText("Add");
+      indexDOM.taskModal.openModal();
+    });
   }
 
   get taskFilter() {
