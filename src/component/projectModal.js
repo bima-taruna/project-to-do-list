@@ -28,6 +28,10 @@ class ProjectModal extends Modal {
         </div>
     `;
     this.overlay.innerHTML = this.modalBody;
+    let closeButton = this.overlay.querySelector(".btn-project-close");
+    closeButton.addEventListener("click", () => {
+      this.closeModal();
+    });
   }
 
   changeButtonText(newText) {

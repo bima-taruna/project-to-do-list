@@ -60,7 +60,6 @@ class IndexDOM {
     this.fetchProjectName();
     this.hasManyProjects();
     let closeNameModalButton = document.querySelector(".btn-name-close");
-    let closeProjectModalButton = document.querySelector(".btn-project-close");
     let changeUserNameButton = document.querySelector(".btn-name-change");
     let projectForm = document.querySelector(".project-form");
     let filters = document.getElementById("filters");
@@ -94,11 +93,6 @@ class IndexDOM {
     });
     closeNameModalButton.addEventListener("click", () => {
       this.#nameModal.closeModal();
-    });
-    closeProjectModalButton.addEventListener("click", () => {
-      this.projectNameInput.value = "";
-      this.projectDescInput.value = "";
-      this.projectModal.closeModal();
     });
     changeUserNameButton.addEventListener("click", () => {
       this.changeUserName();
