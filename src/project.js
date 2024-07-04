@@ -26,8 +26,8 @@ class Project {
     this.description = newDesc;
   }
 
-  addTask(title, desc, date) {
-    const newTask = new Task(title, desc, date);
+  addTask(title, desc, date, priority) {
+    const newTask = new Task(title, desc, date, priority);
     this.task.push(newTask);
   }
 
@@ -35,10 +35,11 @@ class Project {
     this.task.splice(index, 1);
   }
 
-  updateTask(index, title, desc, date) {
+  updateTask(index, title, desc, date, priority) {
     this.task[index].title = title;
     this.task[index].desc = desc;
     this.task[index].date = date;
+    this.task[index].priority = priority;
   }
 }
 

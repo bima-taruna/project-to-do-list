@@ -1,7 +1,6 @@
 import Modal from "./modal";
 
 class TaskModal extends Modal {
-  checked = false;
   constructor() {
     super();
     this.render();
@@ -45,8 +44,6 @@ class TaskModal extends Modal {
       buttonElement.textContent = newText;
     }
   }
-
-  closeTaskForm() {}
 }
 
 export default TaskModal;

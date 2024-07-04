@@ -1,9 +1,10 @@
 class Task {
-  constructor(title, desc, date, priority) {
+  constructor(title, desc, date, priority, isFinish = false) {
     this.title = title;
     this.desc = desc;
     this.date = date;
     this.priority = priority;
+    this.isFinish = isFinish;
   }
 
   get title() {
@@ -36,6 +37,14 @@ class Task {
 
   set priority(newPriority) {
     this.priority = newPriority;
+  }
+
+  get isFinish() {
+    return this.isFinish;
+  }
+
+  set isFinish(newState) {
+    this.isFinish = newState;
   }
 }
 

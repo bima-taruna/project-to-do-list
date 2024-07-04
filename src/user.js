@@ -1,4 +1,5 @@
 import Project from "./project";
+import Task from "./task";
 
 class User {
   name;
@@ -41,6 +42,18 @@ class User {
   updateProject(index, name, desc) {
     this.projects[index].name = name;
     this.projects[index].description = desc;
+  }
+
+  addTask(title, desc, date, priority) {
+    const newTask = new Task(title, desc, date, priority);
+    this.task.add(newTask);
+  }
+
+  updateTask(index, title, desc, date, priority) {
+    this.task[index].title = title;
+    this.task[index].desc = desc;
+    this.task[index].date = date;
+    this.task[index].priority = priority;
   }
 }
 
