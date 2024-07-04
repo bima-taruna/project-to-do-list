@@ -19,6 +19,7 @@ class ProjectDetail {
     const btnDetailEdit = this.detailContainer.querySelector(".detail-edit");
     openTaskModal.addEventListener("click", () => {
       indexDOM.taskModal.changeButtonText("Add");
+      indexDOM.taskModal.addProjectTag();
       indexDOM.taskModal.openModal();
     });
     btnDetailEdit.addEventListener("click", () => this.openDetailEditModal());

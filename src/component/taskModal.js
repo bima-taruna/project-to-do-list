@@ -31,7 +31,8 @@ class TaskModal extends Modal {
             </div>
         `;
     this.overlay.innerHTML = this.modalBody;
-
+    this.taskForm = this.overlay.querySelector(".task-form");
+    this.taskName = this.overlay.querySelector("#task-name");
     let closeButton = this.overlay.querySelector(".btn-taskform-close");
     closeButton.addEventListener("click", () => {
       this.closeModal();
@@ -42,6 +43,14 @@ class TaskModal extends Modal {
     const buttonElement = this.overlay.querySelector(".task-add");
     if (buttonElement) {
       buttonElement.textContent = newText;
+    }
+  }
+  addProjectTag() {
+    this.taskForm.classList.add("project");
+  }
+  removeProjectTag() {
+    if (this.taskForm.classList.contains("project")) {
+      this.taskForm.classList.remove("project");
     }
   }
 }

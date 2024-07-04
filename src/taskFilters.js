@@ -25,6 +25,7 @@ class TaskFilters {
     this.container.appendChild(task);
     this.btnAddTask.addEventListener("click", () => {
       indexDOM.taskModal.changeButtonText("Add");
+      indexDOM.taskModal.removeProjectTag();
       indexDOM.taskModal.openModal();
     });
   }
