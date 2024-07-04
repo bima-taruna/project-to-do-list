@@ -93,7 +93,7 @@ class AllProjectDOM {
       user.deleteProject(i);
       storage.usersData = user;
       this.fetchProjects();
-      indexDOM.fetchProjectName();
+      indexDOM.render();
     }
   }
 

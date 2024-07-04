@@ -88,6 +88,8 @@ class IndexDOM {
     this.#addProjectButton.addEventListener("click", () => {
       this.removeDetailTag();
       this.removeEditTag();
+      this.projectModal.projectNameInput.value = "";
+      this.projectModal.projectDescInput.value = "";
       this.projectModal.changeButtonText("Add");
       this.projectModal.openModal();
     });
@@ -128,9 +130,9 @@ class IndexDOM {
         (project) => project.name
       );
       let index =
-        storage.usersData.projects.length < 6
+        storage.usersData.projects.length < 4
           ? storage.usersData.projects.length - 1
-          : 5;
+          : 3;
       for (let i = 0; i <= index; i++) {
         let newLi = document.createElement("li");
         newLi.classList.add("project");
@@ -157,6 +159,9 @@ class IndexDOM {
       this.#allProjectButton.classList.add("btn-all-project");
       this.#allProjectButton.textContent = "See all projects";
       this.#projectList.appendChild(this.#allProjectButton);
+      this.#allProjectButton.addEventListener("click", () => {
+        this.changeContent(allProjectDOM.allProjects);
+      });
     }
   }
 

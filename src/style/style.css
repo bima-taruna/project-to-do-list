@@ -140,6 +140,13 @@ header {
 .btn-all-project {
   font-size: 1rem;
   font-weight: normal;
+  cursor: pointer;
+  padding: 0.5rem;
+  font-weight: bold;
+}
+
+.btn-all-project:hover {
+  background-color: #c4c8ca;
 }
 
 #add-project {
