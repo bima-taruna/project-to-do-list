@@ -1,7 +1,9 @@
 import Modal from "./modal";
-import Task from "../task";
 import allProjectDOM from "../allProjectDOM";
 import { user } from "../user";
+import { storage } from "../storage";
+import indexDOM from "..";
+import { taskDOM } from "../taskDOM";
 
 class TaskModal extends Modal {
   constructor() {
@@ -43,6 +45,17 @@ class TaskModal extends Modal {
     closeButton.addEventListener("click", () => {
       this.closeModal();
     });
+    this.taskForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      this.addTask(
+        this.taskName.value,
+        this.taskDesc.value,
+        this.taskDate.value,
+        this.taskPriority.value
+      );
+      taskDOM.render(storage.usersData.task);
+      this.closeModal();
+    });
   }
 
   changeButtonText(newText) {
@@ -69,8 +82,10 @@ class TaskModal extends Modal {
         date,
         priority
       );
+      storage.usersData = user;
     } else {
       user.addTask(title, desc, date, priority);
+      storage.usersData = user;
     }
   }
 }

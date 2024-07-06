@@ -11,14 +11,13 @@ class TaskDOM {
   }
 
   fetchTask(tasks) {
-    this.taskContainer.textContent = "Tasks";
     if (tasks && tasks.length > 0) {
       while (this.taskContainer.children.length > 0) {
         this.taskContainer.childNodes.forEach((item) => {
           this.taskContainer.removeChild(item);
         });
       }
-      const taskName = tasks.map((task) => task.name);
+      const taskName = tasks.map((task) => task.title);
       taskName.forEach((item) => {
         let newtaskCard = document.createElement("div");
         newtaskCard.textContent = item;

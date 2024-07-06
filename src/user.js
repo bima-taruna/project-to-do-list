@@ -4,7 +4,7 @@ import Task from "./task";
 class User {
   name;
   projects = [];
-  task = new Set();
+  task = [];
 
   constructor(name) {
     this.name = name;
@@ -46,7 +46,8 @@ class User {
 
   addTask(title, desc, date, priority) {
     const newTask = new Task(title, desc, date, priority);
-    this.task.add(newTask);
+    this.task.push(newTask);
+    console.log("success");
   }
 
   updateTask(index, title, desc, date, priority) {

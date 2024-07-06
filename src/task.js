@@ -1,4 +1,9 @@
 class Task {
+  title;
+  desc;
+  date;
+  priority;
+  isFinish;
   constructor(title, desc, date, priority, isFinish = false) {
     this.title = title;
     this.desc = desc;

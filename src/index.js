@@ -34,6 +34,7 @@ class IndexDOM {
     } else {
       user.name = storage.usersData.name;
       user.projects = storage.usersData.projects;
+      user.task = storage.usersData.task;
     }
     this.main = document.querySelector("main");
     this.#editNameBtn = document.getElementById("btn-edit-name");
