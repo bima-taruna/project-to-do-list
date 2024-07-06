@@ -1,4 +1,7 @@
 import Modal from "./modal";
+import Task from "../task";
+import allProjectDOM from "../allProjectDOM";
+import { user } from "../user";
 
 class TaskModal extends Modal {
   constructor() {
@@ -33,6 +36,9 @@ class TaskModal extends Modal {
     this.overlay.innerHTML = this.modalBody;
     this.taskForm = this.overlay.querySelector(".task-form");
     this.taskName = this.overlay.querySelector("#task-name");
+    this.taskDesc = this.overlay.querySelector("#task-desc");
+    this.taskDate = this.overlay.querySelector("#task-date");
+    this.taskPriority = this.overlay.querySelector("#task-priority");
     let closeButton = this.overlay.querySelector(".btn-taskform-close");
     closeButton.addEventListener("click", () => {
       this.closeModal();
@@ -48,9 +54,23 @@ class TaskModal extends Modal {
   addProjectTag() {
     this.taskForm.classList.add("project");
   }
+
   removeProjectTag() {
     if (this.taskForm.classList.contains("project")) {
       this.taskForm.classList.remove("project");
+    }
+  }
+
+  addTask(title, desc, date, priority) {
+    if (this.taskForm.classList.contains("project")) {
+      user.projects[allProjectDOM.projectIndex].addTask(
+        title,
+        desc,
+        date,
+        priority
+      );
+    } else {
+      user.addTask(title, desc, date, priority);
     }
   }
 }
