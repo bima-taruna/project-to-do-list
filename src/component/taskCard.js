@@ -1,3 +1,5 @@
+import "../style/taskCardStyle.css";
+
 class TaskCard {
   cardBody;
   constructor(title, desc, date, priority, isFinish = "false") {
@@ -37,5 +39,27 @@ class TaskCard {
             </section>
     `;
     this.cardBody.innerHTML = this.compactContent;
+
+    this.cardBody.addEventListener("click", (e) => {
+      if (e.target === e.currentTarget) {
+        this.toogleCardContent();
+      } else {
+        return;
+      }
+    });
+
+    return this.cardBody;
+  }
+
+  toogleCardContent() {
+    if (!this.cardBody.classList.contains("extended")) {
+      this.cardBody.classList.add("extended");
+      this.cardBody.innerHTML = this.extendedContent;
+    } else {
+      this.cardBody.classList.remove("extended");
+      this.cardBody.innerHTML = this.compactContent;
+    }
   }
 }
+
+export default TaskCard;

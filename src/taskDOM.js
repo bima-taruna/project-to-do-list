@@ -1,4 +1,5 @@
 import "./style/allTask.css";
+import TaskCard from "./component/taskCard";
 
 class TaskDOM {
   constructor() {
@@ -17,10 +18,13 @@ class TaskDOM {
           this.taskContainer.removeChild(item);
         });
       }
-      const taskName = tasks.map((task) => task.title);
-      taskName.forEach((item) => {
-        let newtaskCard = document.createElement("div");
-        newtaskCard.textContent = item;
+      tasks.forEach((item) => {
+        let newtaskCard = new TaskCard(
+          item.title,
+          item.desc,
+          item.date,
+          item.priority
+        );
         this.taskContainer.appendChild(newtaskCard);
       });
     } else {
