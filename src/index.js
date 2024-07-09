@@ -120,6 +120,7 @@ class IndexDOM {
     this.main.appendChild(this.#nameModal.overlay);
   }
 
+  //fetch project name to the sidebar and check the condition if project is 4 or more
   fetchProjectName() {
     if (storage.usersData.projects.length > 0) {
       while (this.#projectList.children.length > 0) {
@@ -154,6 +155,7 @@ class IndexDOM {
     }
   }
 
+  //check if project is 4 or more
   hasManyProjects() {
     if (storage.usersData.projects.length > 3) {
       this.#allProjectButton = document.createElement("div");

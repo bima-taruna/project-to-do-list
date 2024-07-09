@@ -17,6 +17,7 @@ module.exports = {
     taskModal: "./src/component/taskModal.js",
     taskDOM: "./src/taskDOM.js",
     taskFilter: "./src/taskFilters.js",
+    taskCard: "./src/component/taskCard.js",
   },
   plugins: [
     new HtmlWebpackPlugin({
