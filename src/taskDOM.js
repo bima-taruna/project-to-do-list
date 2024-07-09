@@ -1,4 +1,4 @@
-import "./style/allTask.css";
+// import "./style/allTask.css";
 import TaskCard from "./component/taskCard";
 
 class TaskDOM {

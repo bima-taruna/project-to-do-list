@@ -6,6 +6,13 @@
   flex-direction: column;
 }
 
+.task-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 .btn-add-task {
   align-self: flex-end;
 }
