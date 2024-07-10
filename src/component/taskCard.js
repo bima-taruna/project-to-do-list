@@ -1,8 +1,14 @@
+import { storage } from "../storage.js";
 import "../style/taskCardStyle.css";
+import { taskDOM } from "../taskDOM.js";
+import { user } from "../user.js";
 
 class TaskCard {
   cardBody;
-  constructor(title, desc, date, priority, isFinish = "false") {
+  taskCardIndex;
+  checkBox;
+  constructor(index, title, desc, date, priority, isFinish) {
+    this.taskCardIndex = index;
     this.title = title;
     this.desc = desc;
     this.date = date;
@@ -11,7 +17,9 @@ class TaskCard {
     this.cardBody = document.createElement("div");
     this.cardBody.classList.add("task-card");
     this.compactContent = `
-            <input type="checkbox" id="task-isFinish" name="isFinish" value="${this.isFinish}">
+            <input type="checkbox" id="task-isFinish-${
+              this.taskCardIndex
+            }" name="isFinish" ${isFinish == true ? "checked" : ""}>
             <section class="task-card-header">
                 <div class="task-title">${this.title}</div>
                 <div class="task-buttons">
@@ -21,12 +29,16 @@ class TaskCard {
             </section>
         `;
     this.extendedContent = `
-                 <input type="checkbox" id="task-isFinish" name="isFinish" value="${this.isFinish}">
+                 <input type="checkbox" id=task-isFinish${
+                   this.taskCardIndex
+                 }" name="isFinish" ${isFinish == true ? "checked" : ""}>
                 <div class="task-title">${this.title}</div>
                 <p class="task-desc">${this.desc}</p>
                 <div class="task-tags">
                         <div class="task-date">due date : ${this.date}</div>
-                        <div class="task-priority">priority : ${this.priority}</div>
+                        <div class="task-priority">priority : ${
+                          this.priority
+                        }</div>
                 </div>
                 <div class="task-buttons">
                     <button class="material-icons task-card-edit">edit</button>
@@ -35,6 +47,16 @@ class TaskCard {
           
     `;
     this.cardBody.innerHTML = this.compactContent;
+
+    this.checkBox = this.cardBody.querySelector(
+      `#task-isFinish-${this.taskCardIndex}`
+    );
+
+    this.checkBox.addEventListener("click", (e) => {
+      user.task[this.taskCardIndex].isFinish = this.checkBox.checked;
+      storage.usersData = user;
+      taskDOM.render(storage.usersData.task);
+    });
 
     this.cardBody.addEventListener("click", (e) => {
       if (

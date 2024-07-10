@@ -18,12 +18,14 @@ class TaskDOM {
           this.taskContainer.removeChild(item);
         });
       }
-      tasks.forEach((item) => {
+      tasks.forEach((item, index) => {
         let newtaskCard = new TaskCard(
+          index,
           item.title,
           item.desc,
           item.date,
-          item.priority
+          item.priority,
+          item.isFinish
         );
         this.taskContainer.appendChild(newtaskCard.cardBody);
       });
