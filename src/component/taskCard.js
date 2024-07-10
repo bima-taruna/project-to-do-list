@@ -11,6 +11,7 @@ class TaskCard {
     this.cardBody = document.createElement("div");
     this.cardBody.classList.add("task-card");
     this.compactContent = `
+            <input type="checkbox" id="task-isFinish" name="isFinish" value="${this.isFinish}">
             <section class="task-card-header">
                 <div class="task-title">${this.title}</div>
                 <div class="task-buttons">
@@ -20,6 +21,7 @@ class TaskCard {
             </section>
         `;
     this.extendedContent = `
+                 <input type="checkbox" id="task-isFinish" name="isFinish" value="${this.isFinish}">
                 <div class="task-title">${this.title}</div>
                 <p class="task-desc">${this.desc}</p>
                 <div class="task-tags">
