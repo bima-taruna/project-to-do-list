@@ -38,7 +38,8 @@ class TaskCard {
       if (
         e.target === e.currentTarget ||
         e.target.classList.contains("task-card-header") ||
-        e.target.classList.contains("task-card-body") ||
+        e.target.classList.contains("task-title") ||
+        e.target.classList.contains("task-desc") ||
         e.target.classList.contains("task-tags")
       ) {
         this.toogleCardContent();
@@ -46,17 +47,31 @@ class TaskCard {
         return;
       }
     });
-
-    return this.cardBody;
   }
 
   toogleCardContent() {
     if (!this.cardBody.classList.contains("extended")) {
       this.cardBody.classList.add("extended");
       this.cardBody.innerHTML = this.extendedContent;
+      this.priorityColor();
     } else {
       this.cardBody.classList.remove("extended");
       this.cardBody.innerHTML = this.compactContent;
+    }
+  }
+
+  priorityColor() {
+    let taskPriority = this.cardBody.querySelector(".task-priority");
+    switch (this.priority) {
+      case "high":
+        taskPriority.style.backgroundColor = "#ff4a4a";
+        break;
+      case "medium":
+        taskPriority.style.backgroundColor = "#fffd97";
+        break;
+      default:
+        taskPriority.style.backgroundColor = "#91ffc8";
+        break;
     }
   }
 }

@@ -1,8 +1,9 @@
 .task-card {
   height: 100%;
-  width: 80%;
+  width: 90%;
   padding: 1rem;
-  background-color: aqua;
+  background-color: #ebf2f7;
+  border: 1px solid #b5b6b8;
   margin-bottom: 1rem;
   cursor: pointer;
   border-radius: 1rem;
@@ -23,11 +24,14 @@
 .task-title {
   grid-row: 1/2;
   grid-column: 1/3;
+  font-size: 1.2rem;
+  font-weight: bold;
 }
 
 .task-desc {
   grid-row: 2/3;
   grid-column: 1/3;
+  width: 100%;
 }
 
 .task-tags {
@@ -42,4 +46,16 @@
   grid-row: 3/4;
   grid-column: 2/3;
   justify-self: flex-end;
+}
+
+.task-date {
+  border: 1px solid #b5b6b8;
+  padding: 0.5rem;
+  border-radius: 0.4rem;
+}
+
+.task-priority {
+  border: 1px solid #b5b6b8;
+  padding: 0.5rem;
+  border-radius: 0.4rem;
 }

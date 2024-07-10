@@ -25,7 +25,7 @@ class TaskDOM {
           item.date,
           item.priority
         );
-        this.taskContainer.appendChild(newtaskCard);
+        this.taskContainer.appendChild(newtaskCard.cardBody);
       });
     } else {
       this.taskContainer.textContent = "empty..";
