@@ -16,10 +16,13 @@ class TaskCard {
     this.isFinish = isFinish;
     this.cardBody = document.createElement("div");
     this.cardBody.classList.add("task-card");
+    this.checkBox = document.createElement("input");
+    this.checkBox.type = "checkbox";
+    this.checkBox.id = `task-isFinish-${this.taskCardIndex}`;
+    this.checkBox.name = "isFinish";
+    this.checkBox.checked = this.isFinish;
+
     this.compactContent = `
-            <input type="checkbox" id="task-isFinish-${
-              this.taskCardIndex
-            }" name="isFinish" ${isFinish == true ? "checked" : ""}>
             <section class="task-card-header">
                 <div class="task-title">${this.title}</div>
                 <div class="task-buttons">
@@ -29,16 +32,11 @@ class TaskCard {
             </section>
         `;
     this.extendedContent = `
-                 <input type="checkbox" id=task-isFinish${
-                   this.taskCardIndex
-                 }" name="isFinish" ${isFinish == true ? "checked" : ""}>
                 <div class="task-title">${this.title}</div>
                 <p class="task-desc">${this.desc}</p>
                 <div class="task-tags">
                         <div class="task-date">due date : ${this.date}</div>
-                        <div class="task-priority">priority : ${
-                          this.priority
-                        }</div>
+                        <div class="task-priority">priority : ${this.priority}</div>
                 </div>
                 <div class="task-buttons">
                     <button class="material-icons task-card-edit">edit</button>
@@ -47,10 +45,11 @@ class TaskCard {
           
     `;
     this.cardBody.innerHTML = this.compactContent;
+    this.cardBody.prepend(this.checkBox);
 
-    this.checkBox = this.cardBody.querySelector(
-      `#task-isFinish-${this.taskCardIndex}`
-    );
+    // this.checkBox = this.cardBody.querySelector(
+    //   `#task-isFinish-${this.taskCardIndex}`
+    // );
 
     this.checkBox.addEventListener("click", (e) => {
       user.task[this.taskCardIndex].isFinish = this.checkBox.checked;
@@ -78,9 +77,11 @@ class TaskCard {
       this.cardBody.classList.add("extended");
       this.cardBody.innerHTML = this.extendedContent;
       this.priorityColor();
+      this.cardBody.appendChild(this.checkBox);
     } else {
       this.cardBody.classList.remove("extended");
       this.cardBody.innerHTML = this.compactContent;
+      this.cardBody.prepend(this.checkBox);
     }
   }
 
