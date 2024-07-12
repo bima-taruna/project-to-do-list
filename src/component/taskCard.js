@@ -46,12 +46,12 @@ class TaskCard {
     `;
     this.cardBody.innerHTML = this.compactContent;
     this.cardBody.prepend(this.checkBox);
-
-    // this.checkBox = this.cardBody.querySelector(
-    //   `#task-isFinish-${this.taskCardIndex}`
-    // );
-
-    this.checkBox.addEventListener("click", (e) => {
+    if (this.checkBox.checked) {
+      this.cardBody.classList.add("completed");
+    } else {
+      this.cardBody.classList.remove("completed");
+    }
+    this.checkBox.addEventListener("click", () => {
       user.task[this.taskCardIndex].isFinish = this.checkBox.checked;
       storage.usersData = user;
       taskDOM.render(storage.usersData.task);
