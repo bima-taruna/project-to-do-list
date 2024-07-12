@@ -46,11 +46,7 @@ class TaskCard {
     `;
     this.cardBody.innerHTML = this.compactContent;
     this.cardBody.prepend(this.checkBox);
-    if (this.checkBox.checked) {
-      this.cardBody.classList.add("completed");
-    } else {
-      this.cardBody.classList.remove("completed");
-    }
+    this.checkBoxCheck();
     this.checkBox.addEventListener("click", () => {
       user.task[this.taskCardIndex].isFinish = this.checkBox.checked;
       storage.usersData = user;
@@ -77,6 +73,7 @@ class TaskCard {
       this.cardBody.classList.add("extended");
       this.cardBody.innerHTML = this.extendedContent;
       this.priorityColor();
+      this.checkBoxCheck();
       this.cardBody.appendChild(this.checkBox);
     } else {
       this.cardBody.classList.remove("extended");
@@ -97,6 +94,14 @@ class TaskCard {
       default:
         taskPriority.style.backgroundColor = "#91ffc8";
         break;
+    }
+  }
+
+  checkBoxCheck() {
+    if (this.checkBox.checked) {
+      this.cardBody.classList.add("completed");
+    } else {
+      this.cardBody.classList.remove("completed");
     }
   }
 }
