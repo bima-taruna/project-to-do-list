@@ -3,18 +3,24 @@ import indexDOM from ".";
 import TaskModal from "./component/taskModal";
 import allProjectDOM from "./allProjectDOM";
 import { user } from "./user";
+import { taskDOM } from "./taskDOM";
+import { storage } from "./storage";
+import { taskFilter } from "./taskFilters";
 
 class ProjectDetail {
   #data;
   constructor(index) {
+    this.index = index;
     this.detailContainer = document.createElement("div");
     this.detailContainer.classList.add("detail-container");
-    this.#data = user.getProjectById(index);
+    this.#data = user.getProjectById(this.index);
     this.render();
   }
 
   render() {
     this.renderBody();
+    taskDOM.render(storage.usersData.projects[this.index].task);
+    this.detailContainer.appendChild(taskDOM.taskContainer);
     const openTaskModal = this.detailContainer.querySelector(".btn-add-task");
     const btnDetailEdit = this.detailContainer.querySelector(".detail-edit");
     openTaskModal.addEventListener("click", () => {
