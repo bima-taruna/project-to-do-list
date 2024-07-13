@@ -30,7 +30,7 @@ class TaskCard {
                     <button class="material-icons task-delete">delete</button>
                 </div>
             </section>
-            <div class="strike-line"></div>
+      
         `;
     this.extendedContent = `
                 <div class="task-title">${this.title}</div>
@@ -43,7 +43,7 @@ class TaskCard {
                     <button class="material-icons task-card-edit">edit</button>
                     <button class="material-icons task-card-delete">delete</button>
                 </div>
-                 <div class="strike-line"></div>
+                
           
     `;
     this.cardBody.innerHTML = this.compactContent;
