@@ -12,12 +12,12 @@ class TaskDOM {
   }
 
   fetchTask(tasks) {
+    while (this.taskContainer.children.length > 0) {
+      this.taskContainer.childNodes.forEach((item) => {
+        this.taskContainer.removeChild(item);
+      });
+    }
     if (tasks && tasks.length > 0) {
-      while (this.taskContainer.children.length > 0) {
-        this.taskContainer.childNodes.forEach((item) => {
-          this.taskContainer.removeChild(item);
-        });
-      }
       tasks.forEach((item, index) => {
         let newtaskCard = new TaskCard(
           index,
@@ -30,7 +30,9 @@ class TaskDOM {
         this.taskContainer.appendChild(newtaskCard.cardBody);
       });
     } else {
-      this.taskContainer.textContent = "empty..";
+      let emptyText = document.createElement("p");
+      emptyText.textContent = "empty..";
+      this.taskContainer.appendChild(emptyText);
     }
   }
 }
