@@ -2,24 +2,10 @@ import Project from "./project";
 import Task from "./task";
 
 class User {
-  name;
-  projects = [];
-  task = [];
-
   constructor(name) {
     this.name = name;
-  }
-
-  set name(newName) {
-    this.name = newName;
-  }
-
-  get name() {
-    return this.name;
-  }
-
-  get projects() {
-    return this.projects;
+    this.projects = [];
+    this.task = [];
   }
 
   getProjectById(index) {
@@ -28,10 +14,6 @@ class User {
 
   deleteProject(index) {
     this.projects.splice(index, 1);
-  }
-
-  set projects(newProjects) {
-    this.projects = newProjects;
   }
 
   addProject(name, description) {
