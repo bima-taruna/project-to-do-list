@@ -51,6 +51,13 @@ class TaskCard {
     this.checkBoxCheck();
     this.checkBox.addEventListener("click", () => {
       user.task[this.taskCardIndex].isFinish = this.checkBox.checked;
+      user.projects.forEach((project) => {
+        project.task.forEach((item) => {
+          if (item.id === user.task[this.taskCardIndex].id) {
+            item.isFinish = this.checkBox.checked;
+          }
+        });
+      });
       storage.usersData = user;
       taskDOM.render(storage.usersData.task);
     });
