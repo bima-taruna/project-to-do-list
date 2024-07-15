@@ -56,6 +56,9 @@ class IndexDOM {
       formName: "project-form",
     });
     this.#fetchUserName();
+    const nameModal = this.main.querySelector(".name-modal");
+    const taskModal = this.main.querySelector(".task-modal");
+    const projectModal = this.main.querySelector(".project-modal");
     this.#appendUserNameInput();
     this.projectModal.appendModal(this.main);
     this.taskModal.appendModal(this.main);

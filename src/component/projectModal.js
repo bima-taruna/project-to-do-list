@@ -83,7 +83,8 @@ class ProjectModal extends Modal {
   addProject(name, description) {
     user.addProject(name, description);
     storage.usersData = user;
-    indexDOM.render();
+    indexDOM.fetchProjectName();
+    indexDOM.hasManyProjects();
     allProjectDOM.fetchProjects();
     this.closeModal();
   }

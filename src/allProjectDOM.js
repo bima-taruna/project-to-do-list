@@ -93,7 +93,9 @@ class AllProjectDOM {
       user.deleteProject(i);
       storage.usersData = user;
       this.fetchProjects();
-      indexDOM.render();
+      indexDOM.fetchProjectName();
+      indexDOM.hasManyProjects();
+      // indexDOM.render();
     }
   }
 

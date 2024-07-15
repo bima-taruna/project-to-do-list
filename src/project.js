@@ -1,4 +1,5 @@
 import Task from "./task";
+import { user } from "./user";
 
 class Project {
   name;
@@ -26,12 +27,22 @@ class Project {
     this.description = newDesc;
   }
 
+  get tasks() {
+    return this.task;
+  }
+
   addTask(title, desc, date, priority) {
     const newTask = new Task(title, desc, date, priority);
     this.task.push(newTask);
+    user.task.push(newTask);
   }
 
   deleteTask(index) {
+    // user.task.forEach((item, i) => {
+    //   if (item === this.task[index]) {
+    //     user.task.splice(i, 1);
+    //   }
+    // });
     this.task.splice(index, 1);
   }
 
