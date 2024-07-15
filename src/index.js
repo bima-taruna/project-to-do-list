@@ -8,6 +8,7 @@ import TaskModal from "./component/taskModal";
 import ProjectDetail from "./projectDetail";
 import { taskDOM } from "./taskDOM";
 import { taskFilter } from "./taskFilters";
+import Project from "./project";
 
 if (process.env.NODE_ENV !== "production") {
   console.log("Looks like we are in development mode!");
@@ -33,7 +34,9 @@ class IndexDOM {
       storage.usersData = user;
     } else {
       user.name = storage.usersData.name;
-      user.projects = storage.usersData.projects;
+      user.projects = storage.usersData.projects.map(
+        (project) => new Project(project.name, project.description)
+      );
       user.task = storage.usersData.task;
     }
     this.main = document.querySelector("main");

@@ -4,6 +4,7 @@ import { user } from "../user";
 import { storage } from "../storage";
 import indexDOM from "..";
 import { taskDOM } from "../taskDOM";
+import Project from "../project";
 
 class TaskModal extends Modal {
   constructor() {
@@ -75,14 +76,15 @@ class TaskModal extends Modal {
   }
 
   addTask(title, desc, date, priority) {
+    const projectIndex = allProjectDOM.projectIndex;
+    const project = user.projects[projectIndex];
     if (this.taskForm.classList.contains("project")) {
-      user.projects[allProjectDOM.projectIndex].addTask(
-        title,
-        desc,
-        date,
-        priority
-      );
-      storage.usersData = user;
+      if (project && typeof project.addTask === "function") {
+        project.addTask(title, desc, date, priority);
+        storage.usersData = user;
+      } else {
+        console.error("addTask is not a function on the selected project.");
+      }
     } else {
       user.addTask(title, desc, date, priority);
       storage.usersData = user;
