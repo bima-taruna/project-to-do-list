@@ -56,21 +56,22 @@ class IndexDOM {
       formName: "project-form",
     });
     this.#fetchUserName();
-    const nameModal = this.main.querySelector(".name-modal");
-    const taskModal = this.main.querySelector(".task-modal");
-    const projectModal = this.main.querySelector(".project-modal");
     this.#appendUserNameInput();
     this.projectModal.appendModal(this.main);
     this.taskModal.appendModal(this.main);
     this.fetchProjectName();
     this.hasManyProjects();
-    let closeNameModalButton = document.querySelector(".btn-name-close");
-    let changeUserNameButton = document.querySelector(".btn-name-change");
+    this.closeNameModalButton = document.querySelector(".btn-name-close");
+    this.changeUserNameButton = document.querySelector(".btn-name-change");
     let filters = document.getElementById("filters");
-    let allTask = filters.children[0];
+    this.allTask = filters.children[0];
     this.#userNameInput = document.getElementById("user-name");
     this.projectNameInput = document.getElementById("project-name");
     this.projectDescInput = document.getElementById("project-desc");
+    this.addListener();
+  }
+
+  addListener() {
     if (storage.usersData.projects.length > 0) {
       let sidebarProjects = this.#projectList.querySelectorAll(".project");
       sidebarProjects.forEach((item, index) => {
@@ -81,7 +82,7 @@ class IndexDOM {
         });
       });
     }
-    allTask.addEventListener("click", () => {
+    this.allTask.addEventListener("click", () => {
       taskDOM.render(storage.usersData.task);
       taskFilter.render("All Tasks", taskDOM.taskContainer);
       this.changeContent(taskFilter.container);
@@ -97,10 +98,10 @@ class IndexDOM {
       this.projectModal.changeButtonText("Add");
       this.projectModal.openModal();
     });
-    closeNameModalButton.addEventListener("click", () => {
+    this.closeNameModalButton.addEventListener("click", () => {
       this.#nameModal.closeModal();
     });
-    changeUserNameButton.addEventListener("click", () => {
+    this.changeUserNameButton.addEventListener("click", () => {
       this.changeUserName();
     });
   }
