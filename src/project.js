@@ -1,3 +1,4 @@
+import { storage } from "./storage";
 import Task from "./task";
 import { user } from "./user";
 
@@ -11,15 +12,16 @@ class Project {
   addTask(title, desc, date, priority) {
     const newTask = new Task(title, desc, date, priority);
     this.task.push(newTask);
-    user.task.push(newTask);
+    user.randomTask.push(newTask);
+    storage.usersData = user;
   }
 
   deleteTask(index) {
-    // user.task.forEach((item, i) => {
-    //   if (item === this.task[index]) {
-    //     user.task.splice(i, 1);
-    //   }
-    // });
+    user.task.forEach((item, i) => {
+      if (item.id === this.task[index].id) {
+        user.task.splice(i, 1);
+      }
+    });
     this.task.splice(index, 1);
   }
 

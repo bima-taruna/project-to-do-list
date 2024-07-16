@@ -1,11 +1,12 @@
 import Project from "./project";
+import { storage } from "./storage";
 import Task from "./task";
 
 class User {
   constructor(name) {
     this.name = name;
     this.projects = [];
-    this.task = [];
+    this.randomTask = [];
   }
 
   getProjectById(index) {
@@ -28,15 +29,16 @@ class User {
 
   addTask(title, desc, date, priority) {
     const newTask = new Task(title, desc, date, priority);
-    this.task.push(newTask);
+    this.randomTask.push(newTask);
+    storage.usersData = user;
     console.log("success");
   }
 
   updateTask(index, title, desc, date, priority) {
-    this.task[index].title = title;
-    this.task[index].desc = desc;
-    this.task[index].date = date;
-    this.task[index].priority = priority;
+    this.randomTask[index].title = title;
+    this.randomTask[index].desc = desc;
+    this.randomTask[index].date = date;
+    this.randomTask[index].priority = priority;
   }
 }
 
