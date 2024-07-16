@@ -30,21 +30,13 @@ class IndexDOM {
   projectDetail;
 
   constructor() {
-    if (!storage.usersData) {
-      storage.usersData = user;
-    } else {
-      user.name = storage.usersData.name;
-      user.projects = storage.usersData.projects.map(
-        (project) => new Project(project.name, project.description)
-      );
-      user.task = storage.usersData.task;
-    }
+    this.#fetchDataFromStorage();
     this.main = document.querySelector("main");
     this.#editNameBtn = document.getElementById("btn-edit-name");
     this.#addProjectButton = document.getElementById("add-project");
     this.#projectList = document.querySelector(".project-list");
     this.#content = document.getElementById("content");
-    taskDOM.render(storage.usersData.task);
+    taskDOM.render(user.randomTask);
     taskFilter.render("All Tasks", taskDOM.taskContainer);
     this.changeContent(taskFilter.container);
   }
@@ -75,7 +67,7 @@ class IndexDOM {
   }
 
   addListener() {
-    if (storage.usersData.projects.length > 0) {
+    if (user.projects.length > 0) {
       let sidebarProjects = this.#projectList.querySelectorAll(".project");
       sidebarProjects.forEach((item, index) => {
         item.addEventListener("click", () => {
@@ -86,7 +78,7 @@ class IndexDOM {
       });
     }
     this.allTask.addEventListener("click", () => {
-      taskDOM.render(storage.usersData.task);
+      taskDOM.render(user.randomTask);
       taskFilter.render("All Tasks", taskDOM.taskContainer);
       this.changeContent(taskFilter.container);
     });
@@ -109,6 +101,19 @@ class IndexDOM {
     });
   }
 
+  #fetchDataFromStorage() {
+    if (!storage.usersData) {
+      storage.usersData = user;
+    } else {
+      user.name = storage.usersData.name;
+      user.projects = storage.usersData.projects.map(
+        (project) =>
+          new Project(project.name, project.description, project.task)
+      );
+      user.randomTask = storage.usersData.randomTask;
+    }
+  }
+
   #fetchUserName() {
     const userName = storage.usersData.name;
     const userNameDOM = document.querySelector(".user-name");
@@ -129,15 +134,13 @@ class IndexDOM {
 
   //fetch project name to the sidebar and check the condition if project is 4 or more
   fetchProjectName() {
-    if (storage.usersData.projects.length > 0) {
+    if (user.projects.length > 0) {
       while (this.#projectList.children.length > 0) {
         this.#projectList.childNodes.forEach((item) => {
           this.#projectList.removeChild(item);
         });
       }
-      const projectName = storage.usersData.projects.map(
-        (project) => project.name
-      );
+      const projectName = user.projects.map((project) => project.name);
       let index =
         storage.usersData.projects.length < 4
           ? storage.usersData.projects.length - 1
@@ -164,7 +167,7 @@ class IndexDOM {
 
   //check if project is 4 or more
   hasManyProjects() {
-    if (storage.usersData.projects.length > 3) {
+    if (user.projects.length > 3) {
       this.#allProjectButton = document.createElement("div");
       this.#allProjectButton.classList.add("btn-all-project");
       this.#allProjectButton.textContent = "See all projects";

@@ -3,10 +3,10 @@ import Task from "./task";
 import { user } from "./user";
 
 class Project {
-  constructor(name, description) {
+  constructor(name, description, task = []) {
     this.name = name;
     this.description = description;
-    this.task = [];
+    this.task = task;
   }
 
   addTask(title, desc, date, priority) {
