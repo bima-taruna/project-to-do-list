@@ -54,7 +54,6 @@ class TaskModal extends Modal {
         this.taskDate.value,
         this.taskPriority.value
       );
-      taskDOM.render(storage.usersData.task);
       this.closeModal();
     });
   }
@@ -79,15 +78,11 @@ class TaskModal extends Modal {
     const projectIndex = allProjectDOM.projectIndex;
     const project = user.projects[projectIndex];
     if (this.taskForm.classList.contains("project")) {
-      if (project && typeof project.addTask === "function") {
-        project.addTask(title, desc, date, priority);
-        storage.usersData = user;
-      } else {
-        console.error("addTask is not a function on the selected project.");
-      }
+      project.addTask(title, desc, date, priority);
+      taskDOM.render(user.projects[indexDOM.projectDetail.index].task);
     } else {
       user.addTask(title, desc, date, priority);
-      storage.usersData = user;
+      taskDOM.render(user.randomTask);
     }
   }
 }
