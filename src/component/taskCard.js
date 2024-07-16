@@ -1,3 +1,4 @@
+import indexDOM from "../index.js";
 import { storage } from "../storage.js";
 import "../style/taskCardStyle.css";
 import { taskDOM } from "../taskDOM.js";
@@ -7,7 +8,7 @@ class TaskCard {
   cardBody;
   taskCardIndex;
   checkBox;
-  constructor(index, title, desc, date, priority, isFinish) {
+  constructor(index, title, desc, date, priority, isFinish, isProject = false) {
     this.taskCardIndex = index;
     this.title = title;
     this.desc = desc;
@@ -21,6 +22,7 @@ class TaskCard {
     this.checkBox.id = `task-isFinish-${this.taskCardIndex}`;
     this.checkBox.name = "isFinish";
     this.checkBox.checked = this.isFinish;
+    this.isProject = isProject;
 
     this.compactContent = `
             <section class="task-card-header">
@@ -47,21 +49,7 @@ class TaskCard {
           
     `;
     this.cardBody.innerHTML = this.compactContent;
-    this.cardBody.prepend(this.checkBox);
-    this.checkBoxCheck();
-    this.checkBox.addEventListener("click", () => {
-      user.task[this.taskCardIndex].isFinish = this.checkBox.checked;
-      user.projects.forEach((project) => {
-        project.task.forEach((item) => {
-          if (item.id === user.task[this.taskCardIndex].id) {
-            item.isFinish = this.checkBox.checked;
-          }
-        });
-      });
-      storage.usersData = user;
-      taskDOM.render(storage.usersData.task);
-    });
-
+    this.render();
     this.cardBody.addEventListener("click", (e) => {
       if (
         e.target === e.currentTarget ||
@@ -75,6 +63,42 @@ class TaskCard {
         return;
       }
     });
+    this.checkBox.addEventListener("click", () => {
+      if (this.isProject) {
+        user.projects[indexDOM.projectDetail.index].task.forEach((task) => {
+          user.randomTask.forEach((task2) => {
+            if (task.id === task2.id) {
+              task2.isFinish = this.checkBox.checked;
+              task.isFinish = this.checkBox.checked;
+            }
+          });
+        });
+      } else {
+        user.randomTask[this.taskCardIndex].isFinish = this.checkBox.checked;
+        if (user.projects.length > 0 && user.randomTask.length > 0) {
+          user.projects.forEach((project) => {
+            for (let i = 0; i < project.task.length; i++) {
+              if (
+                project.task[i].id === user.randomTask[this.taskCardIndex].id
+              ) {
+                project.task[i].isFinish = this.checkBox.checked;
+                console.log("found it");
+                break;
+              } else {
+                return;
+              }
+            }
+          });
+        }
+      }
+      storage.usersData = user;
+      this.render();
+    });
+  }
+
+  render() {
+    this.cardBody.prepend(this.checkBox);
+    this.checkBoxCheck();
   }
 
   toogleCardContent() {

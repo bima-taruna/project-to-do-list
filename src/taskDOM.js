@@ -7,7 +7,8 @@ class TaskDOM {
     this.taskContainer.classList.add("task-container");
   }
 
-  render(tasks) {
+  render(tasks, isProject = false) {
+    this.isProject = isProject;
     this.fetchTask(tasks);
   }
 
@@ -25,7 +26,8 @@ class TaskDOM {
           item.desc,
           item.date,
           item.priority,
-          item.isFinish
+          item.isFinish,
+          this.isProject
         );
         this.taskContainer.appendChild(newtaskCard.cardBody);
       });
