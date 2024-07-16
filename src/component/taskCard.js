@@ -1,7 +1,7 @@
+import { nestedSearchProject } from "../helper/nestedSearch.js";
 import indexDOM from "../index.js";
 import { storage } from "../storage.js";
 import "../style/taskCardStyle.css";
-import { taskDOM } from "../taskDOM.js";
 import { user } from "../user.js";
 
 class TaskCard {
@@ -65,31 +65,22 @@ class TaskCard {
     });
     this.checkBox.addEventListener("click", () => {
       if (this.isProject) {
-        user.projects[indexDOM.projectDetail.index].task.forEach((task) => {
-          user.randomTask.forEach((task2) => {
-            if (task.id === task2.id) {
-              task2.isFinish = this.checkBox.checked;
+        nestedSearchProject(
+          user.projects[indexDOM.projectDetail.index].task,
+          user.randomTask,
+          this.checkMatchTask,
+          this.checkBox
+        );
+      } else {
+        user.projects.forEach((project) => {
+          project.task.forEach((task) => {
+            if (task.id === user.randomTask[this.taskCardIndex].id) {
               task.isFinish = this.checkBox.checked;
+              user.randomTask[this.taskCardIndex].isFinish =
+                this.checkBox.checked;
             }
           });
         });
-      } else {
-        user.randomTask[this.taskCardIndex].isFinish = this.checkBox.checked;
-        if (user.projects.length > 0 && user.randomTask.length > 0) {
-          user.projects.forEach((project) => {
-            for (let i = 0; i < project.task.length; i++) {
-              if (
-                project.task[i].id === user.randomTask[this.taskCardIndex].id
-              ) {
-                project.task[i].isFinish = this.checkBox.checked;
-                console.log("found it");
-                break;
-              } else {
-                return;
-              }
-            }
-          });
-        }
       }
       storage.usersData = user;
       this.render();
@@ -135,6 +126,13 @@ class TaskCard {
       this.cardBody.classList.add("completed");
     } else {
       this.cardBody.classList.remove("completed");
+    }
+  }
+
+  checkMatchTask(item1, item2, checkBox) {
+    if (item1.id === item2.id) {
+      item2.isFinish = checkBox.checked;
+      item1.isFinish = checkBox.checked;
     }
   }
 }
