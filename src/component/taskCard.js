@@ -28,8 +28,8 @@ class TaskCard {
             <section class="task-card-header">
                 <div class="task-title">${this.title}</div>
                 <div class="task-buttons">
-                    <button class="material-icons task-edit">edit</button>
-                    <button class="material-icons task-delete">delete</button>
+                    <button class="material-icons task-card-edit">edit</button>
+                    <button class="material-icons task-card-delete">delete</button>
                 </div>
             </section>
       
@@ -50,6 +50,10 @@ class TaskCard {
     `;
     this.cardBody.innerHTML = this.compactContent;
     this.render();
+    this.addListener();
+  }
+
+  addListener() {
     this.cardBody.addEventListener("click", (e) => this.checkCardTarget(e));
     this.checkBox.addEventListener("click", () => this.isTaskBelongToProject());
   }
