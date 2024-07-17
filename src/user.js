@@ -34,6 +34,15 @@ class User {
     console.log("success");
   }
 
+  deleteTask(index) {
+    this.projects.forEach((project) => {
+      project.task = project.task.filter(
+        (item) => item.id !== this.randomTask[index].id
+      );
+    });
+    this.randomTask.splice(index, 1);
+  }
+
   updateTask(index, title, desc, date, priority) {
     this.randomTask[index].title = title;
     this.randomTask[index].desc = desc;
