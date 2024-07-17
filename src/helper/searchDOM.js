@@ -1,4 +1,8 @@
 export function searchDOM(node) {
+  if (!node || !node.parentNode) {
+    console.error("Node or its parent is null");
+    return -1;
+  }
   let children = node.parentNode.childNodes;
   let num = 0;
   for (var i = 0; i < children.length; i++) {
