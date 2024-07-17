@@ -1,5 +1,9 @@
 // import "./style/allTask.css";
+import indexDOM from ".";
 import TaskCard from "./component/taskCard";
+import { searchDOM } from "./helper/searchDOM";
+import { storage } from "./storage";
+import { user } from "./user";
 
 class TaskDOM {
   constructor() {
@@ -10,6 +14,9 @@ class TaskDOM {
   render(tasks, isProject = false) {
     this.isProject = isProject;
     this.fetchTask(tasks);
+    this.taskContainer.addEventListener("click", (e) => {
+      this.#deleteTask(e);
+    });
   }
 
   fetchTask(tasks) {
@@ -35,6 +42,26 @@ class TaskDOM {
       let emptyText = document.createElement("p");
       emptyText.textContent = "empty..";
       this.taskContainer.appendChild(emptyText);
+    }
+  }
+
+  #deleteTask(event) {
+    const { target } = event;
+    const targetElement = target.closest(".task-card-delete");
+    if (targetElement) {
+      let targetClosest = targetElement.closest(".task-card");
+      let i = searchDOM(targetClosest);
+      if (i !== -1 && this.isProject) {
+        user.projects[indexDOM.projectDetail.index].deleteTask(i);
+        storage.usersData = user;
+        this.fetchTask(user.projects[indexDOM.projectDetail.index].task);
+      } else if (i !== -1 && !this.isProject) {
+        user.deleteTask(i);
+        storage.usersData = user;
+        this.fetchTask(user.randomTask);
+      }
+    } else {
+      console.log("task card not found");
     }
   }
 }
