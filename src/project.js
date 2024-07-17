@@ -1,3 +1,4 @@
+import indexDOM from ".";
 import { storage } from "./storage";
 import Task from "./task";
 import { user } from "./user";
@@ -17,12 +18,11 @@ class Project {
   }
 
   deleteTask(index) {
-    user.task.forEach((item, i) => {
-      if (item.id === this.task[index].id) {
-        user.task.splice(i, 1);
-      }
-    });
-    this.task.splice(index, 1);
+    const project = user.projects[indexDOM.projectDetail.index];
+    user.randomTask = user.randomTask.filter(
+      (item) => item.id !== project.task[index].id
+    );
+    project.task.splice(index, 1);
   }
 
   updateTask(index, title, desc, date, priority) {
