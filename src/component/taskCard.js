@@ -50,41 +50,8 @@ class TaskCard {
     `;
     this.cardBody.innerHTML = this.compactContent;
     this.render();
-    this.cardBody.addEventListener("click", (e) => {
-      if (
-        e.target === e.currentTarget ||
-        e.target.classList.contains("task-card-header") ||
-        e.target.classList.contains("task-title") ||
-        e.target.classList.contains("task-desc") ||
-        e.target.classList.contains("task-tags")
-      ) {
-        this.toogleCardContent();
-      } else {
-        return;
-      }
-    });
-    this.checkBox.addEventListener("click", () => {
-      if (this.isProject) {
-        nestedSearchProject(
-          user.projects[indexDOM.projectDetail.index].task,
-          user.randomTask,
-          this.checkMatchTask,
-          this.checkBox
-        );
-      } else {
-        user.projects.forEach((project) => {
-          project.task.forEach((task) => {
-            if (task.id === user.randomTask[this.taskCardIndex].id) {
-              task.isFinish = this.checkBox.checked;
-              user.randomTask[this.taskCardIndex].isFinish =
-                this.checkBox.checked;
-            }
-          });
-        });
-      }
-      storage.usersData = user;
-      this.render();
-    });
+    this.cardBody.addEventListener("click", (e) => this.checkCardTarget(e));
+    this.checkBox.addEventListener("click", () => this.isTaskBelongToProject());
   }
 
   render() {
@@ -126,6 +93,52 @@ class TaskCard {
       this.cardBody.classList.add("completed");
     } else {
       this.cardBody.classList.remove("completed");
+    }
+  }
+
+  /**
+   * The function `isTaskBelongToProject` checks if a task belongs to a project and updates its
+   * completion status accordingly.
+   */
+  isTaskBelongToProject() {
+    if (this.isProject) {
+      nestedSearchProject(
+        user.projects[indexDOM.projectDetail.index].task,
+        user.randomTask,
+        this.checkMatchTask,
+        this.checkBox
+      );
+    } else {
+      user.randomTask[this.taskCardIndex].isFinish = this.checkBox.checked;
+      user.projects.forEach((project) => {
+        project.task.forEach((task) => {
+          if (task.id === user.randomTask[this.taskCardIndex].id) {
+            task.isFinish = this.checkBox.checked;
+          }
+        });
+      });
+    }
+    storage.usersData = user;
+    this.render();
+  }
+
+  checkCardTarget(e) {
+    /* This code snippet is a conditional statement that checks if the clicked element on the task card
+    matches specific elements within the task card. If the clicked element matches any of the
+    specified elements (such as the task card header, title, description, or tags), the
+    `toogleCardContent()` method is called to toggle the content display of the task card between
+    compact and extended views. If the clicked element does not match any of the specified elements,
+    the function returns without performing any action. */
+    if (
+      e.target === e.currentTarget ||
+      e.target.classList.contains("task-card-header") ||
+      e.target.classList.contains("task-title") ||
+      e.target.classList.contains("task-desc") ||
+      e.target.classList.contains("task-tags")
+    ) {
+      this.toogleCardContent();
+    } else {
+      return;
     }
   }
 

@@ -101,6 +101,10 @@ class IndexDOM {
     });
   }
 
+  /**
+   * The function `fetchDataFromStorage` checks if `storage.usersData` exists and assigns its values to
+   * the `user` object if it does.
+   */
   #fetchDataFromStorage() {
     if (!storage.usersData) {
       storage.usersData = user;
