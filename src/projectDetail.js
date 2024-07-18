@@ -3,6 +3,7 @@ import indexDOM from ".";
 import allProjectDOM from "./allProjectDOM";
 import { user } from "./user";
 import { taskDOM } from "./taskDOM";
+import { taskFilter } from "./taskFilters";
 
 class ProjectDetail {
   #data;
@@ -20,12 +21,16 @@ class ProjectDetail {
     this.detailContainer.appendChild(taskDOM.taskContainer);
     const openTaskModal = this.detailContainer.querySelector(".btn-add-task");
     const btnDetailEdit = this.detailContainer.querySelector(".detail-edit");
+    const btnDetailDelete =
+      this.detailContainer.querySelector(".detail-delete");
+
     openTaskModal.addEventListener("click", () => {
       indexDOM.taskModal.changeButtonText("Add");
       indexDOM.taskModal.addProjectTag();
       indexDOM.taskModal.openModal();
     });
     btnDetailEdit.addEventListener("click", () => this.openDetailEditModal());
+    btnDetailDelete.addEventListener("click", () => this.deleteProject());
   }
 
   renderBody() {
@@ -61,6 +66,15 @@ class ProjectDetail {
     allProjectDOM.populateEditModal(allProjectDOM.projectIndex);
     indexDOM.projectModal.changeButtonText("Update");
     indexDOM.projectModal.openModal();
+  }
+
+  deleteProject() {
+    user.deleteProject(this.index);
+    taskDOM.render(user.randomTask);
+    taskFilter.render("All Tasks", taskDOM.taskContainer);
+    indexDOM.changeContent(taskFilter.container);
+    indexDOM.fetchProjectName();
+    indexDOM.hasManyProjects();
   }
 
   addDetailTag() {
