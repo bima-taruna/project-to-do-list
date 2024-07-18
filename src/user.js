@@ -14,7 +14,11 @@ class User {
   }
 
   deleteProject(index) {
+    user.projects[index].task.forEach((item) => {
+      user.randomTask = user.randomTask.filter((item2) => item2.id !== item.id);
+    });
     this.projects.splice(index, 1);
+    storage.usersData = user;
   }
 
   addProject(name, description) {
