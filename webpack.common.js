@@ -18,7 +18,6 @@ module.exports = {
     taskDOM: "./src/taskDOM.js",
     taskFilter: "./src/taskFilters.js",
     taskCard: "./src/component/taskCard.js",
-    nestedSearch: "./src/helper/nestedSearch.js",
   },
   plugins: [
     new HtmlWebpackPlugin({

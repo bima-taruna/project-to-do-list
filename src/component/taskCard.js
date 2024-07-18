@@ -1,4 +1,3 @@
-import { nestedSearchProject } from "../helper/nestedSearch.js";
 import indexDOM from "../index.js";
 import { storage } from "../storage.js";
 import "../style/taskCardStyle.css";
@@ -105,18 +104,24 @@ class TaskCard {
    * completion status accordingly.
    */
   isTaskBelongToProject() {
+    const randomTask = user.randomTask;
+    const randomTasks = user.randomTask[this.taskCardIndex];
+    const projects = user.projects;
     if (this.isProject) {
-      nestedSearchProject(
-        user.projects[indexDOM.projectDetail.index].task,
-        user.randomTask,
-        this.checkMatchTask,
-        this.checkBox
-      );
+      const projectTask = user.projects[indexDOM.projectDetail.index].task;
+      projectTask.forEach((task) => {
+        randomTask.forEach((task2) => {
+          if (task.id === task2.id) {
+            task2.isFinish = this.checkBox.checked;
+            task.isFinish = this.checkBox.checked;
+          }
+        });
+      });
     } else {
-      user.randomTask[this.taskCardIndex].isFinish = this.checkBox.checked;
-      user.projects.forEach((project) => {
+      randomTasks.isFinish = this.checkBox.checked;
+      projects.forEach((project) => {
         project.task.forEach((task) => {
-          if (task.id === user.randomTask[this.taskCardIndex].id) {
+          if (task.id === randomTasks.id) {
             task.isFinish = this.checkBox.checked;
           }
         });
