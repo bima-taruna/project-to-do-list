@@ -205,6 +205,11 @@ header {
   border-radius: 1rem;
 }
 
+.task-form > .second-half {
+  display: flex;
+  gap: 1rem;
+}
+
 .project-form,
 .task-form {
   display: flex;
@@ -236,12 +241,20 @@ header {
   font-size: 1.2rem;
 }
 
-#task-name,
 #task-desc,
-#task-date,
-#task-priority {
+#task-date {
   font-size: 1rem;
-  padding: 0.3rem;
+  padding: 0.2rem;
+}
+
+#task-name {
+  font-size: 1.2rem;
+  padding: 0.5rem;
+}
+
+#task-priority {
+  font-size: 1.1rem;
+  padding: 0.2rem;
 }
 
 .project-form > button,
