@@ -13,6 +13,7 @@ class TaskModal extends Modal {
   }
 
   render() {
+    this.currentDate = new Date().toISOString().split("T")[0];
     this.content = `
             <form class="task-form">
                 <label for="task-name">Name : </label>
@@ -47,6 +48,7 @@ class TaskModal extends Modal {
     this.taskName = this.overlay.querySelector("#task-name");
     this.taskDesc = this.overlay.querySelector("#task-desc");
     this.taskDate = this.overlay.querySelector("#task-date");
+    this.taskDate.setAttribute("min", this.currentDate);
     this.taskPriority = this.overlay.querySelector("#task-priority");
     let closeButton = this.overlay.querySelector(".btn-taskform-close");
     closeButton.addEventListener("click", () => {
