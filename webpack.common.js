@@ -18,6 +18,7 @@ module.exports = {
     taskDOM: "./src/taskDOM.js",
     taskFilter: "./src/taskFilters.js",
     taskCard: "./src/component/taskCard.js",
+    distanceToNow: "./src/helper/distanceToNow.js",
   },
   plugins: [
     new HtmlWebpackPlugin({
