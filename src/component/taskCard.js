@@ -39,7 +39,7 @@ class TaskCard {
                 <div class="task-title">${this.title}</div>
                 <p class="task-desc">${this.desc}</p>
                 <div class="task-tags">
-                        <div class="task-date">due date : ${this.date}</div>
+                        <div class="task-date">due date : ${this.dateFormatter.resultString}</div>
                         <div class="task-priority">priority : ${this.priority}</div>
                 </div>
                 <div class="task-buttons">
@@ -69,6 +69,7 @@ class TaskCard {
       this.cardBody.classList.add("extended");
       this.cardBody.innerHTML = this.extendedContent;
       this.priorityColor();
+      this.dateColor();
       this.checkBoxCheck();
       this.cardBody.appendChild(this.checkBox);
     } else {
@@ -96,9 +97,9 @@ class TaskCard {
   dateColor() {
     let dateTag = this.cardBody.querySelector(".task-date");
     if (this.dateFormatter.isNow) {
-      dateTag.style.backgroundColor = "red";
+      dateTag.style.backgroundColor = "#ff4a4a";
     } else {
-      dateTag.style.backgroundColor = "green";
+      dateTag.style.backgroundColor = "#91ffc8";
     }
   }
 
