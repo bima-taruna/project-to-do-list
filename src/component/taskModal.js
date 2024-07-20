@@ -48,9 +48,9 @@ class TaskModal extends Modal {
     this.taskName = this.overlay.querySelector("#task-name");
     this.taskDesc = this.overlay.querySelector("#task-desc");
     this.taskDate = this.overlay.querySelector("#task-date");
-    this.taskDate.setAttribute("min", this.currentDate);
     this.taskPriority = this.overlay.querySelector("#task-priority");
     let closeButton = this.overlay.querySelector(".btn-taskform-close");
+    this.taskDate.setAttribute("min", this.currentDate);
     closeButton.addEventListener("click", () => {
       this.closeModal();
     });
