@@ -1,3 +1,4 @@
+import { distanceDateToNow } from "../helper/distanceToNow.js";
 import indexDOM from "../index.js";
 import { storage } from "../storage.js";
 import "../style/taskCardStyle.css";
@@ -12,6 +13,7 @@ class TaskCard {
     this.title = title;
     this.desc = desc;
     this.date = date;
+    this.dateFormatter = distanceDateToNow(this.date);
     this.priority = priority;
     this.isFinish = isFinish;
     this.cardBody = document.createElement("div");
@@ -88,6 +90,15 @@ class TaskCard {
       default:
         taskPriority.style.backgroundColor = "#91ffc8";
         break;
+    }
+  }
+
+  dateColor() {
+    let dateTag = this.cardBody.querySelector(".task-date");
+    if (this.dateFormatter.isNow) {
+      dateTag.style.backgroundColor = "red";
+    } else {
+      dateTag.style.backgroundColor = "green";
     }
   }
 
