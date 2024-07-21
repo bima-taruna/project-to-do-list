@@ -6,6 +6,7 @@ import { storage } from "./storage";
 import { user } from "./user";
 
 class TaskDOM {
+  taskIndex;
   constructor() {
     this.taskContainer = document.createElement("div");
     this.taskContainer.classList.add("task-container");
@@ -16,6 +17,9 @@ class TaskDOM {
     this.fetchTask(tasks);
     this.taskContainer.addEventListener("click", (e) => {
       this.#deleteTask(e);
+    });
+    this.taskContainer.addEventListener("click", (e) => {
+      this.#openEditTaskModal(e);
     });
   }
 
@@ -62,6 +66,19 @@ class TaskDOM {
       }
     } else {
       console.log("task card not found");
+    }
+  }
+
+  #openEditTaskModal(event) {
+    const { target } = event;
+    const targetElement = target.closest(".task-card-edit");
+    if (targetElement) {
+      let targetClosest = targetElement.closest(".task-card");
+      this.taskIndex = searchDOM(targetClosest);
+      indexDOM.taskModal.changeButtonText("Update");
+      indexDOM.taskModal.addEditTag();
+      indexDOM.taskModal.populateTaskForm(this.taskIndex);
+      indexDOM.taskModal.openModal();
     }
   }
 }
