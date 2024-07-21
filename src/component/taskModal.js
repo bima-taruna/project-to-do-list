@@ -93,6 +93,39 @@ class TaskModal extends Modal {
       taskDOM.render(user.randomTask);
     }
   }
+
+  addEditTag() {
+    this.taskForm.classList.add("edit");
+  }
+
+  populateTaskForm(index) {
+    if (this.taskForm.classList.contains("project")) {
+      const data = user.projects[indexDOM.projectDetail.index].task[index];
+      this.taskName.value = data.title;
+      this.taskDesc.value = data.desc;
+      this.taskDate.value = data.date;
+      this.taskPriority.value = data.priority;
+    } else {
+      const data = user.randomTask[index];
+      this.taskName.value = data.title;
+      this.taskDesc.value = data.desc;
+      this.taskDate.value = data.date;
+      this.taskPriority.value = data.priority;
+    }
+  }
+
+  removeEditTag() {
+    if (this.taskForm.classList.contains("edit")) {
+      this.taskForm.classList.remove("edit");
+    }
+  }
+
+  resetForm() {
+    this.taskName.value = "";
+    this.taskDesc.value = "";
+    this.taskDate.value = "";
+    this.taskPriority.value = "";
+  }
 }
 
 export default TaskModal;
