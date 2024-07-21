@@ -96,7 +96,7 @@ class TaskCard {
 
   dateColor() {
     let dateTag = this.cardBody.querySelector(".task-date");
-    if (this.dateFormatter.isNow) {
+    if (this.dateFormatter.isNow || this.dateFormatter.isPast) {
       dateTag.style.backgroundColor = "#ff4a4a";
     } else {
       dateTag.style.backgroundColor = "#91ffc8";
