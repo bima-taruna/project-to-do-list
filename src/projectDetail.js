@@ -27,6 +27,8 @@ class ProjectDetail {
     openTaskModal.addEventListener("click", () => {
       indexDOM.taskModal.changeButtonText("Add");
       indexDOM.taskModal.addProjectTag();
+      indexDOM.taskModal.removeEditTag();
+      indexDOM.taskModal.resetForm();
       indexDOM.taskModal.openModal();
     });
     btnDetailEdit.addEventListener("click", () => this.openDetailEditModal());
