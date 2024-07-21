@@ -30,6 +30,14 @@ class Project {
     this.task[index].desc = desc;
     this.task[index].date = date;
     this.task[index].priority = priority;
+    user.randomTask.forEach((task2) => {
+      if (this.task[index].id === task2.id) {
+        task2.title = title;
+        task2.desc = desc;
+        task2.date = date;
+        task2.priority = priority;
+      }
+    });
   }
 }
 
