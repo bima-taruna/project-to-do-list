@@ -52,6 +52,16 @@ class User {
     this.randomTask[index].desc = desc;
     this.randomTask[index].date = date;
     this.randomTask[index].priority = priority;
+    this.projects.forEach((project) => {
+      project.task.forEach((task) => {
+        if (task.id === this.randomTask[index].id) {
+          task.title = title;
+          task.desc = desc;
+          task.date = date;
+          task.priority = priority;
+        }
+      });
+    });
   }
 }
 
