@@ -40,6 +40,17 @@ class Project {
       }
     });
   }
+
+  updateTaskStatus(id, status) {
+    const targetTask = this.getTaskById(id);
+    targetTask.isFinish = status;
+    user.randomTask.forEach((task2) => {
+      if (targetTask.id === task2.id) {
+        task2.isFinish = status;
+      }
+    });
+  }
+
   getTaskById(id) {
     return this.task.find((task) => task.id === id);
   }
