@@ -64,7 +64,7 @@ class TaskModal extends Modal {
       e.preventDefault();
       if (this.taskForm.classList.contains("edit")) {
         this.updateTask(
-          taskDOM.taskIndex,
+          this.taskUniqueId,
           this.taskName.value,
           this.taskDesc.value,
           this.taskDate.value,
@@ -143,13 +143,13 @@ class TaskModal extends Modal {
     this.taskPriority.value = "";
   }
 
-  updateTask(index, title, desc, date, priority) {
+  updateTask(id, title, desc, date, priority) {
     if (
       this.taskForm.classList.contains("project") &&
       this.taskForm.classList.contains("edit")
     ) {
       user.projects[indexDOM.projectDetail.index].updateTask(
-        index,
+        id,
         title,
         desc,
         date,
@@ -157,7 +157,7 @@ class TaskModal extends Modal {
       );
       taskDOM.fetchTask(user.projects[indexDOM.projectDetail.index].task);
     } else {
-      user.updateTask(index, title, desc, date, priority);
+      user.updateTask(id, title, desc, date, priority);
       taskDOM.fetchTask(user.randomTask);
       taskFilter.render("All Tasks", taskDOM.taskContainer);
       indexDOM.changeContent(taskFilter.container);
