@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkproject_to_do_list=self.webpackChunkproject_to_do_list||[]).push([[882],{829:(t,e,s)=>{s.d(e,{I:()=>a});const a=new class{set usersData(t){localStorage.setItem("userData",JSON.stringify(t))}get usersData(){var t=localStorage.getItem("userData");return t&&JSON.parse(t)}}}},t=>{t(t.s=829)}]);
+//# sourceMappingURL=storage.bundle.js.map

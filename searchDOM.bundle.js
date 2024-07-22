@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkproject_to_do_list=self.webpackChunkproject_to_do_list||[]).push([[274],{729:(e,o,t)=>{function r(e){if(!e||!e.parentNode)return console.error("Node or its parent is null"),-1;let o=e.parentNode.childNodes,t=0;for(var r=0;r<o.length;r++){if(o[r]==e)return t;1==o[r].nodeType&&t++}return console.log("execute"),-1}t.d(o,{H:()=>r})}},e=>{e(e.s=729)}]);
+//# sourceMappingURL=searchDOM.bundle.js.map
