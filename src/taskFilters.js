@@ -13,23 +13,25 @@ class TaskFilters {
         this.container.removeChild(item);
       });
     }
-    this.btnAddTask = document.createElement("button");
-    this.btnAddTask.classList.add("material-icons");
-    this.btnAddTask.classList.add("btn-add-task");
-    this.btnAddTask.textContent = "add";
     this.title = document.createElement("div");
     this.title.classList.add("task-container-title");
     this.title.textContent = title;
+    if (this.title.textContent === "All Tasks") {
+      this.btnAddTask = document.createElement("button");
+      this.btnAddTask.classList.add("material-icons");
+      this.btnAddTask.classList.add("btn-add-task");
+      this.btnAddTask.textContent = "add";
+      this.title.appendChild(this.btnAddTask);
+      this.btnAddTask.addEventListener("click", () => {
+        indexDOM.taskModal.changeButtonText("Add");
+        indexDOM.taskModal.removeProjectTag();
+        indexDOM.taskModal.removeEditTag();
+        indexDOM.taskModal.resetForm();
+        indexDOM.taskModal.openModal();
+      });
+    }
     this.container.appendChild(this.title);
-    this.title.appendChild(this.btnAddTask);
     this.container.appendChild(task);
-    this.btnAddTask.addEventListener("click", () => {
-      indexDOM.taskModal.changeButtonText("Add");
-      indexDOM.taskModal.removeProjectTag();
-      indexDOM.taskModal.removeEditTag();
-      indexDOM.taskModal.resetForm();
-      indexDOM.taskModal.openModal();
-    });
   }
 
   get taskFilter() {
