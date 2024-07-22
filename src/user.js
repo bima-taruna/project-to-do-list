@@ -63,6 +63,19 @@ class User {
       });
     });
   }
+
+  updateTaskStatus(id, status) {
+    const targetTask = this.getTaskById(id);
+    targetTask.isFinish = status;
+    this.projects.forEach((project) => {
+      project.task.forEach((task) => {
+        if (task.id === targetTask.id) {
+          task.isFinish = status;
+        }
+      });
+    });
+  }
+
   getTaskById(id) {
     return this.randomTask.find((task) => task.id === id);
   }
