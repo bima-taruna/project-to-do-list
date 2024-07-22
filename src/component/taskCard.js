@@ -2,6 +2,8 @@ import { distanceDateToNow } from "../helper/distanceToNow.js";
 import indexDOM from "../index.js";
 import { storage } from "../storage.js";
 import "../style/taskCardStyle.css";
+import { taskDOM } from "../taskDOM.js";
+import { taskFilter } from "../taskFilters.js";
 import { user } from "../user.js";
 
 class TaskCard {
@@ -60,11 +62,16 @@ class TaskCard {
           
     `;
     this.cardBody.innerHTML = this.compactContent;
+    this.deleteButton = this.cardBody.querySelector(".task-card-delete");
     this.render();
     this.addListener();
   }
 
   addListener() {
+    console.log(this.deleteButton);
+    this.deleteButton.addEventListener("click", () =>
+      this.deleteTask(this.idCode)
+    );
     this.cardBody.addEventListener("click", (e) => this.checkCardTarget(e));
     this.checkBox.addEventListener("click", () => this.updateTaskStatus());
   }
@@ -122,8 +129,8 @@ class TaskCard {
   }
 
   /**
-   * The function `isTaskBelongToProject` checks if a task belongs to a project and updates its
-   * completion status accordingly.
+   * The `updateTaskStatus` function updates the status of a task based on whether it belongs to a
+   * project or not.
    */
   updateTaskStatus() {
     if (this.isProject) {
@@ -136,6 +143,26 @@ class TaskCard {
     }
     storage.usersData = user;
     this.render();
+  }
+
+  /**
+   * The `deleteTask` function removes a task from either a project or the user's tasks and updates the
+   * task display accordingly.
+   * @param id - The `id` parameter in the `deleteTask` function represents the unique identifier of
+   * the task that needs to be deleted. This identifier is used to locate and remove the specific task
+   * from the user's task list.
+   */
+  deleteTask(id) {
+    if (this.isProject) {
+      user.projects[indexDOM.projectDetail.index].deleteTask(this.idCode);
+      taskDOM.fetchTask(user.projects[indexDOM.projectDetail.index].task);
+    } else {
+      user.deleteTask(id);
+      taskDOM.render(user.randomTask);
+      taskFilter.render("All Tasks", taskDOM.taskContainer);
+      indexDOM.changeContent(taskFilter.container);
+    }
+    storage.usersData = user;
   }
 
   checkCardTarget(e) {
