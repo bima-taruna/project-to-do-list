@@ -72,11 +72,17 @@ class TaskDOM {
   #openEditTaskModal(event) {
     const { target } = event;
     const targetElement = target.closest(".task-card-edit");
+    const parentNode = this.taskContainer.parentNode.className;
     if (targetElement) {
       let targetClosest = targetElement.closest(".task-card");
       this.taskIndex = searchDOM(targetClosest);
       indexDOM.taskModal.changeButtonText("Update");
       indexDOM.taskModal.addEditTag();
+      if (parentNode === "detail-container") {
+        indexDOM.taskModal.addProjectTag();
+      } else {
+        indexDOM.taskModal.removeProjectTag();
+      }
       indexDOM.taskModal.populateTaskForm(this.taskIndex);
       indexDOM.taskModal.openModal();
     }
