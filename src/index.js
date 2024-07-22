@@ -9,6 +9,7 @@ import ProjectDetail from "./projectDetail";
 import { taskDOM } from "./taskDOM";
 import { taskFilter } from "./taskFilters";
 import Project from "./project";
+import Task from "./task";
 
 if (process.env.NODE_ENV !== "production") {
   console.log("Looks like we are in development mode!");
@@ -30,6 +31,15 @@ class IndexDOM {
   projectDetail;
 
   constructor() {
+    const exampleProject = new Project("project1", "this is just example");
+    const exampleTask = new Task(
+      "example task 1",
+      "just example",
+      "2024-07-22",
+      "low"
+    );
+    user.projects.push(exampleProject);
+    user.randomTask.push(exampleTask);
     this.#fetchDataFromStorage();
     this.main = document.querySelector("main");
     this.#editNameBtn = document.getElementById("btn-edit-name");
