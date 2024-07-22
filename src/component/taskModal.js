@@ -4,8 +4,10 @@ import { user } from "../user";
 import { storage } from "../storage";
 import indexDOM from "..";
 import { taskDOM } from "../taskDOM";
+import { taskFilter } from "../taskFilters";
 
 class TaskModal extends Modal {
+  taskUniqueId = "default";
   constructor() {
     super();
     this.render();
@@ -112,15 +114,15 @@ class TaskModal extends Modal {
     this.taskForm.classList.add("edit");
   }
 
-  populateTaskForm(index) {
+  populateTaskForm(id) {
     if (this.taskForm.classList.contains("project")) {
-      const data = user.projects[indexDOM.projectDetail.index].task[index];
+      const data = user.projects[indexDOM.projectDetail.index].getTaskById(id);
       this.taskName.value = data.title;
       this.taskDesc.value = data.desc;
       this.taskDate.value = data.date;
       this.taskPriority.value = data.priority;
     } else {
-      const data = user.randomTask[index];
+      const data = user.getTaskById(id);
       this.taskName.value = data.title;
       this.taskDesc.value = data.desc;
       this.taskDate.value = data.date;
@@ -157,6 +159,8 @@ class TaskModal extends Modal {
     } else {
       user.updateTask(index, title, desc, date, priority);
       taskDOM.fetchTask(user.randomTask);
+      taskFilter.render("All Tasks", taskDOM.taskContainer);
+      indexDOM.changeContent(taskFilter.container);
     }
     storage.usersData = user;
   }
