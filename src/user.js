@@ -46,14 +46,15 @@ class User {
     this.randomTask.splice(index, 1);
   }
 
-  updateTask(index, title, desc, date, priority) {
-    this.randomTask[index].title = title;
-    this.randomTask[index].desc = desc;
-    this.randomTask[index].date = date;
-    this.randomTask[index].priority = priority;
+  updateTask(id, title, desc, date, priority) {
+    const targetTask = this.getTaskById(id);
+    targetTask.title = title;
+    targetTask.desc = desc;
+    targetTask.date = date;
+    targetTask.priority = priority;
     this.projects.forEach((project) => {
       project.task.forEach((task) => {
-        if (task.id === this.randomTask[index].id) {
+        if (task.id === targetTask.id) {
           task.title = title;
           task.desc = desc;
           task.date = date;
@@ -61,6 +62,9 @@ class User {
         }
       });
     });
+  }
+  getTaskById(id) {
+    return this.randomTask.find((task) => task.id === id);
   }
 }
 
