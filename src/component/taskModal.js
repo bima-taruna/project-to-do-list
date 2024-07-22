@@ -17,17 +17,17 @@ class TaskModal extends Modal {
     this.content = `
             <form class="task-form">
                 <label for="task-name">Name : </label>
-                <input type="text" id="task-name" name="task-name" required minlength="4" maxlength="20" required/>
+                <input type="text" id="task-name" name="task-name" required minlength="4" maxlength="30" required/>
                 <label for="task-desc">Description : </label>
                 <textarea id="task-desc" name="task-desc" rows="5" placeholder="Enter your project desc here...."></textarea>
                 <div class="second-half">
                   <div> 
                     <label class="label-date" for="task-date">Due Date : </label>
-                    <input type="date" id="task-date" name="task-date"/>
+                    <input type="date" id="task-date" name="task-date" required/>
                   </div>
                   <div>
                     <label class="label-priority" for="task-priority">Priority : </label>
-                    <select name="task-priority" id="task-priority">
+                    <select name="task-priority" id="task-priority" required>
                       <option value="low">Low</option>
                       <option value="medium">Medium</option>
                       <option value="high">High</option>
@@ -56,13 +56,24 @@ class TaskModal extends Modal {
     });
     this.taskForm.addEventListener("submit", (e) => {
       e.preventDefault();
-      this.addTask(
-        this.taskName.value,
-        this.taskDesc.value,
-        this.taskDate.value,
-        this.taskPriority.value
-      );
+      if (this.taskForm.classList.contains("edit")) {
+        this.updateTask(
+          taskDOM.taskIndex,
+          this.taskName.value,
+          this.taskDesc.value,
+          this.taskDate.value,
+          this.taskPriority.value
+        );
+      } else {
+        this.addTask(
+          this.taskName.value,
+          this.taskDesc.value,
+          this.taskDate.value,
+          this.taskPriority.value
+        );
+      }
       this.closeModal();
+      console.log(this.taskDate.value);
     });
   }
 
@@ -125,6 +136,26 @@ class TaskModal extends Modal {
     this.taskDesc.value = "";
     this.taskDate.value = "";
     this.taskPriority.value = "";
+  }
+
+  updateTask(index, title, desc, date, priority) {
+    if (
+      this.taskForm.classList.contains("project") &&
+      this.taskForm.classList.contains("edit")
+    ) {
+      user.projects[indexDOM.projectDetail.index].updateTask(
+        index,
+        title,
+        desc,
+        date,
+        priority
+      );
+      taskDOM.fetchTask(user.projects[indexDOM.projectDetail.index].task);
+    } else {
+      user.updateTask(index, title, desc, date, priority);
+      taskDOM.fetchTask(user.randomTask);
+    }
+    storage.usersData = user;
   }
 }
 
