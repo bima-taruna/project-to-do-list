@@ -50,6 +50,11 @@ class TaskModal extends Modal {
     this.taskDate = this.overlay.querySelector("#task-date");
     this.taskPriority = this.overlay.querySelector("#task-priority");
     let closeButton = this.overlay.querySelector(".btn-taskform-close");
+    if (this.taskForm.classList.contains("edit")) {
+      this.taskDate.setAttribute("min", this.taskDate.value);
+    } else {
+      this.taskDate.setAttribute("min", this.currentDate);
+    }
     this.taskDate.setAttribute("min", this.currentDate);
     closeButton.addEventListener("click", () => {
       this.closeModal();
