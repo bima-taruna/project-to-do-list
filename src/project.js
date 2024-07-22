@@ -17,12 +17,13 @@ class Project {
     storage.usersData = user;
   }
 
-  deleteTask(index) {
+  deleteTask(id) {
+    const targetTask = this.getTaskById(id);
     const project = user.projects[indexDOM.projectDetail.index];
     user.randomTask = user.randomTask.filter(
-      (item) => item.id !== project.task[index].id
+      (item) => item.id !== targetTask.id
     );
-    project.task.splice(index, 1);
+    project.task = project.task.filter((item) => item.id !== targetTask.id);
   }
 
   updateTask(id, title, desc, date, priority) {
