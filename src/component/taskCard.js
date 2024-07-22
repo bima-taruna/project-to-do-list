@@ -63,6 +63,7 @@ class TaskCard {
     `;
     this.cardBody.innerHTML = this.compactContent;
     this.deleteButton = this.cardBody.querySelector(".task-card-delete");
+    this.editButton = this.cardBody.querySelector(".task-card-edit");
     this.render();
     this.addListener();
   }
@@ -71,6 +72,9 @@ class TaskCard {
     console.log(this.deleteButton);
     this.deleteButton.addEventListener("click", () =>
       this.deleteTask(this.idCode)
+    );
+    this.editButton.addEventListener("click", () =>
+      this.openTaskModal(this.idCode)
     );
     this.cardBody.addEventListener("click", (e) => this.checkCardTarget(e));
     this.checkBox.addEventListener("click", () => this.updateTaskStatus());
@@ -190,6 +194,19 @@ class TaskCard {
       item2.isFinish = checkBox.checked;
       item1.isFinish = checkBox.checked;
     }
+  }
+
+  openTaskModal(id) {
+    indexDOM.taskModal.changeButtonText("Update");
+    indexDOM.taskModal.addEditTag();
+    if (this.isProject) {
+      indexDOM.taskModal.addProjectTag();
+    } else {
+      indexDOM.taskModal.removeProjectTag();
+    }
+    indexDOM.taskModal.populateTaskForm(id);
+    indexDOM.taskModal.taskUniqueId = id;
+    indexDOM.taskModal.openModal();
   }
 }
 
