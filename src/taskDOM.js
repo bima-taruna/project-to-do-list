@@ -1,4 +1,3 @@
-// import "./style/allTask.css";
 import indexDOM from ".";
 import TaskCard from "./component/taskCard";
 import { searchDOM } from "./helper/searchDOM";

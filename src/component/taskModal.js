@@ -4,7 +4,6 @@ import { user } from "../user";
 import { storage } from "../storage";
 import indexDOM from "..";
 import { taskDOM } from "../taskDOM";
-import Project from "../project";
 
 class TaskModal extends Modal {
   constructor() {
