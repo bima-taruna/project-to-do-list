@@ -41,7 +41,7 @@ class IndexDOM {
     );
     user.projects.push(exampleProject);
     user.randomTask.push(exampleTask);
-    this.#fetchDataFromStorage();
+    this.fetchDataFromStorage();
     this.main = document.querySelector("main");
     this.#editNameBtn = document.getElementById("btn-edit-name");
     this.#addProjectButton = document.getElementById("add-project");
@@ -89,6 +89,7 @@ class IndexDOM {
       });
     }
     this.allTask.addEventListener("click", () => {
+      this.fetchDataFromStorage();
       taskDOM.render(user.randomTask);
       taskFilter.render("All Tasks", taskDOM.taskContainer);
       this.changeContent(taskFilter.container);
@@ -126,7 +127,7 @@ class IndexDOM {
    * The function `fetchDataFromStorage` checks if `storage.usersData` exists and assigns its values to
    * the `user` object if it does.
    */
-  #fetchDataFromStorage() {
+  fetchDataFromStorage() {
     if (!storage.usersData) {
       storage.usersData = user;
     } else {

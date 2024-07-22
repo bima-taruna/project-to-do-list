@@ -1,8 +1,4 @@
-import indexDOM from ".";
 import TaskCard from "./component/taskCard";
-import { searchDOM } from "./helper/searchDOM";
-import { storage } from "./storage";
-import { user } from "./user";
 
 class TaskDOM {
   taskIndex;
