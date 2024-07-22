@@ -25,19 +25,23 @@ class Project {
     project.task.splice(index, 1);
   }
 
-  updateTask(index, title, desc, date, priority) {
-    this.task[index].title = title;
-    this.task[index].desc = desc;
-    this.task[index].date = date;
-    this.task[index].priority = priority;
+  updateTask(id, title, desc, date, priority) {
+    const targetTask = this.getTaskById(id);
+    targetTask.title = title;
+    targetTask.desc = desc;
+    targetTask.date = date;
+    targetTask.priority = priority;
     user.randomTask.forEach((task2) => {
-      if (this.task[index].id === task2.id) {
+      if (targetTask.id === task2.id) {
         task2.title = title;
         task2.desc = desc;
         task2.date = date;
         task2.priority = priority;
       }
     });
+  }
+  getTaskById(id) {
+    return this.task.find((task) => task.id === id);
   }
 }
 
