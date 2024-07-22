@@ -69,7 +69,6 @@ class TaskCard {
   }
 
   addListener() {
-    console.log(this.deleteButton);
     this.deleteButton.addEventListener("click", () =>
       this.deleteTask(this.idCode)
     );
