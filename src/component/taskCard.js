@@ -8,11 +8,21 @@ class TaskCard {
   cardBody;
   taskCardIndex;
   checkBox;
-  constructor(index, title, desc, date, priority, isFinish, isProject = false) {
+  constructor(
+    index,
+    idCode,
+    title,
+    desc,
+    date,
+    priority,
+    isFinish,
+    isProject = false
+  ) {
     this.taskCardIndex = index;
     this.title = title;
     this.desc = desc;
     this.date = date;
+    this.idCode = idCode;
     this.dateFormatter = distanceDateToNow(this.date);
     this.priority = priority;
     this.isFinish = isFinish;
@@ -56,7 +66,7 @@ class TaskCard {
 
   addListener() {
     this.cardBody.addEventListener("click", (e) => this.checkCardTarget(e));
-    this.checkBox.addEventListener("click", () => this.isTaskBelongToProject());
+    this.checkBox.addEventListener("click", () => this.updateTaskStatus());
   }
 
   render() {
@@ -115,29 +125,14 @@ class TaskCard {
    * The function `isTaskBelongToProject` checks if a task belongs to a project and updates its
    * completion status accordingly.
    */
-  isTaskBelongToProject() {
-    const randomTask = user.randomTask;
-    const randomTasks = user.randomTask[this.taskCardIndex];
-    const projects = user.projects;
+  updateTaskStatus() {
     if (this.isProject) {
-      const projectTask = user.projects[indexDOM.projectDetail.index].task;
-      projectTask.forEach((task) => {
-        randomTask.forEach((task2) => {
-          if (task.id === task2.id) {
-            task2.isFinish = this.checkBox.checked;
-            task.isFinish = this.checkBox.checked;
-          }
-        });
-      });
+      user.projects[indexDOM.projectDetail.index].updateTaskStatus(
+        this.idCode,
+        this.checkBox.checked
+      );
     } else {
-      randomTasks.isFinish = this.checkBox.checked;
-      projects.forEach((project) => {
-        project.task.forEach((task) => {
-          if (task.id === randomTasks.id) {
-            task.isFinish = this.checkBox.checked;
-          }
-        });
-      });
+      user.updateTaskStatus(this.idCode, this.checkBox.checked);
     }
     storage.usersData = user;
     this.render();
