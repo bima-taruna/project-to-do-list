@@ -10,6 +10,7 @@ import { taskDOM } from "./taskDOM";
 import { taskFilter } from "./taskFilters";
 import Project from "./project";
 import Task from "./task";
+import { isFuture, parse } from "date-fns";
 
 if (process.env.NODE_ENV !== "production") {
   console.log("Looks like we are in development mode!");
@@ -68,6 +69,8 @@ class IndexDOM {
     this.changeUserNameButton = document.querySelector(".btn-name-change");
     let filters = document.getElementById("filters");
     this.allTask = filters.children[0];
+    this.todayTask = filters.children[1];
+    this.upcomingTask = filters.children[2];
     this.#userNameInput = document.getElementById("user-name");
     this.projectNameInput = document.getElementById("project-name");
     this.projectDescInput = document.getElementById("project-desc");
@@ -88,6 +91,16 @@ class IndexDOM {
     this.allTask.addEventListener("click", () => {
       taskDOM.render(user.randomTask);
       taskFilter.render("All Tasks", taskDOM.taskContainer);
+      this.changeContent(taskFilter.container);
+    });
+    this.todayTask.addEventListener("click", () => {
+      taskDOM.render(this.fetchTodayTask());
+      taskFilter.render("Today Tasks", taskDOM.taskContainer);
+      this.changeContent(taskFilter.container);
+    });
+    this.upcomingTask.addEventListener("click", () => {
+      taskDOM.render(this.fetchFutureTask());
+      taskFilter.render("Upcoming Tasks", taskDOM.taskContainer);
       this.changeContent(taskFilter.container);
     });
     this.#editNameBtn.addEventListener("click", () =>
@@ -216,6 +229,22 @@ class IndexDOM {
     if (projectForm.classList.contains("detail")) {
       projectForm.classList.remove("detail");
     }
+  }
+
+  fetchTodayTask() {
+    const currentDate = new Date().toISOString().split("T")[0];
+    const todayTask = user.randomTask.filter((task) => {
+      return task.date === currentDate;
+    });
+    return todayTask;
+  }
+
+  fetchFutureTask() {
+    const futureTask = user.randomTask.filter((task) => {
+      const taskDate = parse(task.date, "yyyy-MM-dd", new Date());
+      return isFuture(taskDate);
+    });
+    return futureTask;
   }
 
   get main() {
