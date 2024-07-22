@@ -89,20 +89,17 @@ class AllProjectDOM {
     if (targetElement) {
       let targetClosest = targetElement.closest(".project-card");
       let i = searchDOM(targetClosest);
-      console.log(i);
       user.deleteProject(i);
       storage.usersData = user;
       this.fetchProjects();
       indexDOM.fetchProjectName();
       indexDOM.hasManyProjects();
-      // indexDOM.render();
     }
   }
 
   addEditTag() {
     let projectForm = document.querySelector(".project-form");
     projectForm.classList.add("edit");
-    console.log(projectForm);
   }
 
   removeDetailTag() {

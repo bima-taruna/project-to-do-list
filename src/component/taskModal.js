@@ -77,7 +77,6 @@ class TaskModal extends Modal {
         );
       }
       this.closeModal();
-      console.log(this.taskDate.value);
     });
   }
 

@@ -52,8 +52,6 @@ class IndexDOM {
   }
 
   render() {
-    console.log(user);
-    console.log(storage.usersData);
     this.taskModal = new TaskModal();
     this.projectModal = new ProjectModal({
       className: "project-modal",

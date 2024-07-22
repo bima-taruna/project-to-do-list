@@ -35,7 +35,6 @@ class User {
     const newTask = new Task(title, desc, date, priority);
     this.randomTask.push(newTask);
     storage.usersData = user;
-    console.log("success");
   }
 
   deleteTask(index) {
