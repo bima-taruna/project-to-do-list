@@ -64,7 +64,9 @@ class TaskCard {
     this.cardBody.innerHTML = this.compactContent;
     this.deleteButton = this.cardBody.querySelector(".task-card-delete");
     this.editButton = this.cardBody.querySelector(".task-card-edit");
-    this.render();
+    this.cardBody.prepend(this.checkBox);
+    this.cardBody.addEventListener("click", (e) => this.checkCardTarget(e));
+    this.checkBoxCheck();
     this.addListener();
   }
 
@@ -75,13 +77,7 @@ class TaskCard {
     this.editButton.addEventListener("click", () =>
       this.openTaskModal(this.idCode)
     );
-    this.cardBody.addEventListener("click", (e) => this.checkCardTarget(e));
     this.checkBox.addEventListener("click", () => this.updateTaskStatus());
-  }
-
-  render() {
-    this.cardBody.prepend(this.checkBox);
-    this.checkBoxCheck();
   }
 
   toogleCardContent() {
@@ -91,12 +87,15 @@ class TaskCard {
       this.priorityColor();
       this.dateColor();
       this.checkBoxCheck();
-      this.cardBody.appendChild(this.checkBox);
+      this.cardBody.prepend(this.checkBox);
     } else {
       this.cardBody.classList.remove("extended");
       this.cardBody.innerHTML = this.compactContent;
       this.cardBody.prepend(this.checkBox);
     }
+    this.deleteButton = this.cardBody.querySelector(".task-card-delete");
+    this.editButton = this.cardBody.querySelector(".task-card-edit");
+    this.addListener();
   }
 
   priorityColor() {
@@ -145,7 +144,7 @@ class TaskCard {
       user.updateTaskStatus(this.idCode, this.checkBox.checked);
     }
     storage.usersData = user;
-    this.render();
+    this.checkBoxCheck();
   }
 
   /**
